@@ -33,23 +33,27 @@ public class TestBean {
 
 
 
-    @Inject
-    private Logger logger;
+    //@Inject
+    //private Logger logger; TODO: Fix injection causes crashes for some reason so temporarily switched to sout
 
     @PostConstruct
-    public void init() throws NamingException, JMSException {
-        objectGatewayQueue = new ObjectGateway<>(standardMessage -> logger.info(standardMessage.toString()),
-                QUEUE_SEND,
-                QUEUE_RECEIVE,
-                Constant.DEFAULT_PROVIDER,
-                GatewayType.QUEUE,
-                TestObject.class);
-        objectGatewayTopic = new ObjectGateway<>(standardMessage -> logger.info(standardMessage.toString()),
-                QUEUE_SEND,
-                QUEUE_RECEIVE,
-                Constant.DEFAULT_PROVIDER,
-                GatewayType.TOPIC,
-                TestObject.class);
+    public void init() {
+        try {
+            objectGatewayQueue = new ObjectGateway<>(standardMessage -> System.out.println(standardMessage.toString()),
+                    QUEUE_SEND,
+                    QUEUE_RECEIVE,
+                    Constant.DEFAULT_PROVIDER,
+                    GatewayType.QUEUE,
+                    TestObject.class);
+            objectGatewayTopic = new ObjectGateway<>(standardMessage -> System.out.println(standardMessage.toString()),
+                    QUEUE_SEND,
+                    QUEUE_RECEIVE,
+                    Constant.DEFAULT_PROVIDER,
+                    GatewayType.TOPIC,
+                    TestObject.class);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     @POST

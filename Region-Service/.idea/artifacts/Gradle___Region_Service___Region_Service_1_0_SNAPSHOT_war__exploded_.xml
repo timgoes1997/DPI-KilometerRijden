@@ -17,6 +17,7 @@
           <element id="dir-copy" path="$PROJECT_DIR$/out/production/resources" />
         </element>
         <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/libs/tim-jms.jar" />
           <element id="library" level="project" name="Gradle: javax:javaee-api:8.0" />
           <element id="library" level="project" name="Gradle: org.glassfish.jersey.media:jersey-media-multipart:2.26" />
           <element id="library" level="project" name="Gradle: org.glassfish.jersey.media:jersey-media-json-jackson:2.26" />
@@ -26,7 +27,6 @@
           <element id="library" level="project" name="Gradle: org.glassfish.jersey.media:jersey-media-jaxb:2.26" />
           <element id="library" level="project" name="Gradle: org.glassfish.jersey.core:jersey-common:2.26" />
           <element id="library" level="project" name="Gradle: com.sun.mail:javax.mail:1.6.0" />
-          <element id="library" level="project" name="Gradle: org.jvnet.mimepull:mimepull:1.9.6" />
           <element id="library" level="project" name="Gradle: org.glassfish.jersey.ext:jersey-entity-filtering:2.26" />
           <element id="library" level="project" name="Gradle: com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.8.4" />
           <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.8.4" />
@@ -38,7 +38,24 @@
           <element id="library" level="project" name="Gradle: javax.activation:activation:1.1" />
           <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.8.4" />
           <element id="library" level="project" name="Gradle: javax.validation:validation-api:1.1.0.Final" />
-          <element id="file-copy" path="$PROJECT_DIR$/libs/tim-jms.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.persistence/javax.persistence-api/2.2/25665ac8c0b62f50e6488173233239120fc52c96/javax.persistence-api-2.2.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sun.faces/jsf-api/2.2.16/21370375fdfdba08db6b4b164ebc7983bf51762c/jsf-api-2.2.16.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sun.faces/jsf-impl/2.2.16/ca5eb21ec52edbe3e6d6934415731f599bff72f9/jsf-impl-2.2.16.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.inject/jersey-hk2/2.26/df27f7d7577acf4b532684448021632098924dab/jersey-hk2-2.26.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.persistence/eclipselink/2.7.1/53a763027fff7e608187e5ad3711d6e14be79df2/eclipselink-2.7.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.2/3edcfe49d2c6053a70a2a47e4e1c2f94998a49cf/gson-2.8.2.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jvnet.mimepull/mimepull/1.9.7/3085dfe507b6ce43c1fcc60f228d65a7731b8e7d/mimepull-1.9.7.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.6/815893df5f31da2ece4040fe0a12fd44b577afaf/commons-io-2.6.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.activemq/activemq-all/5.15.3/550efcfd39b6b78be911956c7a1884843edd4acf/activemq-all-5.15.3.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-locator/2.5.0-b42/9d6edc0cb226401a8316e67d81bfc37cb626ef91/hk2-locator-2.5.0-b42.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.persistence/javax.persistence/2.2.0/1c151c4dab60a89b5acc34f61132fc669f0b9e2e/javax.persistence-2.2.0.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.persistence/commonj.sdo/2.1.1/90d4c89ce0a69f58619f1a247bbf420122139ff5/commonj.sdo-2.1.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-api/2.5.0-b42/7fd4e3d0f2cb37c80ad0dedee3f5ee69503eaf52/hk2-api-2.5.0-b42.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-utils/2.5.0-b42/102a344e1728825e865a8986d7605602aba3c3b6/hk2-utils-2.5.0-b42.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/aopalliance-repackaged/2.5.0-b42/e74beab6ca12e9e745eb47ca61729d9452b96f0c/aopalliance-repackaged-2.5.0-b42.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.javassist/javassist/3.22.0-CR2/44eaf0990dea92f4bca4b9931b2239c0e8756ee7/javassist-3.22.0-CR2.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar" />
         </element>
       </element>
     </root>
