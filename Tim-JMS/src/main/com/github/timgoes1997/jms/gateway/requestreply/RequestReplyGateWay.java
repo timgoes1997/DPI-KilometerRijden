@@ -1,7 +1,7 @@
 package com.github.timgoes1997.jms.gateway.requestreply;
 
-import com.github.timgoes1997.jms.gateway.Queue.MessageReceiverGateway;
-import com.github.timgoes1997.jms.gateway.Queue.MessageSenderGateway;
+import com.github.timgoes1997.jms.gateway.queue.MessageReceiverGateway;
+import com.github.timgoes1997.jms.gateway.queue.MessageSenderGateway;
 import com.github.timgoes1997.jms.listeners.ClientInterfaceRequestReply;
 import com.github.timgoes1997.jms.messaging.RequestReply;
 import com.github.timgoes1997.jms.serializer.RequestReplySerializer;
@@ -25,17 +25,14 @@ public class RequestReplyGateWay<REQUEST, REPLY> {
         this.sender = new MessageSenderGateway(senderChannel, provider);
         this.requestClass = requestClass;
         this.replyClass = replyClass;
-        this.serializer = new RequestReplySerializer<REQUEST, REPLY>(requestClass, replyClass);
+        this.serializer = new RequestReplySerializer<>(requestClass, replyClass);
         this.receiverGateway = new MessageReceiverGateway(receiverChannel, provider);
         this.clientInterface = clientInterface;
-        this.receiverGateway.setListener(new MessageListener() {
-            @Override
-            public void onMessage(Message message) {
-                try {
-                    onReplyArrived(serializer.requestReplyFromString(((TextMessage) message).getText()));
-                } catch (JMSException e) {
-                    e.printStackTrace();
-                }
+        this.receiverGateway.setListener(message -> {
+            try {
+                onReplyArrived(serializer.requestReplyFromString(((TextMessage) message).getText()));
+            } catch (JMSException e) {
+                e.printStackTrace();
             }
         });
     }

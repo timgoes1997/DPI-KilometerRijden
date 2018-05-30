@@ -1,5 +1,6 @@
-package com.github.timgoes1997.jms.gateway.Queue;
+package com.github.timgoes1997.jms.gateway.queue;
 
+import com.github.timgoes1997.jms.gateway.type.GatewayType;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
@@ -10,22 +11,24 @@ import java.util.Properties;
 
 public class MessageReceiverGateway {
     private Connection connection;
-    protected Session session;
+    private Session session;
     private Destination destination;
     private MessageConsumer consumer;
+    private GatewayType gatewayType;
 
-    public MessageReceiverGateway(String channelName, String provider) throws NamingException, JMSException {
-        setup(channelName, provider);
+    public MessageReceiverGateway(String channelName, String provider, GatewayType type) throws NamingException, JMSException {
+        setup(channelName, provider, type);
     }
 
-    private void setup(String channelName, String provider) throws NamingException, JMSException {
+    private void setup(String channelName, String provider, GatewayType type) throws NamingException, JMSException {
+        this.gatewayType = type;
         Properties props = new Properties();
         props.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.apache.activemq.jndi.ActiveMQInitialContextFactory");
         props.setProperty(Context.PROVIDER_URL, provider); //"tcp://localhost:61616" <--- standaard providerURL voor localhost activemq
 
         // connect to the Destination called “myFirstChannel”
         // queue or topic: “queue.myFirstDestination” or “topic.myFirstDestination”
-        props.put(("queue." + channelName), channelName);
+        props.put((type.toString() + channelName), channelName);
 
         Context jndiContext = new InitialContext(props);
         ActiveMQConnectionFactory connectionFactory = (ActiveMQConnectionFactory) jndiContext
@@ -43,5 +46,9 @@ public class MessageReceiverGateway {
 
     public void setListener(MessageListener ml) throws JMSException {
         consumer.setMessageListener(ml);
+    }
+
+    public GatewayType getGatewayType() {
+        return gatewayType;
     }
 }

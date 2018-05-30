@@ -1,7 +1,7 @@
 package com.github.timgoes1997.jms.gateway.object;
 
-import com.github.timgoes1997.jms.gateway.Queue.MessageReceiverGateway;
-import com.github.timgoes1997.jms.gateway.Queue.MessageSenderGateway;
+import com.github.timgoes1997.jms.gateway.queue.MessageReceiverGateway;
+import com.github.timgoes1997.jms.gateway.queue.MessageSenderGateway;
 import com.github.timgoes1997.jms.listeners.ClientInterfaceObject;
 import com.github.timgoes1997.jms.messaging.StandardMessage;
 import com.github.timgoes1997.jms.serializer.ObjectSerializer;
@@ -15,7 +15,7 @@ import javax.naming.NamingException;
 public class ObjectGateway<OBJECT> {
     private MessageSenderGateway sender;
     private MessageReceiverGateway receiverGateway;
-    private ObjectSerializer serializer;
+    private ObjectSerializer<OBJECT> serializer;
     private ClientInterfaceObject clientInterface;
 
     private final Class<OBJECT> objectClass;
@@ -23,17 +23,14 @@ public class ObjectGateway<OBJECT> {
     public ObjectGateway(ClientInterfaceObject clientInterface, String senderChannel, String receiverChannel, String provider, Class<OBJECT> objectClass) throws JMSException, NamingException {
         this.sender = new MessageSenderGateway(senderChannel, provider);
         this.objectClass = objectClass;
-        this.serializer = new ObjectSerializer(objectClass);
+        this.serializer = new ObjectSerializer<>(objectClass);
         this.receiverGateway = new MessageReceiverGateway(receiverChannel, provider);
         this.clientInterface = clientInterface;
-        this.receiverGateway.setListener(new MessageListener() {
-            @Override
-            public void onMessage(Message message) {
-                try {
-                    onReplyArrived(serializer.standardMessageFromString(((TextMessage) message).getText()));
-                } catch (JMSException e) {
-                    e.printStackTrace();
-                }
+        this.receiverGateway.setListener(message -> {
+            try {
+                onReplyArrived(serializer.standardMessageFromString(((TextMessage) message).getText()));
+            } catch (JMSException e) {
+                e.printStackTrace();
             }
         });
     }
