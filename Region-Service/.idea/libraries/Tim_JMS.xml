@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Tim-JMS">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../Libs/Tim-JMS.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,46 @@
+group 'Region-Service'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'war'
+
+// Define java version
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compile group: 'org.glassfish.jersey.media', name: 'jersey-media-multipart', version: '2.26'
+    compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.26'
+    compile group: 'org.glassfish.jersey.core', name: 'jersey-common', version: '2.26'
+    compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet-core', version: '2.26'
+    compile files('libs/Tim-JMS.jar')
+}
+
+// These functions tell gradle (and possibly intellij) where the project files will be located
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main']
+        }
+        resources {
+            srcDirs = ['src/resources']
+        }
+    }
+    test {
+        java {
+            srcDirs = ['src/test']
+        }
+        resources {
+            srcDirs = ['src/test/resources']
+        }
+    }
+}
