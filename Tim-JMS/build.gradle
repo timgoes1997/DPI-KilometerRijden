@@ -1,4 +1,4 @@
-group 'Tim-JMS'
+group 'tim-abstract-jms'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'

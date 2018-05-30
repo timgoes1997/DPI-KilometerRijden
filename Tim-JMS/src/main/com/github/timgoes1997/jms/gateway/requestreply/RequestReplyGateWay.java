@@ -2,6 +2,7 @@ package com.github.timgoes1997.jms.gateway.requestreply;
 
 import com.github.timgoes1997.jms.gateway.queue.MessageReceiverGateway;
 import com.github.timgoes1997.jms.gateway.queue.MessageSenderGateway;
+import com.github.timgoes1997.jms.gateway.type.GatewayType;
 import com.github.timgoes1997.jms.listeners.ClientInterfaceRequestReply;
 import com.github.timgoes1997.jms.messaging.RequestReply;
 import com.github.timgoes1997.jms.serializer.RequestReplySerializer;
@@ -22,11 +23,11 @@ public class RequestReplyGateWay<REQUEST, REPLY> {
     private final Class<REPLY> replyClass;
 
     public RequestReplyGateWay(ClientInterfaceRequestReply clientInterface, String senderChannel, String receiverChannel, String provider, Class<REQUEST> requestClass, Class<REPLY> replyClass) throws JMSException, NamingException {
-        this.sender = new MessageSenderGateway(senderChannel, provider);
+        this.sender = new MessageSenderGateway(senderChannel, provider, GatewayType.QUEUE);
         this.requestClass = requestClass;
         this.replyClass = replyClass;
         this.serializer = new RequestReplySerializer<>(requestClass, replyClass);
-        this.receiverGateway = new MessageReceiverGateway(receiverChannel, provider);
+        this.receiverGateway = new MessageReceiverGateway(receiverChannel, provider, GatewayType.QUEUE);
         this.clientInterface = clientInterface;
         this.receiverGateway.setListener(message -> {
             try {
