@@ -22,7 +22,7 @@ dependencies {
     compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.26'
     compile group: 'org.glassfish.jersey.core', name: 'jersey-common', version: '2.26'
     compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet-core', version: '2.26'
-    compile files('libs/Tim-JMS.jar')
+    compile project(':Tim-JMS')
 }
 
 // These functions tell gradle (and possibly intellij) where the project files will be located

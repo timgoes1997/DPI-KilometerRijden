@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Client/Client.iml" filepath="$PROJECT_DIR$/.idea/modules/Client/Client.iml" group="Client" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Client/Client_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Client/Client_main.iml" group="Client" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Client/Client_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Client/Client_test.iml" group="Client" />
+      <module fileurl="file://$PROJECT_DIR$/DPI-KilometerRijden.iml" filepath="$PROJECT_DIR$/DPI-KilometerRijden.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Entities/Entities.iml" filepath="$PROJECT_DIR$/.idea/modules/Entities/Entities.iml" group="Entities" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Entities/Entities_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Entities/Entities_main.iml" group="Entities" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Entities/Entities_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Entities/Entities_test.iml" group="Entities" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/KilometerTariefClient/KilometerTariefClient.iml" filepath="$PROJECT_DIR$/.idea/modules/KilometerTariefClient/KilometerTariefClient.iml" group="KilometerTariefClient" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/KilometerTariefClient/KilometerTariefClient_main.iml" filepath="$PROJECT_DIR$/.idea/modules/KilometerTariefClient/KilometerTariefClient_main.iml" group="KilometerTariefClient" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/KilometerTariefClient/KilometerTariefClient_test.iml" filepath="$PROJECT_DIR$/.idea/modules/KilometerTariefClient/KilometerTariefClient_test.iml" group="KilometerTariefClient" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Region-Service/Region-Service.iml" filepath="$PROJECT_DIR$/.idea/modules/Region-Service/Region-Service.iml" group="Region-Service" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Region-Service/Region-Service_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Region-Service/Region-Service_main.iml" group="Region-Service" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Region-Service/Region-Service_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Region-Service/Region-Service_test.iml" group="Region-Service" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Tim-JMS/Tim-JMS.iml" filepath="$PROJECT_DIR$/.idea/modules/Tim-JMS/Tim-JMS.iml" group="Tim-JMS" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Tim-JMS/Tim-JMS_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Tim-JMS/Tim-JMS_main.iml" group="Tim-JMS" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Tim-JMS/Tim-JMS_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Tim-JMS/Tim-JMS_test.iml" group="Tim-JMS" />
+    </modules>
+  </component>
+</project>

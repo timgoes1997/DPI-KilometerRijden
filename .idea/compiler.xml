@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="Client_main" target="1.8" />
+      <module name="Client_test" target="1.8" />
+      <module name="Entities_main" target="1.8" />
+      <module name="Entities_test" target="1.8" />
+      <module name="KilometerTariefClient_main" target="1.8" />
+      <module name="KilometerTariefClient_test" target="1.8" />
+      <module name="Region-Service_main" target="1.8" />
+      <module name="Region-Service_test" target="1.8" />
+      <module name="Tim-JMS_main" target="1.8" />
+      <module name="Tim-JMS_test" target="1.8" />
+      <module name="Truck-Client_main" target="1.8" />
+      <module name="Truck-Client_test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
