@@ -18,10 +18,12 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
+    compile "javax.persistence:javax.persistence-api:2.2"
     compile group: 'org.glassfish.jersey.media', name: 'jersey-media-multipart', version: '2.26'
     compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.26'
     compile group: 'org.glassfish.jersey.core', name: 'jersey-common', version: '2.26'
     compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet-core', version: '2.26'
+    compile project(':Entities')
     compile project(':Tim-JMS')
 }
 
