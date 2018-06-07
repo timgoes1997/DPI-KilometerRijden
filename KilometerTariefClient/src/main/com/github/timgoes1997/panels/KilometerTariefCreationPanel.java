@@ -29,7 +29,7 @@ public class KilometerTariefCreationPanel {
     private SpinnerModel endMinuteValue;
     private JPopupMenu menu;
     private JButton dayButton;
-    private JButton createUpdateTarief;
+    private JButton completionButton;
     private TariefCompletionListener tariefCompletionListener;
 
     public KilometerTariefCreationPanel(TariefCompletionListener listener){
@@ -204,6 +204,16 @@ public class KilometerTariefCreationPanel {
         for (JMenuItem menuItem : menuItems) {
             menuItem.addActionListener(new OpenAction(menu, dayButton));
         }
+
+        completionButton = new JButton("Create");
+        GridBagConstraints gbc_completionButton = new GridBagConstraints();
+        gbc_completionButton.insets = new Insets(0, 0, 5, 5);
+        gbc_completionButton.gridx = 0;
+        gbc_completionButton.gridy = 8;
+        tariefCreationPanel.add(completionButton, gbc_completionButton);
+        completionButton.addActionListener(e -> {
+            tariefCompletionListener.OnCompletion(null);
+        });
     }
 
     private void DisAllowTextNumberSpinner(JSpinner spinner){
@@ -336,11 +346,19 @@ public class KilometerTariefCreationPanel {
         this.dayButton = dayButton;
     }
 
-    public JButton getCreateUpdateTarief() {
-        return createUpdateTarief;
+    public JButton getCompletionButton() {
+        return completionButton;
     }
 
-    public void setCreateUpdateTarief(JButton createUpdateTarief) {
-        this.createUpdateTarief = createUpdateTarief;
+    public void setCompletionButton(JButton completionButton) {
+        this.completionButton = completionButton;
+    }
+
+    public TariefCompletionListener getTariefCompletionListener() {
+        return tariefCompletionListener;
+    }
+
+    public void setTariefCompletionListener(TariefCompletionListener tariefCompletionListener) {
+        this.tariefCompletionListener = tariefCompletionListener;
     }
 }
