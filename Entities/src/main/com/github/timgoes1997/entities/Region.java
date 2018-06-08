@@ -108,6 +108,10 @@ public class Region {
     }
 
 
+    public boolean isWithinRegion(Location location){
+        return isWithinRegion(location.getX(), location.getY());
+    }
+
 //TODO/OPTIONAL: multithreaded implementation of calculating this, because this can be pretty intensive
     /**
      * Kijkt of een locatie zich binnen een bepaalde regio bevind.
@@ -115,7 +119,7 @@ public class Region {
      *
      * @param locX x location
      * @param locY y location
-     * @return
+     * @return if it's withing the current region.
      */
     public boolean isWithinRegion(double locX, double locY) {
         List<RegionBorder> regionBorders = getBorderList();
