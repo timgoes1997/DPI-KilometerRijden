@@ -44,4 +44,8 @@ public class MessageReceiverGateway {
     public void setListener(MessageListener ml) throws JMSException {
         consumer.setMessageListener(ml);
     }
+
+    public void close() throws JMSException {
+        connection.close();
+    }
 }

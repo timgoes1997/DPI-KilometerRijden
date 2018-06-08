@@ -14,7 +14,7 @@ import javax.naming.NamingException;
 
 public class RequestReplyGateWay<REQUEST, REPLY> {
     private MessageSenderGateway sender;
-    private MessageReceiverGateway receiverGateway;
+    private MessageReceiverGateway receiver;
     private RequestReplySerializer serializer;
     private ClientInterfaceRequestReply clientInterface;
 
@@ -26,9 +26,9 @@ public class RequestReplyGateWay<REQUEST, REPLY> {
         this.requestClass = requestClass;
         this.replyClass = replyClass;
         this.serializer = new RequestReplySerializer<REQUEST, REPLY>(requestClass, replyClass);
-        this.receiverGateway = new MessageReceiverGateway(receiverChannel, provider);
+        this.receiver = new MessageReceiverGateway(receiverChannel, provider);
         this.clientInterface = clientInterface;
-        this.receiverGateway.setListener(new MessageListener() {
+        this.receiver.setListener(new MessageListener() {
             @Override
             public void onMessage(Message message) {
                 try {
@@ -45,10 +45,19 @@ public class RequestReplyGateWay<REQUEST, REPLY> {
     }
 
     public void onReplyArrived(RequestReply rr) throws JMSException {
-        if(rr != null) {
+        if (rr != null) {
             clientInterface.receivedAction(rr);
-        }else{
+        } else {
             throw new JMSException("Received a message with a null value");
+        }
+    }
+
+    public void close() {
+        try {
+            sender.close();
+            receiver.close();
+        } catch (JMSException e) {
+            e.printStackTrace();
         }
     }
 }

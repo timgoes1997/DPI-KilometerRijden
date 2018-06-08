@@ -14,7 +14,7 @@ import javax.naming.NamingException;
 
 public class ObjectGateway<OBJECT> {
     private MessageSenderGateway sender;
-    private MessageReceiverGateway receiverGateway;
+    private MessageReceiverGateway receiver;
     private ObjectSerializer serializer;
     private ClientInterfaceObject clientInterface;
 
@@ -24,9 +24,9 @@ public class ObjectGateway<OBJECT> {
         this.sender = new MessageSenderGateway(senderChannel, provider);
         this.objectClass = objectClass;
         this.serializer = new ObjectSerializer(objectClass);
-        this.receiverGateway = new MessageReceiverGateway(receiverChannel, provider);
+        this.receiver = new MessageReceiverGateway(receiverChannel, provider);
         this.clientInterface = clientInterface;
-        this.receiverGateway.setListener(new MessageListener() {
+        this.receiver.setListener(new MessageListener() {
             @Override
             public void onMessage(Message message) {
                 try {
@@ -47,6 +47,15 @@ public class ObjectGateway<OBJECT> {
             clientInterface.receivedAction(sm);
         }else{
             throw new JMSException("Received a message with a null value");
+        }
+    }
+
+    public void close() {
+        try {
+            sender.close();
+            receiver.close();
+        } catch (JMSException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -61,5 +61,9 @@ public class MessageSenderGateway {
             e.printStackTrace();
         }
     }
+
+    public void close() throws JMSException {
+        connection.close();
+    }
 }
 
