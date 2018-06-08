@@ -39,6 +39,15 @@ public class RegionRateClientGateway implements RegionRateClient {
                         RegionRequest.class, RegionReply.class);
     }
 
+    public RegionRateClientGateway(RegionRateClientListener listener, String provider) throws NamingException, JMSException {
+        this.uniqueId = UUID.randomUUID().toString();
+        this.listener = listener;
+        this.regionRRG =
+                new RequestReplyGateWay<>(this::handleRegionRequestReply, "RegionRateClientRequest",
+                        "RegionRateServerResponse", provider,
+                        RegionRequest.class, RegionReply.class);
+    }
+
     @Override
     public void create(RegionRate rate) throws JMSException {
         request(rate, RegionRateRequestType.CREATE);

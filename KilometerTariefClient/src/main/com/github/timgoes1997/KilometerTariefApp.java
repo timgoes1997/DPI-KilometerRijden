@@ -3,14 +3,19 @@ package com.github.timgoes1997;
 import com.github.timgoes1997.dummy.DummyDataGenerator;
 import com.github.timgoes1997.entities.Region;
 import com.github.timgoes1997.entities.RegionRate;
+import com.github.timgoes1997.gateway.RegionRateClientGateway;
+import com.github.timgoes1997.gateway.interfaces.RegionRateClientListener;
 import com.github.timgoes1997.listeners.RegionListPanelListener;
 import com.github.timgoes1997.listeners.RegionRatePanelListener;
 import com.github.timgoes1997.listeners.RegionRateCompletionListener;
 import com.github.timgoes1997.panels.RegionRateCreationPanel;
 import com.github.timgoes1997.panels.RegionListPanel;
 import com.github.timgoes1997.panels.RegionRateListPanel;
+import com.github.timgoes1997.request.rate.RegionRateRequest;
 import com.github.timgoes1997.util.VisiblePanel;
 
+import javax.jms.JMSException;
+import javax.naming.NamingException;
 import javax.swing.*;
 
 import java.awt.*;
@@ -23,6 +28,7 @@ public class KilometerTariefApp extends JFrame {
     private RegionListPanel regionListPanel;
     private RegionRateListPanel regionRateListPanel;
     private DummyDataGenerator dummyDataGenerator; //Remove once JMS queue to region service is working
+    private RegionRateClientGateway regionRateClientGateway;
 
     public KilometerTariefApp() {
         loadFrame();
@@ -36,6 +42,44 @@ public class KilometerTariefApp extends JFrame {
         mainPanel.setSize(getPreferredSize());
         mainPanel.setAlignmentX(JComponent.LEFT_ALIGNMENT);
         setContentPane(mainPanel);
+
+        try {
+            regionRateClientGateway = new RegionRateClientGateway(new RegionRateClientListener() {
+                @Override
+                public void onReceiveRegions(List<Region> regions) {
+
+                }
+
+                @Override
+                public void onReceiveRegionRates(List<RegionRate> regionRates) {
+
+                }
+
+                @Override
+                public void onClientRequestCanceled(RegionRateRequest request) {
+
+                }
+
+                @Override
+                public void onReceiveRegionRateCreate(RegionRate regionRate) {
+
+                }
+
+                @Override
+                public void onReceiveRegionRateUpdate(RegionRate regionRate) {
+
+                }
+
+                @Override
+                public void onReceiveRegionRateRemove(RegionRate regionRate) {
+
+                }
+            });
+        } catch (NamingException e) {
+            e.printStackTrace();
+        } catch (JMSException e) {
+            e.printStackTrace();
+        }
 
 //        //Creating kilometer tarief creation panel
         dummyDataGenerator = new DummyDataGenerator();
