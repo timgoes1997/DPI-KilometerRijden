@@ -1,9 +1,11 @@
 package com.github.timgoes1997;
 
 import com.github.timgoes1997.dummy.DummyDataGenerator;
+import com.github.timgoes1997.entities.Region;
 import com.github.timgoes1997.entities.RegionRate;
 import com.github.timgoes1997.entities.enums.EnergyLabel;
 import com.github.timgoes1997.entities.enums.VehicleType;
+import com.github.timgoes1997.listeners.RegionListPanelListener;
 import com.github.timgoes1997.listeners.TariefCompletionListener;
 import com.github.timgoes1997.panels.KilometerTariefCreationPanel;
 import com.github.timgoes1997.panels.RegionListPanel;
@@ -55,7 +57,12 @@ public class KilometerTariefApp extends JFrame {
 
         dummyDataGenerator = new DummyDataGenerator();
 
-        regionListPanel = new RegionListPanel();
+        regionListPanel = new RegionListPanel(new RegionListPanelListener() {
+            @Override
+            public void onSelectRegion(Region region) {
+                System.out.println("Selected region: " + region.getName());
+            }
+        });
         GridBagConstraints gbc_regionListPane = new GridBagConstraints();
         gbc_regionListPane.anchor = GridBagConstraints.FIRST_LINE_START;
         gbc_regionListPane.fill = GridBagConstraints.HORIZONTAL;

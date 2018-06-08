@@ -2,6 +2,7 @@ package com.github.timgoes1997.panels;
 
 import com.github.timgoes1997.entities.Region;
 import com.github.timgoes1997.list.RegionListLine;
+import com.github.timgoes1997.listeners.RegionListPanelListener;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -16,9 +17,11 @@ public class RegionListPanel {
     private DefaultListModel<RegionListLine> listModel = new DefaultListModel<RegionListLine>();
     private JList<RegionListLine> list;
     private JPanel panel;
+    private RegionListPanelListener regionListPanelListener;
 
-    public RegionListPanel() {
+    public RegionListPanel(RegionListPanelListener regionListPanelListener) {
         loadFrame();
+        this.regionListPanelListener = regionListPanelListener;
     }
 
     private void loadFrame() {
@@ -33,7 +36,6 @@ public class RegionListPanel {
         gbc_regionList.gridx = 0;
         gbc_regionList.gridy = 0;
         panel.add(updateCreateRate, gbc_regionList);
-
 
         JScrollPane scrollPane = new JScrollPane();
         GridBagConstraints gbc_scrollPane = new GridBagConstraints();
@@ -50,7 +52,9 @@ public class RegionListPanel {
                 JList<RegionListLine> list = (JList)e.getSource();
                 int index = list.locationToIndex(e.getPoint());
                 RegionListLine rll = list.getModel().getElementAt(index);
-                System.out.println("Pressed:" + rll.toString());
+                if(rll != null && regionListPanelListener != null){
+                    regionListPanelListener.onSelectRegion(rll.getRegion());
+                }
             }
         });
         list.addKeyListener(new KeyListener() {
@@ -64,7 +68,9 @@ public class RegionListPanel {
                 if(e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) {
                     JList<RegionListLine> list = (JList) e.getSource();
                     RegionListLine rll = list.getModel().getElementAt(list.getSelectedIndex());
-                    System.out.println("Key:" + rll.toString());
+                    if(rll != null && regionListPanelListener != null){
+                        regionListPanelListener.onSelectRegion(rll.getRegion());
+                    }
                 }
             }
 
