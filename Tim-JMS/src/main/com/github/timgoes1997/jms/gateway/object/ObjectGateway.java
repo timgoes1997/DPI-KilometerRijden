@@ -4,7 +4,7 @@ import com.github.timgoes1997.jms.gateway.Queue.MessageReceiverGateway;
 import com.github.timgoes1997.jms.gateway.Queue.MessageSenderGateway;
 import com.github.timgoes1997.jms.listeners.ClientInterfaceObject;
 import com.github.timgoes1997.jms.messaging.StandardMessage;
-import com.github.timgoes1997.jms.serializer.ObjectSerializer;
+import com.github.timgoes1997.jms.serializer.StandardMessageSerializer;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -15,7 +15,7 @@ import javax.naming.NamingException;
 public class ObjectGateway<OBJECT> {
     private MessageSenderGateway sender;
     private MessageReceiverGateway receiver;
-    private ObjectSerializer serializer;
+    private StandardMessageSerializer serializer;
     private ClientInterfaceObject clientInterface;
 
     private final Class<OBJECT> objectClass;
@@ -23,7 +23,7 @@ public class ObjectGateway<OBJECT> {
     public ObjectGateway(ClientInterfaceObject clientInterface, String senderChannel, String receiverChannel, String provider, Class<OBJECT> objectClass) throws JMSException, NamingException {
         this.sender = new MessageSenderGateway(senderChannel, provider);
         this.objectClass = objectClass;
-        this.serializer = new ObjectSerializer(objectClass);
+        this.serializer = new StandardMessageSerializer(objectClass);
         this.receiver = new MessageReceiverGateway(receiverChannel, provider);
         this.clientInterface = clientInterface;
         this.receiver.setListener(new MessageListener() {

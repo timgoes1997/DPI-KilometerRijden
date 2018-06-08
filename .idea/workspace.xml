@@ -2,10 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="48271f01-6e69-4b2e-b8b9-083b01749a83" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/Queue/MessageReceiverGateway.java" afterPath="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/Queue/MessageReceiverGateway.java" />
-      <change beforePath="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/Queue/MessageSenderGateway.java" afterPath="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/Queue/MessageSenderGateway.java" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/gateway/RegionRateClientGateway.java" afterPath="$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/gateway/RegionRateClientGateway.java" />
+      <change beforePath="$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/gateway/interfaces/RegionRateClient.java" afterPath="$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/gateway/interfaces/RegionRateClient.java" />
       <change beforePath="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/object/ObjectGateway.java" afterPath="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/object/ObjectGateway.java" />
-      <change beforePath="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/requestreply/RequestReplyGateWay.java" afterPath="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/requestreply/RequestReplyGateWay.java" />
+      <change beforePath="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/messaging/RequestReply.java" afterPath="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/messaging/RequestReply.java" />
+      <change beforePath="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/object/VehicleObject.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/object/VehicleObjectRate.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/reply/VehicleReply.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/reply/VehicleReplyRate.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/request/VehicleRequest.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/serializer/ObjectSerializer.java" afterPath="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/serializer/StandardMessageSerializer.java" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -54,191 +61,120 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="KilometerTariefApp.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/KilometerTariefApp.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-877">
-              <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1053#1054#0" expanded="true" />
-                <element signature="e#1080#1081#0" expanded="true" />
-                <element signature="e#1924#1925#0" expanded="true" />
-                <element signature="e#1997#1998#0" expanded="true" />
-                <element signature="e#2080#2081#0" expanded="true" />
-                <element signature="e#2153#2154#0" expanded="true" />
-                <element signature="e#3573#3574#0" expanded="true" />
-                <element signature="e#3641#3642#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RegionListPanel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/panels/RegionListPanel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="28" column="60" lean-forward="false" selection-start-line="28" selection-start-column="60" selection-end-line="28" selection-end-column="60" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#568#584#0" expanded="true" />
-                <element signature="e#1864#2351#0" expanded="true" />
-                <element signature="e#2350#2351#0" expanded="true" />
-                <element signature="e#3563#3564#0" expanded="true" />
-                <element signature="e#3627#3628#0" expanded="true" />
-                <element signature="e#3903#3904#0" expanded="true" />
-                <element signature="e#3935#3936#0" expanded="true" />
-                <element signature="e#4011#4012#0" expanded="true" />
-                <element signature="e#4053#4054#0" expanded="true" />
-                <element signature="e#4099#4100#0" expanded="true" />
-                <element signature="e#4126#4127#0" expanded="true" />
-                <element signature="e#4181#4182#0" expanded="true" />
-                <element signature="e#4213#4214#0" expanded="true" />
-                <element signature="e#4245#4246#0" expanded="true" />
-                <element signature="e#4273#4274#0" expanded="true" />
-                <element signature="e#4315#4316#0" expanded="true" />
-                <element signature="e#4349#4350#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RegionRateCreationPanel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/panels/RegionRateCreationPanel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="313" column="0" lean-forward="true" selection-start-line="313" selection-start-column="0" selection-end-line="313" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#13014#13015#0" expanded="true" />
-                <element signature="e#13055#13056#0" expanded="true" />
-                <element signature="e#13224#13225#0" expanded="true" />
-                <element signature="e#13252#13253#0" expanded="true" />
-                <element signature="e#13294#13295#0" expanded="true" />
-                <element signature="e#13328#13329#0" expanded="true" />
-                <element signature="e#13391#13392#0" expanded="true" />
-                <element signature="e#13434#13435#0" expanded="true" />
-                <element signature="e#13649#13650#0" expanded="true" />
-                <element signature="e#13692#13693#0" expanded="true" />
-                <element signature="e#13889#13890#0" expanded="true" />
-                <element signature="e#13928#13929#0" expanded="true" />
-                <element signature="e#13994#13995#0" expanded="true" />
-                <element signature="e#14050#14051#0" expanded="true" />
-                <element signature="e#14097#14098#0" expanded="true" />
-                <element signature="e#14134#14135#0" expanded="true" />
-                <element signature="e#14200#14201#0" expanded="true" />
-                <element signature="e#14252#14253#0" expanded="true" />
-                <element signature="e#14299#14300#0" expanded="true" />
-                <element signature="e#14340#14341#0" expanded="true" />
-                <element signature="e#14410#14411#0" expanded="true" />
-                <element signature="e#14470#14471#0" expanded="true" />
-                <element signature="e#14519#14520#0" expanded="true" />
-                <element signature="e#14558#14559#0" expanded="true" />
-                <element signature="e#14628#14629#0" expanded="true" />
-                <element signature="e#14684#14685#0" expanded="true" />
-                <element signature="e#14727#14728#0" expanded="true" />
-                <element signature="e#14764#14765#0" expanded="true" />
-                <element signature="e#14826#14827#0" expanded="true" />
-                <element signature="e#14878#14879#0" expanded="true" />
-                <element signature="e#14923#14924#0" expanded="true" />
-                <element signature="e#14958#14959#0" expanded="true" />
-                <element signature="e#15020#15021#0" expanded="true" />
-                <element signature="e#15068#15069#0" expanded="true" />
-                <element signature="e#15113#15114#0" expanded="true" />
-                <element signature="e#15152#15153#0" expanded="true" />
-                <element signature="e#15218#15219#0" expanded="true" />
-                <element signature="e#15274#15275#0" expanded="true" />
-                <element signature="e#15321#15322#0" expanded="true" />
-                <element signature="e#15358#15359#0" expanded="true" />
-                <element signature="e#15424#15425#0" expanded="true" />
-                <element signature="e#15476#15477#0" expanded="true" />
-                <element signature="e#15511#15512#0" expanded="true" />
-                <element signature="e#15538#15539#0" expanded="true" />
-                <element signature="e#15582#15583#0" expanded="true" />
-                <element signature="e#15614#15615#0" expanded="true" />
-                <element signature="e#15651#15652#0" expanded="true" />
-                <element signature="e#15683#15684#0" expanded="true" />
-                <element signature="e#15734#15735#0" expanded="true" />
-                <element signature="e#15776#15777#0" expanded="true" />
-                <element signature="e#15820#15821#0" expanded="true" />
-                <element signature="e#15859#15860#0" expanded="true" />
-                <element signature="e#15924#15925#0" expanded="true" />
-                <element signature="e#15980#15981#0" expanded="true" />
-                <element signature="e#16057#16058#0" expanded="true" />
-                <element signature="e#16108#16109#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RegionRateClientGateway.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RegionRateClientGateway.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/gateway/RegionRateClientGateway.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="5" column="65" lean-forward="true" selection-start-line="5" selection-start-column="65" selection-end-line="5" selection-end-column="65" />
+            <state relative-caret-position="578">
+              <caret line="53" column="46" lean-forward="true" selection-start-line="53" selection-start-column="46" selection-end-line="53" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RequestReplyGateWay.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/requestreply/RequestReplyGateWay.java">
+      <file leaf-file-name="RegionRateRequestType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/rate/RegionRateRequestType.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="367">
-              <caret line="54" column="1" lean-forward="true" selection-start-line="54" selection-start-column="1" selection-end-line="61" selection-end-column="5" />
+            <state relative-caret-position="119">
+              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ObjectGateway.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/object/ObjectGateway.java">
+      <file leaf-file-name="RegionRateRequest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/rate/RegionRateRequest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-119">
-              <caret line="15" column="40" lean-forward="true" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MessageReceiverGateway.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/Queue/MessageReceiverGateway.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="48" column="23" lean-forward="false" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MessageSenderGateway.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/Queue/MessageSenderGateway.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="449">
-              <caret line="65" column="21" lean-forward="false" selection-start-line="65" selection-start-column="21" selection-end-line="65" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Connection.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax/javaee-api/8.0/d20c2404766162f9f7797943131a918e0ee45414/javaee-api-8.0-sources.jar!/javax/jms/Connection.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1528">
-              <caret line="657" column="4" lean-forward="false" selection-start-line="657" selection-start-column="4" selection-end-line="657" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Enum.java" pinned="false" current-in-tab="false">
-        <entry file="jar://D:/Program Files/Java/jdk1.8.0_161/src.zip!/java/lang/Enum.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="101" column="21" lean-forward="false" selection-start-line="101" selection-start-column="21" selection-end-line="101" selection-end-column="21" />
+            <state relative-caret-position="204">
+              <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
               <folding>
-                <element signature="e#2979#2980#0" expanded="true" />
-                <element signature="e#3009#3010#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#513#514#0" expanded="true" />
+                <element signature="e#546#547#0" expanded="true" />
+                <element signature="e#609#610#0" expanded="true" />
+                <element signature="e#653#654#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RegionRequestType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/region/RegionRequestType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RegionRateClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/gateway/interfaces/RegionRateClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="82" lean-forward="false" selection-start-line="17" selection-start-column="82" selection-end-line="17" selection-end-column="82" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RegionRateClientListener.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/gateway/interfaces/RegionRateClientListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RegionReply.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/region/RegionReply.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="29" lean-forward="false" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RegionRateReply.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/rate/RegionRateReply.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="44" lean-forward="false" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
+              <folding>
+                <element signature="e#433#434#0" expanded="true" />
+                <element signature="e#474#475#0" expanded="true" />
+                <element signature="e#507#508#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RegionRateReplyType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/rate/RegionRateReplyType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="12" lean-forward="false" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RegionRequest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/region/RegionRequest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="11" lean-forward="false" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
+              <folding>
+                <element signature="e#190#191#0" expanded="true" />
+                <element signature="e#248#249#0" expanded="true" />
+                <element signature="e#303#304#0" expanded="true" />
+                <element signature="e#343#344#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -251,8 +187,8 @@
       <list>
         <option value="Arquillian JUnit Test Class" />
         <option value="JUnit4 Test Class" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
         <option value="Enum" />
       </list>
     </option>
@@ -1439,25 +1375,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Truck-Client/settings.gradle" />
-        <option value="$PROJECT_DIR$/KilometerTariefClient/settings.gradle" />
-        <option value="$PROJECT_DIR$/Entities/settings.gradle" />
-        <option value="$PROJECT_DIR$/Client/settings.gradle" />
-        <option value="$PROJECT_DIR$/settings.gradle" />
-        <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/entities/enums/VehicleType.java" />
-        <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/entities/enums/EnergeLabel.java" />
-        <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/entities/enums/EnegryLabel.java" />
-        <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/entities/enums/EnegeryLabel.java" />
-        <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/location/Location.java" />
-        <option value="$PROJECT_DIR$/Entities/build.gradle" />
-        <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/entities/RegionBorder.java" />
-        <option value="$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/App.java" />
-        <option value="$PROJECT_DIR$/Region-Service/settings.gradle" />
-        <option value="$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/RegionBean.java" />
-        <option value="$PROJECT_DIR$/Region-Service/build.gradle" />
-        <option value="$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/dao/interfaces/RegionDAO.java" />
-        <option value="$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/dao/RegionDAOImpl.java" />
-        <option value="$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/RegionService.java" />
         <option value="$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/App.java" />
         <option value="$PROJECT_DIR$/KilometerTariefClient/build.gradle" />
         <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/entities/enums/RateDays.java" />
@@ -1472,7 +1389,6 @@
         <option value="$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/gateway/KilometerTariefClientGateway.java" />
         <option value="$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/panels/KilometerTariefListPanel.java" />
         <option value="$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/util/RegionRateUpdateType.java" />
-        <option value="$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/gateway/interfaces/RegionRateClient.java" />
         <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/entities/RegionRate.java" />
         <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/dummy/DummyDataGenerator.java" />
         <option value="$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/listeners/RegionRateClientGatewayListener.java" />
@@ -1485,11 +1401,31 @@
         <option value="$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/panels/RegionRateListPanel.java" />
         <option value="$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/KilometerTariefApp.java" />
         <option value="$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/panels/RegionRateCreationPanel.java" />
-        <option value="$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/gateway/RegionRateClientGateway.java" />
-        <option value="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/Queue/MessageSenderGateway.java" />
         <option value="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/Queue/MessageReceiverGateway.java" />
         <option value="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/requestreply/RequestReplyGateWay.java" />
         <option value="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/object/ObjectGateway.java" />
+        <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/RegionRequestType.java" />
+        <option value="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/Queue/MessageSenderGateway.java" />
+        <option value="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/messaging/RequestReplyUnique.java" />
+        <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/RegionReply.java" />
+        <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/RegionRateRequestType.java" />
+        <option value="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/messaging/RequestReply.java" />
+        <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/RegionRateRequest.java" />
+        <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/RegionRequest.java" />
+        <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/RegionRequestRegionRates.java" />
+        <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/region/RegionRequestType.java" />
+        <option value="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/serializer/StandardMessageSerializer.java" />
+        <option value="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/serializer/ObjectSerializer.java" />
+        <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/region/RegionReply.java" />
+        <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/region/RegionRequestRegionRates.java" />
+        <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/rate/RegionRateRequestReply.java" />
+        <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/rate/RegionRateReplyType.java" />
+        <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/rate/RegionRateReply.java" />
+        <option value="$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/gateway/interfaces/RegionRateClientListener.java" />
+        <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/rate/RegionRateRequestType.java" />
+        <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/rate/RegionRateRequest.java" />
+        <option value="$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/gateway/interfaces/RegionRateClient.java" />
+        <option value="$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/gateway/RegionRateClientGateway.java" />
       </list>
     </option>
   </component>
@@ -1594,6 +1530,44 @@
               <item name="DPI-KilometerRijden" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="Entities" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="timgoes1997" type="462c0819:PsiDirectoryNode" />
+              <item name="location" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DPI-KilometerRijden" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DPI-KilometerRijden" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="Entities" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="timgoes1997" type="462c0819:PsiDirectoryNode" />
+              <item name="request" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DPI-KilometerRijden" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DPI-KilometerRijden" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="Entities" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="timgoes1997" type="462c0819:PsiDirectoryNode" />
+              <item name="request" type="462c0819:PsiDirectoryNode" />
+              <item name="rate" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DPI-KilometerRijden" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DPI-KilometerRijden" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="Entities" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="timgoes1997" type="462c0819:PsiDirectoryNode" />
+              <item name="request" type="462c0819:PsiDirectoryNode" />
+              <item name="region" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DPI-KilometerRijden" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DPI-KilometerRijden" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="Entities" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
             <path>
@@ -1638,6 +1612,16 @@
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="timgoes1997" type="462c0819:PsiDirectoryNode" />
               <item name="gateway" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DPI-KilometerRijden" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DPI-KilometerRijden" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="KilometerTariefClient" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="timgoes1997" type="462c0819:PsiDirectoryNode" />
+              <item name="gateway" type="462c0819:PsiDirectoryNode" />
+              <item name="interfaces" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="DPI-KilometerRijden" type="b2602c69:ProjectViewProjectNode" />
@@ -1708,15 +1692,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="timgoes1997" type="462c0819:PsiDirectoryNode" />
-              <item name="constant" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DPI-KilometerRijden" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DPI-KilometerRijden" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="Tim-JMS" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="timgoes1997" type="462c0819:PsiDirectoryNode" />
               <item name="jms" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -1728,28 +1703,6 @@
               <item name="timgoes1997" type="462c0819:PsiDirectoryNode" />
               <item name="jms" type="462c0819:PsiDirectoryNode" />
               <item name="gateway" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DPI-KilometerRijden" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DPI-KilometerRijden" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="Tim-JMS" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="timgoes1997" type="462c0819:PsiDirectoryNode" />
-              <item name="jms" type="462c0819:PsiDirectoryNode" />
-              <item name="gateway" type="462c0819:PsiDirectoryNode" />
-              <item name="object" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DPI-KilometerRijden" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DPI-KilometerRijden" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="Tim-JMS" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="timgoes1997" type="462c0819:PsiDirectoryNode" />
-              <item name="jms" type="462c0819:PsiDirectoryNode" />
-              <item name="gateway" type="462c0819:PsiDirectoryNode" />
-              <item name="Queue" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="DPI-KilometerRijden" type="b2602c69:ProjectViewProjectNode" />
@@ -1761,6 +1714,26 @@
               <item name="jms" type="462c0819:PsiDirectoryNode" />
               <item name="gateway" type="462c0819:PsiDirectoryNode" />
               <item name="requestreply" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DPI-KilometerRijden" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DPI-KilometerRijden" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="Tim-JMS" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="timgoes1997" type="462c0819:PsiDirectoryNode" />
+              <item name="jms" type="462c0819:PsiDirectoryNode" />
+              <item name="messaging" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DPI-KilometerRijden" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DPI-KilometerRijden" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="Tim-JMS" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="timgoes1997" type="462c0819:PsiDirectoryNode" />
+              <item name="jms" type="462c0819:PsiDirectoryNode" />
+              <item name="serializer" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -1778,8 +1751,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
@@ -1794,6 +1767,9 @@
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.github.timgoes1997.request" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -2008,7 +1984,7 @@
       <workItem from="1528144906978" duration="1636000" />
       <workItem from="1528273636631" duration="18383000" />
       <workItem from="1528360340506" duration="17047000" />
-      <workItem from="1528439264900" duration="21302000" />
+      <workItem from="1528439264900" duration="29042000" />
     </task>
     <servers />
   </component>
@@ -2036,7 +2012,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58368000" />
+    <option name="totallyTimeSpent" value="66108000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -2113,145 +2089,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/settings.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="18" lean-forward="false" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tim-JMS/gradlew">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tim-JMS/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/entities/enums/VehicleType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/entities/enums/EnergyLabel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/location/Location.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="19" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Entities/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="698">
-          <caret line="47" column="85" lean-forward="false" selection-start-line="47" selection-start-column="85" selection-end-line="47" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/TestBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="9" column="3" lean-forward="false" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Region-Service/settings.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Entities/settings.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="9" column="28" lean-forward="false" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.persistence/persistence-api/1.0/2773a7910e8f0c7d59749dc4fcef2a4b94fcf85a/persistence-api-1.0-sources.jar!/javax/persistence/EntityManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3281">
-          <caret line="214" column="17" lean-forward="false" selection-start-line="214" selection-start-column="17" selection-end-line="214" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/dao/interfaces/RegionDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" column="32" lean-forward="false" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/dao/RegionDAOImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="36" column="74" lean-forward="false" selection-start-line="36" selection-start-column="74" selection-end-line="36" selection-end-column="74" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#504#505#0" expanded="false" />
-            <element signature="e#538#539#0" expanded="false" />
-            <element signature="e#591#592#0" expanded="false" />
-            <element signature="e#623#624#0" expanded="false" />
-            <element signature="e#678#679#0" expanded="false" />
-            <element signature="e#711#712#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/entitystatistic/RegionStatistics.java" />
-    <entry file="file://$PROJECT_DIR$/Region-Service/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="27" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/KilometerTariefClient/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/entities/enums/RateDays.java" />
     <entry file="file://$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/RegionBean.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -2350,22 +2187,6 @@
             <element signature="e#409#410#0" expanded="false" />
             <element signature="e#448#449#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/util/RegionRateUpdateType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="10" lean-forward="false" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/gateway/interfaces/RegionRateClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2544,8 +2365,8 @@
         <state relative-caret-position="202">
           <caret line="101" column="21" lean-forward="false" selection-start-line="101" selection-start-column="21" selection-end-line="101" selection-end-column="21" />
           <folding>
-            <element signature="e#2979#2980#0" expanded="true" />
-            <element signature="e#3009#3010#0" expanded="true" />
+            <element signature="e#2979#2980#0" expanded="false" />
+            <element signature="e#3009#3010#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2661,14 +2482,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/gateway/RegionRateClientGateway.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="65" lean-forward="true" selection-start-line="5" selection-start-column="65" selection-end-line="5" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax/javaee-api/8.0/d20c2404766162f9f7797943131a918e0ee45414/javaee-api-8.0-sources.jar!/javax/jms/Connection.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1528">
@@ -2677,34 +2490,230 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/Queue/MessageSenderGateway.java">
+    <entry file="file://$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/object/ObjectGateway.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="65" column="21" lean-forward="false" selection-start-line="65" selection-start-column="21" selection-end-line="65" selection-end-column="21" />
+        <state relative-caret-position="561">
+          <caret line="55" column="29" lean-forward="true" selection-start-line="55" selection-start-column="29" selection-end-line="55" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/request/VehicleRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/reply/VehicleReply.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-187">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/Queue/MessageReceiverGateway.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
+        <state relative-caret-position="687">
           <caret line="48" column="23" lean-forward="false" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/Queue/MessageSenderGateway.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="44" column="32" lean-forward="true" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/RegionReply.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="4" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/util/RegionRateUpdateType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="10" lean-forward="false" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/requestreply/RequestReplyGateWay.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
+        <state relative-caret-position="544">
           <caret line="54" column="1" lean-forward="true" selection-start-line="54" selection-start-column="1" selection-end-line="61" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/object/ObjectGateway.java">
+    <entry file="file://$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/serializer/RequestReplySerializer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-119">
-          <caret line="15" column="40" lean-forward="true" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
+        <state relative-caret-position="68">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/messaging/RequestReplyUnique.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="45" column="5" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="45" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/messaging/RequestReply.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="8" column="45" lean-forward="false" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1104#1105#0" expanded="true" />
+            <element signature="e#1129#1130#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/serializer/ObjectSerializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/serializer/StandardMessageSerializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="7" column="47" lean-forward="true" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/messaging/StandardMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="17" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/region/RegionRequestRegionRates.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding>
+            <element signature="e#377#378#0" expanded="true" />
+            <element signature="e#406#407#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/region/RegionRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="11" lean-forward="false" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
+          <folding>
+            <element signature="e#190#191#0" expanded="true" />
+            <element signature="e#248#249#0" expanded="true" />
+            <element signature="e#303#304#0" expanded="true" />
+            <element signature="e#343#344#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/region/RegionReply.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="29" lean-forward="false" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/region/RegionRequestType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/rate/RegionRateReplyType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="12" lean-forward="false" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/rate/RegionRateReply.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="44" lean-forward="false" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
+          <folding>
+            <element signature="e#433#434#0" expanded="true" />
+            <element signature="e#474#475#0" expanded="true" />
+            <element signature="e#507#508#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/rate/RegionRateRequestType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/rate/RegionRateRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#513#514#0" expanded="true" />
+            <element signature="e#546#547#0" expanded="true" />
+            <element signature="e#609#610#0" expanded="true" />
+            <element signature="e#653#654#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/gateway/interfaces/RegionRateClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="82" lean-forward="false" selection-start-line="17" selection-start-column="82" selection-end-line="17" selection-end-column="82" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/gateway/interfaces/RegionRateClientListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/gateway/RegionRateClientGateway.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="53" column="46" lean-forward="true" selection-start-line="53" selection-start-column="46" selection-end-line="53" selection-end-column="46" />
           <folding />
         </state>
       </provider>
@@ -2763,7 +2772,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>KilometerTariefClient_main|KilometerTariefClient</last-edited>
+          <last-edited>Tim-JMS_main|Tim-JMS</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
