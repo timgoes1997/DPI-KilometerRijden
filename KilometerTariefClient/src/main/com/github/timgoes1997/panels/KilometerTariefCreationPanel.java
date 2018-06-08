@@ -94,8 +94,8 @@ public class KilometerTariefCreationPanel {
         gbc_startHour.gridy = 3;
         tariefCreationPanel.add(startHour, gbc_startHour);
 
-        startHourValue = new SpinnerNumberModel(0, 0, 24, 1);
-        startMinuteValue = new SpinnerNumberModel(0, 0, 60, 1);
+        startHourValue = new SpinnerNumberModel(0, 0, 23, 1);
+        startMinuteValue = new SpinnerNumberModel(0, 0, 59, 1);
 
         startHourSpinner = new JSpinner(startHourValue);
         DisAllowTextNumberSpinner(startHourSpinner);
@@ -123,8 +123,8 @@ public class KilometerTariefCreationPanel {
         tariefCreationPanel.add(startMinuteSpinner, gbc_startMinuteSpinner);
 
 
-        endHourValue = new SpinnerNumberModel(0, 0, 24, 1);
-        endMinuteValue = new SpinnerNumberModel(0, 0, 60, 1);
+        endHourValue = new SpinnerNumberModel(0, 0, 23, 1);
+        endMinuteValue = new SpinnerNumberModel(0, 0, 59, 1);
 
         JLabel endHour = new JLabel("End Hour");
         GridBagConstraints gbc_endHour = new GridBagConstraints();

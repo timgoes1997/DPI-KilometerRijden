@@ -1,10 +1,12 @@
 package com.github.timgoes1997.entities;
 
 import com.github.timgoes1997.entities.enums.EnergyLabel;
+import com.github.timgoes1997.entities.enums.VehicleType;
 
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import java.math.BigDecimal;
+import java.time.DayOfWeek;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -28,6 +30,14 @@ public class RegionRate {
     @Column(name = "ENERGYLABEL")
     private EnergyLabel energyLabel;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "DAY")
+    private DayOfWeek dayOfWeek;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "VEHICLE_TYPE")
+    private VehicleType vehicleType;
+
     @Temporal(TemporalType.DATE)
     @Column(name = "START_TIME")
     private Calendar startTime;
@@ -36,32 +46,26 @@ public class RegionRate {
     @Column(name = "END_TIME")
     private Calendar endTime;
 
-    public RegionRate(Region region, BigDecimal kilometerPrice, EnergyLabel energyLabel, Calendar startTime, Calendar endTime) {
+    public RegionRate(Region region, VehicleType vehicleType, BigDecimal kilometerPrice, EnergyLabel energyLabel, DayOfWeek dayOfWeek, int startHour, int startMinute, int endHour, int endMinute) {
         this.region = region;
         this.kilometerPrice = kilometerPrice;
         this.energyLabel = energyLabel;
-        this.startTime = startTime;
-        this.endTime = endTime;
-    }
-
-    public RegionRate(Region region, BigDecimal kilometerPrice, EnergyLabel energyLabel, int startHour, int startMinute, int endHour, int endMinute) {
-        this.region = region;
-        this.kilometerPrice = kilometerPrice;
-        this.energyLabel = energyLabel;
+        this.dayOfWeek = dayOfWeek;
+        this.vehicleType = vehicleType;
 
         if(startHour >=24 || startHour < 0 || endHour >=24 || endHour < 0){
             throw new IllegalArgumentException("Hour should in the range of [0-23].");
         }
 
         if(startMinute >= 60 || startMinute < 0 || endMinute >= 60 || endMinute < 0){
-            throw new IllegalArgumentException("Hour should in the range of [0-60].");
+            throw new IllegalArgumentException("Hour should in the range of [0-59].");
         }
 
         this.startTime = GregorianCalendar.getInstance();
-        startTime.set(0, 0, 0, startHour, startMinute, 0);
+        startTime.set(0, Calendar.JANUARY, 0, startHour, startMinute, 0);
 
         this.endTime = GregorianCalendar.getInstance();
-        endTime.set(0,0 ,0 ,endHour , endMinute,0 );
+        endTime.set(0,Calendar.JANUARY ,0 ,endHour , endMinute,0 );
     }
 
     public Region getRegion() {
@@ -106,5 +110,21 @@ public class RegionRate {
 
     public Long getId() {
         return id;
+    }
+
+    public DayOfWeek getDayOfWeek() {
+        return dayOfWeek;
+    }
+
+    public void setDayOfWeek(DayOfWeek dayOfWeek) {
+        this.dayOfWeek = dayOfWeek;
+    }
+
+    public VehicleType getVehicleType() {
+        return vehicleType;
+    }
+
+    public void setVehicleType(VehicleType vehicleType) {
+        this.vehicleType = vehicleType;
     }
 }

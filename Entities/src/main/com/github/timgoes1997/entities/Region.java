@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Entity(name = "REGION")
 @NamedQueries({
@@ -58,6 +59,7 @@ public class Region {
 
     public Region(String name) {
         this.name = name;
+        this.addedDate = new Date();
     }
 
     public Region() {
@@ -89,7 +91,24 @@ public class Region {
         return addedDate;
     }
 
-    //TODO/OPTIONAL: multithreaded implementation of calculating this, because this can be pretty intensive
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Region)) return false;
+        Region region = (Region) o;
+        return Objects.equals(id, region.id) &&
+                Objects.equals(name, region.name) &&
+                Objects.equals(addedDate, region.addedDate);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, name, addedDate);
+    }
+
+
+//TODO/OPTIONAL: multithreaded implementation of calculating this, because this can be pretty intensive
     /**
      * Kijkt of een locatie zich binnen een bepaalde regio bevind.
      * Gaat er vanuit dat de punten zich in een juiste volgorde bevinden, anders gaat het mis.
