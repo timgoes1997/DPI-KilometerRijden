@@ -23,13 +23,10 @@ public class DummyDataGenerator {
         regionList = new ArrayList<>();
         regionRates = new ArrayList<>();
 
-        regionList.add(new Region("region 1"));
-        regionList.add(new Region("region 2"));
-        regionList.add(new Region("region 3"));
-        regionList.add(new Region("region 4"));
-        regionList.add(new Region("region 5"));
-        regionList.add(new Region("region 6"));
-        regionList.add(new Region("region 7"));
+        for(int i = 0; i < 10; i++){
+            regionList.add(new Region(String.format("region %s", i)));
+        }
+
         BigDecimal carStart = new BigDecimal(0.03d);
         BigDecimal carSteps = new BigDecimal(0.02);
         BigDecimal truckStart = new BigDecimal(0.07d);
