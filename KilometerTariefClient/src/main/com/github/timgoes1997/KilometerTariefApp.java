@@ -5,10 +5,13 @@ import com.github.timgoes1997.entities.Region;
 import com.github.timgoes1997.entities.RegionRate;
 import com.github.timgoes1997.entities.enums.EnergyLabel;
 import com.github.timgoes1997.entities.enums.VehicleType;
+import com.github.timgoes1997.list.RegionRateListLine;
 import com.github.timgoes1997.listeners.RegionListPanelListener;
+import com.github.timgoes1997.listeners.RegionRatePanelListener;
 import com.github.timgoes1997.listeners.TariefCompletionListener;
 import com.github.timgoes1997.panels.KilometerTariefCreationPanel;
 import com.github.timgoes1997.panels.RegionListPanel;
+import com.github.timgoes1997.panels.RegionRateListPanel;
 import com.github.timgoes1997.util.OpenAction;
 
 import javax.swing.*;
@@ -26,6 +29,7 @@ public class KilometerTariefApp extends JFrame {
     private JPanel mainPanel;
     private KilometerTariefCreationPanel kilometerTariefCreationPanel;
     private RegionListPanel regionListPanel;
+    private RegionRateListPanel regionRateListPanel;
     private DummyDataGenerator dummyDataGenerator; //Remove once JMS queue to region service is working
 
     public KilometerTariefApp() {
@@ -36,7 +40,7 @@ public class KilometerTariefApp extends JFrame {
         setTitle("Kilometertarief client");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 720, 720);
-        JPanel mainPanel = new JPanel();
+        mainPanel = new JPanel();
         mainPanel.setSize(getPreferredSize());
         mainPanel.setAlignmentX(JComponent.LEFT_ALIGNMENT);
         setContentPane(mainPanel);
@@ -56,21 +60,68 @@ public class KilometerTariefApp extends JFrame {
 //        mainPanel.add(kilometerTariefCreationPanel.getTariefCreationPanel(), gbc_contentPane);
 
         dummyDataGenerator = new DummyDataGenerator();
+        createRegionListPanel();
+        createRegionRateListPanel();
+    }
 
+    private void createRegionRateListPanel(){
+        regionRateListPanel = new RegionRateListPanel(new RegionRatePanelListener() {
+
+            @Override
+            public void onSelectCreation() {
+
+            }
+
+            @Override
+            public void onSelectRegionRate(RegionRate regionRate) {
+
+            }
+
+            @Override
+            public void onRegionRateUpdate(RegionRate regionRate) {
+
+            }
+
+            @Override
+            public void onRegionRateDelete(RegionRate regionRate) {
+
+            }
+
+            @Override
+            public void onRegionRateCreate(RegionRate regionRate) {
+
+            }
+        });
+
+        GridBagConstraints gbc_regionListPane = new GridBagConstraints();
+        gbc_regionListPane.anchor = GridBagConstraints.FIRST_LINE_START;
+        //gbc_regionListPane.fill = GridBagConstraints.BOTH;
+        gbc_regionListPane.gridx = 0;
+        gbc_regionListPane.gridy = 1;
+        JPanel panel = regionRateListPanel.getPanel();
+        panel.setSize(500,500 );
+        panel.setVisible(false);
+        mainPanel.add(panel, gbc_regionListPane);
+    }
+
+    private void createRegionListPanel(){
         regionListPanel = new RegionListPanel(new RegionListPanelListener() {
             @Override
             public void onSelectRegion(Region region) {
-                System.out.println("Selected region: " + region.getName());
+                if(region == null) return;
+                dummyDataGenerator.getRatesForRegion(region).forEach(regionRate -> regionRateListPanel.add(regionRate));
+                regionListPanel.getPanel().setVisible(false);
+                regionRateListPanel.getPanel().setVisible(true);
             }
         });
         GridBagConstraints gbc_regionListPane = new GridBagConstraints();
         gbc_regionListPane.anchor = GridBagConstraints.FIRST_LINE_START;
-        gbc_regionListPane.fill = GridBagConstraints.HORIZONTAL;
-        gbc_regionListPane.weightx = 1;
-        gbc_regionListPane.weighty = 1;
+        //gbc_regionListPane.fill = GridBagConstraints.BOTH;
         gbc_regionListPane.gridx = 0;
         gbc_regionListPane.gridy = 1;
-        mainPanel.add(regionListPanel.getPanel(), gbc_regionListPane);
+        JPanel panel= regionListPanel.getPanel();
+        panel.setSize(500,500 );
+        mainPanel.add(panel, gbc_regionListPane);
 
         dummyDataGenerator.getRegionList().forEach(region -> {
             regionListPanel.add(region);
@@ -78,15 +129,13 @@ public class KilometerTariefApp extends JFrame {
     }
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    KilometerTariefApp app = new KilometerTariefApp();
+        EventQueue.invokeLater(() -> {
+            try {
+                KilometerTariefApp app = new KilometerTariefApp();
 
-                    app.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                app.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }

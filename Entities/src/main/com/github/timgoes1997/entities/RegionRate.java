@@ -18,8 +18,8 @@ public class RegionRate {
     @Column(name = "ID")
     private Long id;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="REGION_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "REGION_ID")
     private Region region;
 
     @Digits(integer = 12, fraction = 2)
@@ -53,19 +53,19 @@ public class RegionRate {
         this.dayOfWeek = dayOfWeek;
         this.vehicleType = vehicleType;
 
-        if(startHour >=24 || startHour < 0 || endHour >=24 || endHour < 0){
+        if (startHour >= 24 || startHour < 0 || endHour >= 24 || endHour < 0) {
             throw new IllegalArgumentException("Hour should in the range of [0-23].");
         }
 
-        if(startMinute >= 60 || startMinute < 0 || endMinute >= 60 || endMinute < 0){
+        if (startMinute >= 60 || startMinute < 0 || endMinute >= 60 || endMinute < 0) {
             throw new IllegalArgumentException("Hour should in the range of [0-59].");
         }
 
         this.startTime = GregorianCalendar.getInstance();
-        startTime.set(0, Calendar.JANUARY, 0, startHour, startMinute, 0);
+        startTime.set(2000, Calendar.JANUARY, 0, startHour, startMinute, 0);
 
         this.endTime = GregorianCalendar.getInstance();
-        endTime.set(0,Calendar.JANUARY ,0 ,endHour , endMinute,0 );
+        endTime.set(2000, Calendar.JANUARY, 0, endHour, endMinute, 0);
     }
 
     public Region getRegion() {

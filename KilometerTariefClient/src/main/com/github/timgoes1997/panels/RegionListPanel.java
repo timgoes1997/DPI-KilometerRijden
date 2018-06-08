@@ -13,7 +13,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class RegionListPanel {
-
     private DefaultListModel<RegionListLine> listModel = new DefaultListModel<RegionListLine>();
     private JList<RegionListLine> list;
     private JPanel panel;
@@ -80,12 +79,13 @@ public class RegionListPanel {
             }
         });
         scrollPane.setViewportView(list);
+        scrollPane.setPreferredSize(panel.getPreferredSize());
     }
 
     private RegionListLine getRegion(Region region) {
         for (int i=0; i < listModel.getSize(); i++){
             RegionListLine rll = listModel.get(i);
-            if(rll.equals(region)){
+            if(rll.getRegion().equals(region)){
                 return rll;
             }
         }

@@ -7,6 +7,7 @@ import com.github.timgoes1997.entities.enums.EnergyLabel;
 import com.github.timgoes1997.entities.enums.VehicleType;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class DummyDataGenerator {
         generate(amountOfRegions);
     }
 
-    public DummyDataGenerator(){
+    public DummyDataGenerator() {
         this(10);
     }
 
@@ -29,37 +30,37 @@ public class DummyDataGenerator {
         regionRates = new ArrayList<>();
 
         //creating the rates
-        for(int i = 0; i < amountOfRegions; i++){
-            regionList.add(new Region(String.format("region %s", i)));
+        for (int i = 0; i < amountOfRegions; i++) {
+            regionList.add(new Region(String.format("region %s", i + 1)));
         }
 
         generateRegionRates();
         generateBorders();
     }
 
-    private void generateRegionRates(){
+    private void generateRegionRates() {
         BigDecimal carStart = new BigDecimal(0.03d);
-        BigDecimal carSteps = new BigDecimal(0.02);
+        BigDecimal carSteps = new BigDecimal(0.02d).setScale(3, BigDecimal.ROUND_HALF_UP);
         BigDecimal truckStart = new BigDecimal(0.07d);
-        BigDecimal truckSteps = new BigDecimal(0.05d);
+        BigDecimal truckSteps = new BigDecimal(0.05d).setScale(3, BigDecimal.ROUND_HALF_UP);
 
         //Adding rates to the regions
         regionList.forEach(region -> {
-            generateRegionRateWeekDaysEnergyLabel(region, VehicleType.CAR, carStart, carSteps);
+            regionRates.addAll(generateRegionRateWeekDaysEnergyLabel(region, VehicleType.CAR, carStart, carSteps));
         });
         regionList.forEach(region -> {
             regionRates.addAll(generateRegionRateWeekDaysEnergyLabel(region, VehicleType.TRUCK, truckStart, truckSteps));
         });
     }
 
-    private void generateBorders(){
+    private void generateBorders() {
         double borderX = 0.0d;
         double borderY = 0.0d;
         double borderStepsX = 5.0d;
         double borderStepsY = 5.0d;
 
         //Adding borderlocations to the regions
-        for (Region region: regionList) {
+        for (Region region : regionList) {
             List<RegionBorder> borderList = new ArrayList<>();
             borderList.add(new RegionBorder(1L, borderX, borderY));
             borderList.add(new RegionBorder(2L, borderX + borderStepsX, borderY));
@@ -72,10 +73,11 @@ public class DummyDataGenerator {
 
     private List<RegionRate> generateRegionRateWeekDaysEnergyLabel(Region region, VehicleType vehicleType, BigDecimal startPrice, BigDecimal steps) {
         List<RegionRate> regionRates = new ArrayList<>();
-        BigDecimal currentPrice = startPrice;
+        BigDecimal currentPrice = startPrice.round(new MathContext(1));
+        currentPrice = currentPrice.setScale(3, BigDecimal.ROUND_HALF_UP);
         for (EnergyLabel label : EnergyLabel.values()) {
             regionRates.addAll(generateRegionRateWeekDays(region, vehicleType, currentPrice, label));
-            currentPrice.add(steps);
+            currentPrice = currentPrice.add(steps).setScale(3, BigDecimal.ROUND_HALF_UP);
         }
         return regionRates;
     }
@@ -86,6 +88,16 @@ public class DummyDataGenerator {
             regionRates.add(new RegionRate(region, vehicleType, price, label, day, 0, 0, 23, 59));
         }
         return regionRates;
+    }
+
+    public List<RegionRate> getRatesForRegion(Region region) {
+        List<RegionRate> rates = new ArrayList<>();
+        for (RegionRate r : regionRates) {
+            if (r.getRegion().equals(region)) {
+                rates.add(r);
+            }
+        }
+        return rates;
     }
 
     public List<Region> getRegionList() {
