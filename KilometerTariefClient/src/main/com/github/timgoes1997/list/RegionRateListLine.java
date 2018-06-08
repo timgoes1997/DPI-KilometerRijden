@@ -25,8 +25,10 @@ public class RegionRateListLine {
     public String toString() {
         return  regionRate.getVehicleType().toString() + " | "
                 + regionRate.getDayOfWeek().toString() + ": "
-                + String.valueOf(regionRate.getStartTime().get(Calendar.HOUR_OF_DAY)) + "-"
-                + String.valueOf(regionRate.getEndTime().get(Calendar.HOUR_OF_DAY))
+                + String.valueOf(regionRate.getStartTime().get(Calendar.HOUR_OF_DAY)) + ":"
+                + String.valueOf(regionRate.getStartTime().get(Calendar.MINUTE)) + " - "
+                + String.valueOf(regionRate.getEndTime().get(Calendar.HOUR_OF_DAY)) + ":"
+                + String.valueOf(regionRate.getEndTime().get(Calendar.MINUTE))
                 + " - " + regionRate.getEnergyLabel().toString()
                 + " - \u20ac" + regionRate.getKilometerPrice();
     }

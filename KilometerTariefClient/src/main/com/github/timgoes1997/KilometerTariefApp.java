@@ -31,7 +31,7 @@ public class KilometerTariefApp extends JFrame {
     private void loadFrame() {
         setTitle("Kilometertarief client");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 720, 720);
+        setBounds(100, 100, 500, 450);
         mainPanel = new JPanel();
         mainPanel.setSize(getPreferredSize());
         mainPanel.setAlignmentX(JComponent.LEFT_ALIGNMENT);
@@ -71,11 +71,13 @@ public class KilometerTariefApp extends JFrame {
 
             @Override
             public void onSelectCreation() {
+                regionRateCreationPanel.resetValues();
                 setVisiblePanel(VisiblePanel.REGION_CREATION);
             }
 
             @Override
             public void onSelectRegionRate(RegionRate regionRate) {
+                regionRateCreationPanel.insert(regionRate);
                 setVisiblePanel(VisiblePanel.REGION_CREATION);
             }
 

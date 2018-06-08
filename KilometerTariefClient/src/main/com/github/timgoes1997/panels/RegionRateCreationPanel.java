@@ -8,10 +8,12 @@ import com.github.timgoes1997.util.OpenAction;
 import com.github.timgoes1997.util.VisiblePanel;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class RegionRateCreationPanel {
@@ -38,7 +40,7 @@ public class RegionRateCreationPanel {
 
     private RegionRate current;
 
-    public RegionRateCreationPanel(RegionRateCompletionListener listener){
+    public RegionRateCreationPanel(RegionRateCompletionListener listener) {
         this.regionRateCompletionListener = listener;
         loadFrame();
     }
@@ -46,8 +48,7 @@ public class RegionRateCreationPanel {
     private void loadFrame() {
         panel = new JPanel();
         panel.setAlignmentX(JComponent.LEFT_ALIGNMENT);
-        panel.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
-        //contentPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
+        panel.setBorder(LineBorder.createBlackLineBorder());
         GridBagLayout gbl_contentPane = new GridBagLayout();
         gbl_contentPane.columnWidths = new int[]{0, 0, 30, 30, 30, 30, 0};
         gbl_contentPane.rowHeights = new int[]{30, 30, 30, 30, 30};
@@ -114,7 +115,7 @@ public class RegionRateCreationPanel {
         startMinuteValue = new SpinnerNumberModel(0, 0, 59, 1);
 
         startHourSpinner = new JSpinner(startHourValue);
-        DisAllowTextNumberSpinner(startHourSpinner);
+        disAllowTextNumberSpinner(startHourSpinner);
         GridBagConstraints gbc_startHourSpinner = new GridBagConstraints();
         gbc_startHourSpinner.fill = GridBagConstraints.HORIZONTAL;
         gbc_startHourSpinner.insets = new Insets(0, 0, 5, 5);
@@ -130,7 +131,7 @@ public class RegionRateCreationPanel {
         panel.add(startMinute, gbc_startMinute);
 
         startMinuteSpinner = new JSpinner(startMinuteValue);
-        DisAllowTextNumberSpinner(startMinuteSpinner);
+        disAllowTextNumberSpinner(startMinuteSpinner);
         GridBagConstraints gbc_startMinuteSpinner = new GridBagConstraints();
         gbc_startMinuteSpinner.fill = GridBagConstraints.HORIZONTAL;
         gbc_startMinuteSpinner.insets = new Insets(0, 0, 5, 5);
@@ -150,7 +151,7 @@ public class RegionRateCreationPanel {
         panel.add(endHour, gbc_endHour);
 
         endHourSpinner = new JSpinner(endHourValue);
-        DisAllowTextNumberSpinner(endHourSpinner);
+        disAllowTextNumberSpinner(endHourSpinner);
         GridBagConstraints gbc_endHourSpinner = new GridBagConstraints();
         gbc_endHourSpinner.fill = GridBagConstraints.HORIZONTAL;
         gbc_endHourSpinner.insets = new Insets(0, 0, 5, 5);
@@ -166,7 +167,7 @@ public class RegionRateCreationPanel {
         panel.add(endMinute, gbc_endMinute);
 
         endMinuteSpinner = new JSpinner(endMinuteValue);
-        DisAllowTextNumberSpinner(endMinuteSpinner);
+        disAllowTextNumberSpinner(endMinuteSpinner);
         GridBagConstraints gbc_endMinuteSpinner = new GridBagConstraints();
         gbc_endMinuteSpinner.fill = GridBagConstraints.HORIZONTAL;
         gbc_endMinuteSpinner.insets = new Insets(0, 0, 5, 5);
@@ -205,9 +206,7 @@ public class RegionRateCreationPanel {
 
         });
 
-        for (JMenuItem menuItem : menuItems) {
-            menuItem.addActionListener(new OpenAction(menu, dayButton));
-        }
+        addDaysToComboBoxListners();
 
         completionButton = new JButton("Create");
         GridBagConstraints gbc_completionButton = new GridBagConstraints();
@@ -220,44 +219,90 @@ public class RegionRateCreationPanel {
         });
     }
 
-    private void addDaysToComboBox(){
+    private void addDaysToComboBox() {
         for (DayOfWeek day : DayOfWeek.values()) {
             JMenuItem dayItem = new JCheckBoxMenuItem(day.toString());
-            dayItem.addActionListener(e -> {
-                if (dayItem.isSelected()) {
-                    selectedDayOfWeeks.add(DayOfWeek.valueOf(dayItem.getText()));
-                } else {
-                    selectedDayOfWeeks.remove(DayOfWeek.valueOf(dayItem.getText()));
-                }
-                UpdateDayLabel(dayLabel);
-            });
+            addDayItemListener(dayItem);
             menuItems.add(dayItem);
             menu.add(dayItem);
         }
     }
 
-    private void ResetValues(){
+    private void addDayItemListener(JMenuItem dayItem) {
+        dayItem.addActionListener(e -> {
+            if (dayItem.isSelected()) {
+                selectedDayOfWeeks.add(DayOfWeek.valueOf(dayItem.getText()));
+            } else {
+                selectedDayOfWeeks.remove(DayOfWeek.valueOf(dayItem.getText()));
+            }
+            updateDayLabel(dayLabel);
+        });
+    }
+
+    private void addDaysToComboBox(DayOfWeek selectedDay){
+        for (DayOfWeek day : DayOfWeek.values()) {
+            JMenuItem dayItem = new JCheckBoxMenuItem(day.toString());
+            if(day == selectedDay) dayItem.setSelected(true);
+            addDayItemListener(dayItem);
+            menuItems.add(dayItem);
+            menu.add(dayItem);
+        }
+    }
+
+    private void addDaysToComboBoxListners(){
+        for (JMenuItem menuItem : menuItems) {
+            menuItem.addActionListener(new OpenAction(menu, dayButton));
+        }
+    }
+
+    public void resetValues() {
         startHourSpinner.setValue(0);
         startMinuteSpinner.setValue(0);
         endHourSpinner.setValue(0);
         endMinuteSpinner.setValue(0);
         menuItems.forEach(menu::remove);
         menuItems.clear();
+        selectedDayOfWeeks.clear();
+        energyLabelJComboBox.setSelectedIndex(0);
+        vehicleTypeJComboBox.setSelectedIndex(0);
+        addDaysToComboBox();
+        addDaysToComboBoxListners();
+        this.current = null;
+        completionButton.setText("Create");
+        updateDayLabel(dayLabel);
     }
 
-    private void DisAllowTextNumberSpinner(JSpinner spinner){
+    public void insert(RegionRate regionRate){
+        startHourSpinner.setValue(regionRate.getStartTime().get(Calendar.HOUR_OF_DAY));
+        startMinuteSpinner.setValue(regionRate.getStartTime().get(Calendar.MINUTE));
+        endHourSpinner.setValue(regionRate.getEndTime().get(Calendar.HOUR_OF_DAY));
+        endMinuteSpinner.setValue(regionRate.getEndTime().get(Calendar.MINUTE));
+        menuItems.forEach(menu::remove);
+        menuItems.clear();
+        selectedDayOfWeeks.clear();
+        energyLabelJComboBox.setSelectedIndex(regionRate.getEnergyLabel().ordinal());
+        vehicleTypeJComboBox.setSelectedIndex(regionRate.getVehicleType().ordinal());
+        addDaysToComboBox(regionRate.getDayOfWeek());
+        addDaysToComboBoxListners();
+        selectedDayOfWeeks.add(regionRate.getDayOfWeek());
+        this.current = regionRate;
+        completionButton.setText("Update");
+        updateDayLabel(dayLabel);
+    }
+
+    private void disAllowTextNumberSpinner(JSpinner spinner) {
         JFormattedTextField spinnerText = ((JSpinner.NumberEditor) spinner.getEditor()).getTextField();
         ((NumberFormatter) spinnerText.getFormatter()).setAllowsInvalid(false);
     }
 
-    private void UpdateDayLabel(JLabel label) {
+    private void updateDayLabel(JLabel label) {
         StringBuilder days = new StringBuilder();
         if (selectedDayOfWeeks.size() == DayOfWeek.values().length) {
             days = new StringBuilder("EVERY DAY OF THE WEEK");
         } else {
             for (DayOfWeek day :
                     selectedDayOfWeeks) {
-                days.append(day.toString()).append(", ");
+                days.append(day.toString().substring(0, 3)).append(", ");
             }
         }
         label.setText(days.toString());

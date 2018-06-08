@@ -6,6 +6,7 @@ import com.github.timgoes1997.listeners.RegionListPanelListener;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -25,7 +26,7 @@ public class RegionListPanel {
 
     private void loadFrame() {
         panel = new JPanel();
-        panel.setBorder(new EmptyBorder(5, 5, 5, 5));
+        panel.setBorder(LineBorder.createBlackLineBorder());
         GridBagLayout gbl_contentPane = new GridBagLayout();
         panel.setLayout(gbl_contentPane);
 
