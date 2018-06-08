@@ -7,7 +7,7 @@ public class RegionListLine {
     private Region region;
 
     public RegionListLine(Region region){
-
+        this.region = region;
     }
 
     public Region getRegion() {
@@ -20,8 +20,6 @@ public class RegionListLine {
 
     @Override
     public String toString() {
-        return "RegionListLine{" +
-                "region=" + region +
-                '}';
+        return region.getName();
     }
 }

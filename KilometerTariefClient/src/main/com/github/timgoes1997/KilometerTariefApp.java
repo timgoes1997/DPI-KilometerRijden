@@ -1,5 +1,6 @@
 package com.github.timgoes1997;
 
+import com.github.timgoes1997.dummy.DummyDataGenerator;
 import com.github.timgoes1997.entities.RegionRate;
 import com.github.timgoes1997.entities.enums.EnergyLabel;
 import com.github.timgoes1997.entities.enums.VehicleType;
@@ -23,6 +24,7 @@ public class KilometerTariefApp extends JFrame {
     private JPanel mainPanel;
     private KilometerTariefCreationPanel kilometerTariefCreationPanel;
     private RegionListPanel regionListPanel;
+    private DummyDataGenerator dummyDataGenerator; //Remove once JMS queue to region service is working
 
     public KilometerTariefApp() {
         loadFrame();
@@ -51,6 +53,8 @@ public class KilometerTariefApp extends JFrame {
 //        gbc_contentPane.weighty = 1;
 //        mainPanel.add(kilometerTariefCreationPanel.getTariefCreationPanel(), gbc_contentPane);
 
+        dummyDataGenerator = new DummyDataGenerator();
+
         regionListPanel = new RegionListPanel();
         GridBagConstraints gbc_regionListPane = new GridBagConstraints();
         gbc_regionListPane.anchor = GridBagConstraints.FIRST_LINE_START;
@@ -60,6 +64,10 @@ public class KilometerTariefApp extends JFrame {
         gbc_regionListPane.gridx = 0;
         gbc_regionListPane.gridy = 1;
         mainPanel.add(regionListPanel.getPanel(), gbc_regionListPane);
+
+        dummyDataGenerator.getRegionList().forEach(region -> {
+            regionListPanel.add(region);
+        });
     }
 
     public static void main(String[] args) {

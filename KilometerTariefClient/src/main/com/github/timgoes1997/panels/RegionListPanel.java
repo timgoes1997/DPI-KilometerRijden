@@ -6,6 +6,10 @@ import com.github.timgoes1997.list.RegionListLine;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class RegionListPanel {
 
@@ -21,10 +25,6 @@ public class RegionListPanel {
         panel = new JPanel();
         panel.setBorder(new EmptyBorder(5, 5, 5, 5));
         GridBagLayout gbl_contentPane = new GridBagLayout();
-        //gbl_contentPane.columnWidths = new int[]{46, 31, 86, 30, 89, 0};
-        //gbl_contentPane.rowHeights = new int[]{500, 23, 0};
-        //gbl_contentPane.columnWeights = new double[]{1.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
-        //gbl_contentPane.rowWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
         panel.setLayout(gbl_contentPane);
 
         JLabel updateCreateRate = new JLabel("Regions: ");
@@ -44,6 +44,35 @@ public class RegionListPanel {
         panel.add(scrollPane, gbc_scrollPane);
 
         list = new JList<RegionListLine>(listModel);
+        list.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JList<RegionListLine> list = (JList)e.getSource();
+                int index = list.locationToIndex(e.getPoint());
+                RegionListLine rll = list.getModel().getElementAt(index);
+                System.out.println("Pressed:" + rll.toString());
+            }
+        });
+        list.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    JList<RegionListLine> list = (JList) e.getSource();
+                    RegionListLine rll = list.getModel().getElementAt(list.getSelectedIndex());
+                    System.out.println("Key:" + rll.toString());
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
         scrollPane.setViewportView(list);
     }
 

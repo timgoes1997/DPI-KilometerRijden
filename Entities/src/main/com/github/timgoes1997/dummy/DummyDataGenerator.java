@@ -88,4 +88,19 @@ public class DummyDataGenerator {
         return regionRates;
     }
 
+    public List<Region> getRegionList() {
+        return regionList;
+    }
+
+    public void setRegionList(List<Region> regionList) {
+        this.regionList = regionList;
+    }
+
+    public List<RegionRate> getRegionRates() {
+        return regionRates;
+    }
+
+    public void setRegionRates(List<RegionRate> regionRates) {
+        this.regionRates = regionRates;
+    }
 }
