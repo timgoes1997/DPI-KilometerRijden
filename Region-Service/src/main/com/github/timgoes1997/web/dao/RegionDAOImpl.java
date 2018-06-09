@@ -33,8 +33,15 @@ public class RegionDAOImpl implements RegionDAO {
     @Override
     public boolean exists(String name) {
         TypedQuery<Region> query =
-                em.createNamedQuery(Region.FIND_ID, Region.class);
+                em.createNamedQuery(Region.FIND_NAME, Region.class);
         return query.setParameter("name", name).getResultList().size() > 0;
+    }
+
+    @Override
+    public boolean exists(long id) {
+        TypedQuery<Region> query =
+                em.createNamedQuery(Region.FIND_ID, Region.class);
+        return query.setParameter("id", id).getResultList().size() > 0;
     }
 
     @Override

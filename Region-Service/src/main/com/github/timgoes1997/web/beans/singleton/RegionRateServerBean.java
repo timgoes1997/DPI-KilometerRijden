@@ -1,7 +1,10 @@
 package com.github.timgoes1997.web.beans.singleton;
 
+import com.github.timgoes1997.dummy.DummyDataGenerator;
 import com.github.timgoes1997.entities.Region;
 import com.github.timgoes1997.entities.RegionRate;
+import com.github.timgoes1997.entities.enums.EnergyLabel;
+import com.github.timgoes1997.entities.enums.VehicleType;
 import com.github.timgoes1997.jms.messaging.RequestReply;
 import com.github.timgoes1997.request.rate.RegionRateReply;
 import com.github.timgoes1997.request.rate.RegionRateRequest;
@@ -20,6 +23,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.jms.JMSException;
 import javax.naming.NamingException;
+import java.math.BigDecimal;
+import java.time.DayOfWeek;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -28,6 +33,8 @@ import java.util.logging.Logger;
 public class RegionRateServerBean implements RegionRateServerBeanInterface {
 
     private RegionRateServerGateway serverGateway;
+
+    private DummyDataGenerator dummyDataGenerator;
 
     @Inject
     private RegionService regionService;
@@ -38,6 +45,7 @@ public class RegionRateServerBean implements RegionRateServerBeanInterface {
     @PostConstruct
     public void init(){
         logger.info("Initialized Region Rate server bean");
+        initMockData();
         try {
             serverGateway = new RegionRateServerGateway(new RegionRateServerListener() {
                 @Override
@@ -69,6 +77,24 @@ public class RegionRateServerBean implements RegionRateServerBeanInterface {
             });
         } catch (NamingException | JMSException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void initMockData(){
+        dummyDataGenerator = new DummyDataGenerator(5);
+
+        try {
+            dummyDataGenerator.getRegionList().forEach(regionService::addRegion);
+        }catch (Exception e){
+            logger.warning("Failed to generate mockdata for region");
+            return;
+        }
+
+        try{
+            dummyDataGenerator.getRegionRates().forEach(regionService::addRegionRate);
+        }catch (Exception e){
+            logger.warning("Failed to generate mockdata for region rate");
+            return;
         }
     }
 

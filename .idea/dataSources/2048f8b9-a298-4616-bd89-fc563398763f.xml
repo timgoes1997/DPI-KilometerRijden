@@ -16,363 +16,488 @@
     <schema id="10" parent="1" name="SYSIBM"/>
     <schema id="11" parent="1" name="SYSPROC"/>
     <schema id="12" parent="1" name="SYSSTAT"/>
-    <table id="13" parent="2" name="MESSAGE"/>
-    <table id="14" parent="2" name="MESSAGE_LIKES"/>
-    <table id="15" parent="2" name="MESSAGE_MENTIONS"/>
-    <table id="16" parent="2" name="MESSAGE_TAGS"/>
-    <table id="17" parent="2" name="TAG"/>
-    <table id="18" parent="2" name="USERDATA"/>
-    <table id="19" parent="2" name="USER_FOLLOWERS"/>
-    <table id="20" parent="2" name="USER_FOLLOWING"/>
-    <table id="21" parent="2" name="USER_MESSAGES"/>
-    <column id="22" parent="13" name="ID">
+    <table id="13" parent="2" name="BORDER_POINTS"/>
+    <table id="14" parent="2" name="MESSAGE"/>
+    <table id="15" parent="2" name="MESSAGE_LIKES"/>
+    <table id="16" parent="2" name="MESSAGE_MENTIONS"/>
+    <table id="17" parent="2" name="MESSAGE_TAGS"/>
+    <table id="18" parent="2" name="RATE"/>
+    <table id="19" parent="2" name="REGION"/>
+    <table id="20" parent="2" name="REGION_BORDER"/>
+    <table id="21" parent="2" name="TAG"/>
+    <table id="22" parent="2" name="USERDATA"/>
+    <table id="23" parent="2" name="USER_FOLLOWERS"/>
+    <table id="24" parent="2" name="USER_FOLLOWING"/>
+    <table id="25" parent="2" name="USER_MESSAGES"/>
+    <column id="26" parent="13" name="REGION_ID">
+      <Position>1</Position>
+      <DataType>BIGINT(19)|-5</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="27" parent="13" name="LOCATION_ID">
+      <Position>2</Position>
+      <DataType>BIGINT(19)|-5</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="28" parent="13" name="SQL180609121235300">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>REGION_ID
+LOCATION_ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="29" parent="13" name="BRDERPOINTSRGIONID">
+      <ColNames>REGION_ID</ColNames>
+      <RefSchemaName>APP</RefSchemaName>
+      <RefTableName>REGION</RefTableName>
+      <RefKeyName>SQL180609121235220</RefKeyName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <foreign-key id="30" parent="13" name="BRDRPOINTSLCTIONID">
+      <ColNames>LOCATION_ID</ColNames>
+      <RefSchemaName>APP</RefSchemaName>
+      <RefTableName>REGION_BORDER</RefTableName>
+      <RefKeyName>SQL180609121235270</RefKeyName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <column id="31" parent="14" name="ID">
       <Position>1</Position>
       <DataType>BIGINT(19)|-5</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <DefaultExpression>GENERATED_BY_DEFAULT</DefaultExpression>
     </column>
-    <column id="23" parent="13" name="TYPE">
+    <column id="32" parent="14" name="TYPE">
       <Position>2</Position>
       <DataType>INTEGER(10)|4</DataType>
     </column>
-    <column id="24" parent="13" name="DATE">
+    <column id="33" parent="14" name="DATE">
       <Position>3</Position>
       <DataType>DATE(10)|91</DataType>
     </column>
-    <column id="25" parent="13" name="TEXT">
+    <column id="34" parent="14" name="TEXT">
       <Position>4</Position>
       <DataType>VARCHAR(255)|12</DataType>
     </column>
-    <column id="26" parent="13" name="MESSAGETYPE">
+    <column id="35" parent="14" name="MESSAGETYPE">
       <Position>5</Position>
       <DataType>VARCHAR(255)|12</DataType>
     </column>
-    <column id="27" parent="13" name="MESSAGER_ID">
+    <column id="36" parent="14" name="MESSAGER_ID">
       <Position>6</Position>
       <DataType>BIGINT(19)|-5</DataType>
     </column>
-    <column id="28" parent="13" name="MESSAGE">
+    <column id="37" parent="14" name="MESSAGE">
       <Position>7</Position>
       <DataType>BIGINT(19)|-5</DataType>
     </column>
-    <column id="29" parent="13" name="HASTEXT">
+    <column id="38" parent="14" name="HASTEXT">
       <Position>8</Position>
       <DataType>SMALLINT(5)|5</DataType>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <key id="30" parent="13" name="SQL180504102714830">
+    <key id="39" parent="14" name="SQL180504102714830">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="31" parent="13" name="MESSAGEMESSAGER_ID">
+    <foreign-key id="40" parent="14" name="MESSAGEMESSAGER_ID">
       <ColNames>MESSAGER_ID</ColNames>
       <RefSchemaName>APP</RefSchemaName>
       <RefTableName>USERDATA</RefTableName>
       <RefKeyName>SQL180504102714942</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="32" parent="13" name="FK_MESSAGE_MESSAGE">
+    <foreign-key id="41" parent="14" name="FK_MESSAGE_MESSAGE">
       <ColNames>MESSAGE</ColNames>
       <RefSchemaName>APP</RefSchemaName>
       <RefTableName>MESSAGE</RefTableName>
       <RefKeyName>SQL180504102714830</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="33" parent="14" name="MESSAGE_ID">
+    <column id="42" parent="15" name="MESSAGE_ID">
       <Position>1</Position>
       <DataType>BIGINT(19)|-5</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="34" parent="14" name="LIKED_ACCOUNT_ID">
+    <column id="43" parent="15" name="LIKED_ACCOUNT_ID">
       <Position>2</Position>
       <DataType>BIGINT(19)|-5</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="35" parent="14" name="SQL180504102715100">
+    <key id="44" parent="15" name="SQL180504102715100">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>MESSAGE_ID
 LIKED_ACCOUNT_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="36" parent="14" name="MSSGELIKESMSSAGEID">
+    <foreign-key id="45" parent="15" name="MSSGELIKESMSSAGEID">
       <ColNames>MESSAGE_ID</ColNames>
       <RefSchemaName>APP</RefSchemaName>
       <RefTableName>MESSAGE</RefTableName>
       <RefKeyName>SQL180504102714830</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="37" parent="14" name="MSSGLKESLKDCCUNTID">
+    <foreign-key id="46" parent="15" name="MSSGLKESLKDCCUNTID">
       <ColNames>LIKED_ACCOUNT_ID</ColNames>
       <RefSchemaName>APP</RefSchemaName>
       <RefTableName>USERDATA</RefTableName>
       <RefKeyName>SQL180504102714942</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="38" parent="15" name="MESSAGE_ID">
+    <column id="47" parent="16" name="MESSAGE_ID">
       <Position>1</Position>
       <DataType>BIGINT(19)|-5</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="39" parent="15" name="MENTION_ACCOUNT_ID">
+    <column id="48" parent="16" name="MENTION_ACCOUNT_ID">
       <Position>2</Position>
       <DataType>BIGINT(19)|-5</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="40" parent="15" name="SQL180504102715120">
+    <key id="49" parent="16" name="SQL180504102715120">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>MESSAGE_ID
 MENTION_ACCOUNT_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="41" parent="15" name="MSSGMENTIONSMSSGID">
+    <foreign-key id="50" parent="16" name="MSSGMENTIONSMSSGID">
       <ColNames>MESSAGE_ID</ColNames>
       <RefSchemaName>APP</RefSchemaName>
       <RefTableName>MESSAGE</RefTableName>
       <RefKeyName>SQL180504102714830</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="42" parent="15" name="MSSGMNTNSMNTNCCNTD">
+    <foreign-key id="51" parent="16" name="MSSGMNTNSMNTNCCNTD">
       <ColNames>MENTION_ACCOUNT_ID</ColNames>
       <RefSchemaName>APP</RefSchemaName>
       <RefTableName>USERDATA</RefTableName>
       <RefKeyName>SQL180504102714942</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="43" parent="16" name="MESSAGE_ID">
+    <column id="52" parent="17" name="MESSAGE_ID">
       <Position>1</Position>
       <DataType>BIGINT(19)|-5</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="44" parent="16" name="TAG_ID">
+    <column id="53" parent="17" name="TAG_ID">
       <Position>2</Position>
       <DataType>BIGINT(19)|-5</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="45" parent="16" name="SQL180504102715150">
+    <key id="54" parent="17" name="SQL180504102715150">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>MESSAGE_ID
 TAG_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="46" parent="16" name="MSSAGETAGSMSSAGEID">
+    <foreign-key id="55" parent="17" name="MSSAGETAGSMSSAGEID">
       <ColNames>MESSAGE_ID</ColNames>
       <RefSchemaName>APP</RefSchemaName>
       <RefTableName>MESSAGE</RefTableName>
       <RefKeyName>SQL180504102714830</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="47" parent="16" name="MESSAGE_TAGSTAG_ID">
+    <foreign-key id="56" parent="17" name="MESSAGE_TAGSTAG_ID">
       <ColNames>TAG_ID</ColNames>
       <RefSchemaName>APP</RefSchemaName>
       <RefTableName>TAG</RefTableName>
       <RefKeyName>SQL180504102714861</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="48" parent="17" name="ID">
+    <column id="57" parent="18" name="ID">
       <Position>1</Position>
       <DataType>BIGINT(19)|-5</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <DefaultExpression>GENERATED_BY_DEFAULT</DefaultExpression>
     </column>
-    <column id="49" parent="17" name="NAME">
+    <column id="58" parent="18" name="DAY">
       <Position>2</Position>
       <DataType>VARCHAR(255)|12</DataType>
     </column>
-    <index id="50" parent="17" name="SQL180504102714860">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>NAME</ColNames>
-    </index>
-    <key id="51" parent="17" name="SQL180504102714861">
+    <column id="59" parent="18" name="END_TIME">
+      <Position>3</Position>
+      <DataType>DATE(10)|91</DataType>
+    </column>
+    <column id="60" parent="18" name="ENERGYLABEL">
+      <Position>4</Position>
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <column id="61" parent="18" name="KILOMETER_PRICE">
+      <Position>5</Position>
+      <DataType>DECIMAL(15)|3</DataType>
+    </column>
+    <column id="62" parent="18" name="START_TIME">
+      <Position>6</Position>
+      <DataType>DATE(10)|91</DataType>
+    </column>
+    <column id="63" parent="18" name="VEHICLE_TYPE">
+      <Position>7</Position>
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <column id="64" parent="18" name="REGION_ID">
+      <Position>8</Position>
+      <DataType>BIGINT(19)|-5</DataType>
+    </column>
+    <key id="65" parent="18" name="SQL180609121235190">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="52" parent="18" name="ID">
+    <foreign-key id="66" parent="18" name="FK_RATE_REGION_ID">
+      <ColNames>REGION_ID</ColNames>
+      <RefSchemaName>APP</RefSchemaName>
+      <RefTableName>REGION</RefTableName>
+      <RefKeyName>SQL180609121235220</RefKeyName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <column id="67" parent="19" name="ID">
       <Position>1</Position>
       <DataType>BIGINT(19)|-5</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <DefaultExpression>GENERATED_BY_DEFAULT</DefaultExpression>
     </column>
-    <column id="53" parent="18" name="BIO">
+    <column id="68" parent="19" name="DATE">
+      <Position>2</Position>
+      <DataType>DATE(10)|91</DataType>
+    </column>
+    <column id="69" parent="19" name="NAME">
+      <Position>3</Position>
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <key id="70" parent="19" name="SQL180609121235220">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="71" parent="20" name="ID">
+      <Position>1</Position>
+      <DataType>BIGINT(19)|-5</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DefaultExpression>GENERATED_BY_DEFAULT</DefaultExpression>
+    </column>
+    <column id="72" parent="20" name="ORDER_ID">
+      <Position>2</Position>
+      <DataType>BIGINT(19)|-5</DataType>
+    </column>
+    <column id="73" parent="20" name="X">
+      <Position>3</Position>
+      <DataType>DOUBLE(52)|8</DataType>
+    </column>
+    <column id="74" parent="20" name="Y">
+      <Position>4</Position>
+      <DataType>DOUBLE(52)|8</DataType>
+    </column>
+    <key id="75" parent="20" name="SQL180609121235270">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="76" parent="21" name="ID">
+      <Position>1</Position>
+      <DataType>BIGINT(19)|-5</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DefaultExpression>GENERATED_BY_DEFAULT</DefaultExpression>
+    </column>
+    <column id="77" parent="21" name="NAME">
       <Position>2</Position>
       <DataType>VARCHAR(255)|12</DataType>
     </column>
-    <column id="54" parent="18" name="BIRTHDAY">
+    <index id="78" parent="21" name="SQL180504102714860">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>NAME</ColNames>
+    </index>
+    <key id="79" parent="21" name="SQL180504102714861">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="80" parent="22" name="ID">
+      <Position>1</Position>
+      <DataType>BIGINT(19)|-5</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DefaultExpression>GENERATED_BY_DEFAULT</DefaultExpression>
+    </column>
+    <column id="81" parent="22" name="BIO">
+      <Position>2</Position>
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <column id="82" parent="22" name="BIRTHDAY">
       <Position>3</Position>
       <DataType>DATE(10)|91</DataType>
     </column>
-    <column id="55" parent="18" name="EMAIL">
+    <column id="83" parent="22" name="EMAIL">
       <Position>4</Position>
       <DataType>VARCHAR(255)|12</DataType>
     </column>
-    <column id="56" parent="18" name="FIRSTNAME">
+    <column id="84" parent="22" name="FIRSTNAME">
       <Position>5</Position>
       <DataType>VARCHAR(255)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="57" parent="18" name="LASTNAME">
+    <column id="85" parent="22" name="LASTNAME">
       <Position>6</Position>
       <DataType>VARCHAR(255)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="58" parent="18" name="LOCATION">
+    <column id="86" parent="22" name="LOCATION">
       <Position>7</Position>
       <DataType>VARCHAR(255)|12</DataType>
     </column>
-    <column id="59" parent="18" name="MIDDLENAME">
+    <column id="87" parent="22" name="MIDDLENAME">
       <Position>8</Position>
       <DataType>VARCHAR(255)|12</DataType>
     </column>
-    <column id="60" parent="18" name="PASSWORD">
+    <column id="88" parent="22" name="PASSWORD">
       <Position>9</Position>
       <DataType>VARCHAR(255)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="61" parent="18" name="REGISTRATION_DATE">
+    <column id="89" parent="22" name="REGISTRATION_DATE">
       <Position>10</Position>
       <DataType>DATE(10)|91</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="62" parent="18" name="ROLE">
+    <column id="90" parent="22" name="ROLE">
       <Position>11</Position>
       <DataType>VARCHAR(255)|12</DataType>
     </column>
-    <column id="63" parent="18" name="TELEPHONENUMBER">
+    <column id="91" parent="22" name="TELEPHONENUMBER">
       <Position>12</Position>
       <DataType>VARCHAR(255)|12</DataType>
     </column>
-    <column id="64" parent="18" name="USERNAME">
+    <column id="92" parent="22" name="USERNAME">
       <Position>13</Position>
       <DataType>VARCHAR(255)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="65" parent="18" name="VERIFIED">
+    <column id="93" parent="22" name="VERIFIED">
       <Position>14</Position>
       <DataType>SMALLINT(5)|5</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="66" parent="18" name="VERIFICATION_LINK">
+    <column id="94" parent="22" name="VERIFICATION_LINK">
       <Position>15</Position>
       <DataType>VARCHAR(255)|12</DataType>
     </column>
-    <column id="67" parent="18" name="WEBSITE">
+    <column id="95" parent="22" name="WEBSITE">
       <Position>16</Position>
       <DataType>VARCHAR(255)|12</DataType>
     </column>
-    <column id="68" parent="18" name="PINNED_MESSAGE">
+    <column id="96" parent="22" name="PINNED_MESSAGE">
       <Position>17</Position>
       <DataType>BIGINT(19)|-5</DataType>
     </column>
-    <index id="69" parent="18" name="SQL180504102714941">
+    <index id="97" parent="22" name="SQL180504102714941">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>USERNAME</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="70" parent="18" name="SQL180504102714940">
+    <index id="98" parent="22" name="SQL180504102714940">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>EMAIL</ColNames>
     </index>
-    <key id="71" parent="18" name="SQL180504102714942">
+    <key id="99" parent="22" name="SQL180504102714942">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="72" parent="18" name="SRDATAPNNEDMESSAGE">
+    <foreign-key id="100" parent="22" name="SRDATAPNNEDMESSAGE">
       <ColNames>PINNED_MESSAGE</ColNames>
       <RefSchemaName>APP</RefSchemaName>
       <RefTableName>MESSAGE</RefTableName>
       <RefKeyName>SQL180504102714830</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="73" parent="19" name="USER_ID">
+    <column id="101" parent="23" name="USER_ID">
       <Position>1</Position>
       <DataType>BIGINT(19)|-5</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="74" parent="19" name="FOLLOWER_ID">
+    <column id="102" parent="23" name="FOLLOWER_ID">
       <Position>2</Position>
       <DataType>BIGINT(19)|-5</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="75" parent="19" name="SQL180504102715020">
+    <key id="103" parent="23" name="SQL180504102715020">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>USER_ID
 FOLLOWER_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="76" parent="19" name="SERFOLLOWERSUSERID">
+    <foreign-key id="104" parent="23" name="SERFOLLOWERSUSERID">
       <ColNames>USER_ID</ColNames>
       <RefSchemaName>APP</RefSchemaName>
       <RefTableName>USERDATA</RefTableName>
       <RefKeyName>SQL180504102714942</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="77" parent="19" name="SRFLLOWERSFLLWERID">
+    <foreign-key id="105" parent="23" name="SRFLLOWERSFLLWERID">
       <ColNames>FOLLOWER_ID</ColNames>
       <RefSchemaName>APP</RefSchemaName>
       <RefTableName>USERDATA</RefTableName>
       <RefKeyName>SQL180504102714942</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="78" parent="20" name="USER_ID">
+    <column id="106" parent="24" name="USER_ID">
       <Position>1</Position>
       <DataType>BIGINT(19)|-5</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="79" parent="20" name="FOLLOWER_ID">
+    <column id="107" parent="24" name="FOLLOWER_ID">
       <Position>2</Position>
       <DataType>BIGINT(19)|-5</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="80" parent="20" name="SQL180504102715050">
+    <key id="108" parent="24" name="SQL180504102715050">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>USER_ID
 FOLLOWER_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="81" parent="20" name="SERFOLLOWINGUSERID">
+    <foreign-key id="109" parent="24" name="SERFOLLOWINGUSERID">
       <ColNames>USER_ID</ColNames>
       <RefSchemaName>APP</RefSchemaName>
       <RefTableName>USERDATA</RefTableName>
       <RefKeyName>SQL180504102714942</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="82" parent="20" name="SRFLLOWINGFLLWERID">
+    <foreign-key id="110" parent="24" name="SRFLLOWINGFLLWERID">
       <ColNames>FOLLOWER_ID</ColNames>
       <RefSchemaName>APP</RefSchemaName>
       <RefTableName>USERDATA</RefTableName>
       <RefKeyName>SQL180504102714942</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="83" parent="21" name="USER_ID">
+    <column id="111" parent="25" name="USER_ID">
       <Position>1</Position>
       <DataType>BIGINT(19)|-5</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="84" parent="21" name="MESSAGE_ID">
+    <column id="112" parent="25" name="MESSAGE_ID">
       <Position>2</Position>
       <DataType>BIGINT(19)|-5</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="85" parent="21" name="SQL180504102715070">
+    <key id="113" parent="25" name="SQL180504102715070">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>USER_ID
 MESSAGE_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="86" parent="21" name="USERMESSAGESUSERID">
+    <foreign-key id="114" parent="25" name="USERMESSAGESUSERID">
       <ColNames>USER_ID</ColNames>
       <RefSchemaName>APP</RefSchemaName>
       <RefTableName>USERDATA</RefTableName>
       <RefKeyName>SQL180504102714942</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="87" parent="21" name="SRMESSAGESMSSAGEID">
+    <foreign-key id="115" parent="25" name="SRMESSAGESMSSAGEID">
       <ColNames>MESSAGE_ID</ColNames>
       <RefSchemaName>APP</RefSchemaName>
       <RefTableName>MESSAGE</RefTableName>

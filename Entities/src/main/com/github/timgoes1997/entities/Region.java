@@ -46,7 +46,7 @@ public class Region {
     @Column(name = "NAME")
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinTable(name = "BORDER_POINTS",
             joinColumns = {@JoinColumn(name = "REGION_ID", referencedColumnName = "ID")},
             inverseJoinColumns = {@JoinColumn(name = "LOCATION_ID", referencedColumnName = "ID")})

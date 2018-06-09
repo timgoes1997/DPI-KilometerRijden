@@ -42,8 +42,9 @@ sourceSets {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
+    compile group: 'org.eclipse.persistence', name: 'eclipselink', version: '2.7.1'
     // https://mvnrepository.com/artifact/javax.persistence/persistence-api
-    compile group: 'javax.persistence', name: 'persistence-api', version: '1.0'
+    compile "javax.persistence:javax.persistence-api:2.2"
     // https://mvnrepository.com/artifact/javax.validation/validation-api
     compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 }

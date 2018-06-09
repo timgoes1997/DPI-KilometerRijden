@@ -10,6 +10,7 @@ import com.github.timgoes1997.web.dao.interfaces.RegionRateDAO;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.ClientErrorException;
+import javax.ws.rs.NotAcceptableException;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,11 +32,24 @@ public class RegionService {
         return regionDAO.getAllRegions();
     }
 
-    public Region addRegion(Region region) {
+    public void addRegionRate(RegionRate regionRate){
+        if(regionRate.getRegion() == null){
+            throw new NotAcceptableException("Tried to add Regionrate without specifying a region");
+        }
+
+        if (!regionDAO.exists(regionRate.getRegion().getId())) {
+            throw new ClientErrorException(Response.Status.CONFLICT);
+        }
+
+        regionRateDAO.create(regionRate);
+    }
+
+    public void addRegion(Region region) {
         if (regionDAO.exists(region.getName())) {
             throw new ClientErrorException(Response.Status.CONFLICT);
         }
 
+        /*
         List<Region> regions = regionDAO.getAllRegions();
         List<Region> inRegions = new ArrayList<>();
         for (Region r : regions) {
@@ -44,9 +58,9 @@ public class RegionService {
                     inRegions.add(r);
                 }
             }
-        }
+        }*/
 
-        return null;
+        regionDAO.create(region);
     }
 
     public List<Region> getWithinRegions(Region region) {

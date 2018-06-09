@@ -17,6 +17,15 @@
           <element id="dir-copy" path="$PROJECT_DIR$/Region-Service/out/production/resources" />
         </element>
         <element id="directory" name="lib">
+          <element id="archive" name="com.github.timgoes1997-Entities-0.0.1-SNAPSHOT.jar">
+            <element id="module-output" name="Entities_main" />
+            <element id="dir-copy" path="$PROJECT_DIR$/Entities/out/production/resources" />
+          </element>
+          <element id="library" level="project" name="Gradle: org.eclipse.persistence:eclipselink:2.7.1" />
+          <element id="library" level="project" name="Gradle: javax.validation:validation-api:2.0.1.Final" />
+          <element id="library" level="project" name="Gradle: org.eclipse.persistence:javax.persistence:2.2.0" />
+          <element id="library" level="project" name="Gradle: org.eclipse.persistence:commonj.sdo:2.1.1" />
+          <element id="library" level="project" name="Gradle: org.glassfish:javax.json:1.0.4" />
           <element id="library" level="project" name="Gradle: javax.persistence:javax.persistence-api:2.2" />
           <element id="library" level="project" name="Gradle: org.glassfish.jersey.media:jersey-media-multipart:2.26" />
           <element id="library" level="project" name="Gradle: org.glassfish.jersey.media:jersey-media-json-jackson:2.26" />
@@ -25,12 +34,6 @@
           <element id="library" level="project" name="Gradle: org.glassfish.jersey.core:jersey-client:2.26" />
           <element id="library" level="project" name="Gradle: org.glassfish.jersey.media:jersey-media-jaxb:2.26" />
           <element id="library" level="project" name="Gradle: org.glassfish.jersey.core:jersey-common:2.26" />
-          <element id="archive" name="com.github.timgoes1997-Entities-0.0.1-SNAPSHOT.jar">
-            <element id="module-output" name="Entities_main" />
-            <element id="dir-copy" path="$PROJECT_DIR$/Entities/out/production/resources" />
-          </element>
-          <element id="library" level="project" name="Gradle: javax.persistence:persistence-api:1.0" />
-          <element id="library" level="project" name="Gradle: javax.validation:validation-api:2.0.1.Final" />
           <element id="archive" name="Tim-JMS-Tim-JMS-1.0-SNAPSHOT.jar">
             <element id="module-output" name="Tim-JMS_main" />
             <element id="dir-copy" path="$PROJECT_DIR$/Tim-JMS/out/production/resources" />

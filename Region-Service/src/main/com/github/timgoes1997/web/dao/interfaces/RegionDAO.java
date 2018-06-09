@@ -11,6 +11,7 @@ public interface RegionDAO {
     void remove(Region region);
 
     boolean exists(String name);
+    boolean exists(long id);
     Region find(long id);
     Region find(String name);
     List<Region> getAllRegions();

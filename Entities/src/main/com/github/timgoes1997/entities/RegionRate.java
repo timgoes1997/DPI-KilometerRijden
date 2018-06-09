@@ -32,9 +32,9 @@ public class RegionRate {
     //==    Constansts    ==
     //======================
 
-    public static final String FIND_ALL = "Region.findAll";
-    public static final String FIND_ID = "Region.findByID";
-    public static final String FIND_BY_REGION = "Region.findByRegion";
+    public static final String FIND_ALL = "RegionRate.findAll";
+    public static final String FIND_ID = "RegionRate.findByID";
+    public static final String FIND_BY_REGION = "RegionRate.findByRegion";
 
 
     //======================
@@ -50,7 +50,7 @@ public class RegionRate {
     @JoinColumn(name = "REGION_ID")
     private Region region;
 
-    @Digits(integer = 12, fraction = 2)
+    @Digits(integer = 12, fraction = 6)
     @Column(name = "KILOMETER_PRICE")
     private BigDecimal kilometerPrice;
 
@@ -73,6 +73,10 @@ public class RegionRate {
     @Temporal(TemporalType.DATE)
     @Column(name = "END_TIME")
     private Calendar endTime;
+
+    public RegionRate(){
+
+    }
 
     public RegionRate(Region region, VehicleType vehicleType, BigDecimal kilometerPrice, EnergyLabel energyLabel, DayOfWeek dayOfWeek, int startHour, int startMinute, int endHour, int endMinute) {
         this.region = region;
