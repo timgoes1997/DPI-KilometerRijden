@@ -3,15 +3,13 @@ package com.github.timgoes1997.web.beans;
 import com.github.timgoes1997.entities.Region;
 import com.github.timgoes1997.entities.RegionBorder;
 import com.github.timgoes1997.location.Location;
-import com.github.timgoes1997.web.beans.dao.interfaces.RegionDAO;
+import com.github.timgoes1997.web.dao.interfaces.RegionDAO;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.ClientErrorException;
-import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @Stateless

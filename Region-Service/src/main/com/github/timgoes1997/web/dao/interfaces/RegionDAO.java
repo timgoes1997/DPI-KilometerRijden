@@ -1,4 +1,4 @@
-package com.github.timgoes1997.web.beans.dao.interfaces;
+package com.github.timgoes1997.web.dao.interfaces;
 
 import com.github.timgoes1997.entities.Region;
 

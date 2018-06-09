@@ -1,7 +1,7 @@
-package com.github.timgoes1997.web.beans.dao;
+package com.github.timgoes1997.web.dao;
 
 import com.github.timgoes1997.entities.Region;
-import com.github.timgoes1997.web.beans.dao.interfaces.RegionDAO;
+import com.github.timgoes1997.web.dao.interfaces.RegionDAO;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
