@@ -27,7 +27,7 @@ public class VehicleClientGateway implements VehicleClientGatewayInterface {
 
     private VehicleClient vehicleClient;
     private RequestReplyGateWay<RegionTopicRequest, RegionTopicReply> topicRequestGateway;
-    private TopicClientGateway<StandardMessage<TopicReply>> topic;
+    private TopicClientGateway<TopicReply> topic;
     private String clientChannel;
     private String uniqueId;
 
@@ -66,7 +66,7 @@ public class VehicleClientGateway implements VehicleClientGatewayInterface {
         }
 
         try {
-            topic = new TopicClientGateway<>(this::handleTopicReply, topicChannel, Constant.PROVIDER, StandardMessage.class);
+            topic = new TopicClientGateway<>(this::handleTopicReply, topicChannel, Constant.PROVIDER, TopicReply.class);
         } catch (NamingException | JMSException e) {
             e.printStackTrace();
         }

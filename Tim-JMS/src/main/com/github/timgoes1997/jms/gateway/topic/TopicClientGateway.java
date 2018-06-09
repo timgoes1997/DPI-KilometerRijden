@@ -7,21 +7,19 @@ import com.github.timgoes1997.jms.messaging.StandardMessage;
 import com.github.timgoes1997.jms.serializer.StandardMessageSerializer;
 
 import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 import javax.naming.NamingException;
 
 public class TopicClientGateway<OBJECT> extends MessageReceiverGateway {
 
-    private StandardMessageSerializer serializer;
+    private StandardMessageSerializer<OBJECT> serializer;
     private final Class<OBJECT> objectClass;
     private String channelName;
     private ClientInterfaceObject clientInterface;
 
-    public TopicClientGateway(ClientInterfaceObject clientInterface, String channelName, String provider, Class<StandardMessage> objectClass) throws NamingException, JMSException {
+    public TopicClientGateway(ClientInterfaceObject clientInterface, String channelName, String provider, Class<OBJECT> objectClass) throws NamingException, JMSException {
         super(channelName, provider, GatewayType.TOPIC);
-        this.serializer = new StandardMessageSerializer(objectClass);
+        this.serializer = new StandardMessageSerializer<>(objectClass);
         this.clientInterface = clientInterface;
         this.channelName = channelName;
         this.objectClass = objectClass;

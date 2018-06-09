@@ -4,7 +4,7 @@ import com.github.timgoes1997.entities.Region;
 import com.github.timgoes1997.location.Location;
 
 public class TopicReply {
-    private Location location;
+    private Location location; //BigDecimal
     private Region region;
 
     public TopicReply(Location location, Region region) {
