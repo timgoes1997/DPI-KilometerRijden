@@ -1,4 +1,4 @@
-package com.github.timgoes1997.web.gateway.interfaces;
+package com.github.timgoes1997.jms.gateway.interfaces;
 
 import com.github.timgoes1997.jms.messaging.RequestReply;
 

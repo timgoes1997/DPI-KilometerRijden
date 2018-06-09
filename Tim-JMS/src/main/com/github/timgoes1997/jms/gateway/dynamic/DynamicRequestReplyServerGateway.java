@@ -1,12 +1,10 @@
-package com.github.timgoes1997.web.gateway;
+package com.github.timgoes1997.jms.gateway.dynamic;
 
 import com.github.timgoes1997.jms.gateway.Queue.MessageReceiverGateway;
-import com.github.timgoes1997.jms.gateway.Queue.MessageSenderGateway;
 import com.github.timgoes1997.jms.gateway.type.GatewayType;
 import com.github.timgoes1997.jms.messaging.RequestReply;
 import com.github.timgoes1997.jms.serializer.RequestReplySerializer;
-import com.github.timgoes1997.util.Constant;
-import com.github.timgoes1997.web.gateway.interfaces.DynamicServer;
+import com.github.timgoes1997.jms.gateway.interfaces.DynamicServer;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -28,22 +26,21 @@ public class DynamicRequestReplyServerGateway<REQUEST, REPLY> {
     private final Class<REPLY> replyClass;
 
     private String channelName;
+    private String provider;
 
     public DynamicRequestReplyServerGateway(DynamicServer<REQUEST, REPLY> requestReplyDynamicServerListener, String requestChannel, String provider, Class<REQUEST> requestClass, Class<REPLY> replyClass) {
         this.requestClass = requestClass;
         this.replyClass = replyClass;
+        this.provider = provider;
         this.serializer = new RequestReplySerializer<>(requestClass, replyClass);
         this.requestReplyDynamicServerListener = requestReplyDynamicServerListener;
         try {
             this.messageReceiverGateway = new MessageReceiverGateway(requestChannel, provider, GatewayType.QUEUE);
-            this.messageReceiverGateway.setListener(new MessageListener() {
-                @Override
-                public void onMessage(Message message) {
-                    try {
-                        onReceivedRequest(serializer.requestReplyFromString(((TextMessage) message).getText()));
-                    } catch (JMSException e) {
-                        e.printStackTrace();
-                    }
+            this.messageReceiverGateway.setListener(message -> {
+                try {
+                    onReceivedRequest(serializer.requestReplyFromString(((TextMessage) message).getText()));
+                } catch (JMSException e) {
+                    e.printStackTrace();
                 }
             });
         } catch (NamingException | JMSException e) {
@@ -70,7 +67,7 @@ public class DynamicRequestReplyServerGateway<REQUEST, REPLY> {
             }
 
             try {
-                messageSenderGateway = new DynamicMessageSenderGateway(channelName, Constant.PROVIDER, GatewayType.QUEUE);
+                messageSenderGateway = new DynamicMessageSenderGateway(channelName, provider, GatewayType.QUEUE);
                 messageSenderGateway.send(messageSenderGateway.createTextMessage(serializer.requestReplyToString(rr)));
             } catch (JMSException e) {
                 LOGGER.severe("Failed at sending dynamic message: " + e.getErrorCode());

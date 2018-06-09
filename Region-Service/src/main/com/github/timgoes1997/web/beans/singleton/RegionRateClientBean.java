@@ -5,11 +5,10 @@ import com.github.timgoes1997.jms.messaging.RequestReply;
 import com.github.timgoes1997.location.Location;
 import com.github.timgoes1997.request.topic.RegionTopicReply;
 import com.github.timgoes1997.request.topic.RegionTopicRequest;
-import com.github.timgoes1997.request.topic.TopicReply;
 import com.github.timgoes1997.util.Constant;
 import com.github.timgoes1997.web.beans.RegionService;
-import com.github.timgoes1997.web.gateway.DynamicRequestReplyServerGateway;
-import com.github.timgoes1997.web.gateway.interfaces.DynamicServer;
+import com.github.timgoes1997.jms.gateway.dynamic.DynamicRequestReplyServerGateway;
+import com.github.timgoes1997.jms.gateway.interfaces.DynamicServer;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
@@ -47,6 +46,9 @@ public class RegionRateClientBean implements DynamicServer<RegionTopicRequest, R
         Location location = regionTopicRequest.getLocation();
         Region inRegion = regionService.getWithinRegion(location.getX(), location.getY());
         RegionTopicReply reply = new RegionTopicReply("test"); //TODO: connection with topic
+        /*
+            TODO: Kijk naar hoe ik websockets heb aangemaakt om zo synchroon nieuwe topicbeans aan te maken en statische op te slaan + te verwijderen.
+         */
         return null;
     }
 }

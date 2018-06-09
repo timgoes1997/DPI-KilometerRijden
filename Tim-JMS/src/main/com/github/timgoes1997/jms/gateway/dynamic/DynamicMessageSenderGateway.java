@@ -1,4 +1,4 @@
-package com.github.timgoes1997.web.gateway;
+package com.github.timgoes1997.jms.gateway.dynamic;
 
 import com.github.timgoes1997.jms.gateway.Queue.MessageSenderGateway;
 import com.github.timgoes1997.jms.gateway.type.GatewayType;
