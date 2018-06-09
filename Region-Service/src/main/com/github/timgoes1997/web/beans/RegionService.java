@@ -2,8 +2,10 @@ package com.github.timgoes1997.web.beans;
 
 import com.github.timgoes1997.entities.Region;
 import com.github.timgoes1997.entities.RegionBorder;
+import com.github.timgoes1997.entities.RegionRate;
 import com.github.timgoes1997.location.Location;
 import com.github.timgoes1997.web.dao.interfaces.RegionDAO;
+import com.github.timgoes1997.web.dao.interfaces.RegionRateDAO;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -18,18 +20,15 @@ public class RegionService {
     @Inject
     private RegionDAO regionDAO;
 
-    public Region addRegionAsync(Region region) {
-        Runnable r = () -> {
-            System.out.println("Test");
-        };
-        try {
+    @Inject
+    private RegionRateDAO regionRateDAO;
 
-            r.wait();
-            return null;
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-            return null;
-        }
+    public boolean regionExists(Region region){
+        return regionDAO.exists(region.getName());
+    }
+
+    public List<Region> getAllRegions(){
+        return regionDAO.getAllRegions();
     }
 
     public Region addRegion(Region region) {
@@ -73,6 +72,11 @@ public class RegionService {
 
     public List<Region> getWithinRegions(Location location) {
         return getWithinRegions(location.getX(), location.getY());
+    }
+
+    public List<RegionRate> getRegionRates(Region region){
+        //TODO: Filter region rates, only pick the most recently added in a given timeframe
+        return regionRateDAO.findRates(region);
     }
 
     /**

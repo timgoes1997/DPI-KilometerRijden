@@ -3,7 +3,9 @@ package com.github.timgoes1997.request.region;
 import com.github.timgoes1997.entities.Region;
 import com.github.timgoes1997.request.RegionReplyType;
 
-public class RegionReply<OBJECT> {
+import java.io.Serializable;
+
+public class RegionReply<OBJECT> implements Serializable {
 
     private Region region;
     private OBJECT object;
@@ -17,6 +19,11 @@ public class RegionReply<OBJECT> {
     public RegionReply(OBJECT object, Region region) {
         this.object = object;
         this.region = region;
+        this.status = RegionReplyType.SUCCEEDED;
+    }
+
+    public RegionReply(OBJECT object) {
+        this.object = object;
         this.status = RegionReplyType.SUCCEEDED;
     }
 

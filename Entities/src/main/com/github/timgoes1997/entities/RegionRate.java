@@ -12,7 +12,35 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 @Entity(name = "RATE")
+@NamedQueries({
+        @NamedQuery(
+                name = RegionRate.FIND_ALL,
+                query = "SELECT r FROM RATE r"
+        ),
+        @NamedQuery(
+                name = RegionRate.FIND_ID,
+                query = "SELECT r FROM RATE r WHERE r.id = :id"
+        ),
+        @NamedQuery(
+                name = RegionRate.FIND_BY_REGION,
+                query = "SELECT r FROM RATE r WHERE r.region.id = :id"
+        )
+})
 public class RegionRate {
+
+    //======================
+    //==    Constansts    ==
+    //======================
+
+    public static final String FIND_ALL = "Region.findAll";
+    public static final String FIND_ID = "Region.findByID";
+    public static final String FIND_BY_REGION = "Region.findByRegion";
+
+
+    //======================
+    //==      Fields      ==
+    //======================
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")

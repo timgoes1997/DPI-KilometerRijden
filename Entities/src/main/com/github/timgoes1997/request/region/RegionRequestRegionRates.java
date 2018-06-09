@@ -4,7 +4,7 @@ import com.github.timgoes1997.entities.Region;
 
 public class RegionRequestRegionRates extends RegionRequest {
 
-    public Region region;
+    private Region region;
 
     public RegionRequestRegionRates(RegionRequestType regionRequestType, Region region) {
         super(regionRequestType);
