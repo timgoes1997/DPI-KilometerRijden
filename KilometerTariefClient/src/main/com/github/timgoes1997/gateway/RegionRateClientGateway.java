@@ -14,6 +14,7 @@ import com.github.timgoes1997.request.region.RegionReply;
 import com.github.timgoes1997.request.region.RegionRequest;
 import com.github.timgoes1997.request.region.RegionRequestRegionRates;
 import com.github.timgoes1997.request.region.RegionRequestType;
+import com.github.timgoes1997.util.Constant;
 
 import javax.jms.JMSException;
 import javax.naming.NamingException;
@@ -34,18 +35,22 @@ public class RegionRateClientGateway implements RegionRateClient {
         this.uniqueId = UUID.randomUUID().toString();
         this.listener = listener;
         this.regionRRG =
-                new RequestReplyGateWay<>(this::handleRegionRequestReply, "RegionRateClientRequest",
-                        "RegionRateServerResponse", "tcp://localhost:61616",
-                        RegionRequest.class, RegionReply.class);
+                new RequestReplyGateWay<>(this::handleRegionRequestReply, Constant.REGION_REQUEST_CHANNEL,
+                        Constant.REGION_REPLY_CHANNEL, Constant.PROVIDER, RegionRequest.class, RegionReply.class);
+        this.regionRateRRG =
+                new RequestReplyGateWay<>(this::handleRegionRateRequestReply, Constant.REGION_RATE_REQUEST_CHANNEL,
+                        Constant.REGION_RATE_REPLY_CHANNEL, Constant.PROVIDER, RegionRateRequest.class, RegionRateReply.class);
     }
 
     public RegionRateClientGateway(RegionRateClientListener listener, String provider) throws NamingException, JMSException {
         this.uniqueId = UUID.randomUUID().toString();
         this.listener = listener;
         this.regionRRG =
-                new RequestReplyGateWay<>(this::handleRegionRequestReply, "RegionRateClientRequest",
-                        "RegionRateServerResponse", provider,
-                        RegionRequest.class, RegionReply.class);
+                new RequestReplyGateWay<>(this::handleRegionRequestReply, Constant.REGION_REQUEST_CHANNEL,
+                        Constant.REGION_REPLY_CHANNEL, provider, RegionRequest.class, RegionReply.class);
+        this.regionRateRRG =
+                new RequestReplyGateWay<>(this::handleRegionRateRequestReply, Constant.REGION_REQUEST_CHANNEL,
+                        Constant.REGION_REPLY_CHANNEL, provider, RegionRateRequest.class, RegionRateReply.class);
     }
 
     @Override

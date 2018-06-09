@@ -43,16 +43,29 @@ public class KilometerTariefApp extends JFrame {
         mainPanel.setAlignmentX(JComponent.LEFT_ALIGNMENT);
         setContentPane(mainPanel);
 
+        setupGateway();
+
+//        dummyDataGenerator = new DummyDataGenerator();
+        //Creating kilometer tarief creation panel
+        createRegionListPanel(true);
+        createRegionRateListPanel(false);
+        createRegionRateCreationPanel(false);
+        getRegions();
+    }
+
+    private void setupGateway() {
         try {
             regionRateClientGateway = new RegionRateClientGateway(new RegionRateClientListener() {
                 @Override
                 public void onReceiveRegions(List<Region> regions) {
-
+                    regionListPanel.getListModel().clear();
+                    regions.forEach(regionListPanel::add);
                 }
 
                 @Override
                 public void onReceiveRegionRates(List<RegionRate> regionRates) {
-
+                    regionRateListPanel.getListModel().clear();
+                    regionRates.forEach(regionRateListPanel::add);
                 }
 
                 @Override
@@ -75,17 +88,9 @@ public class KilometerTariefApp extends JFrame {
 
                 }
             });
-        } catch (NamingException e) {
-            e.printStackTrace();
-        } catch (JMSException e) {
+        } catch (NamingException | JMSException e) {
             e.printStackTrace();
         }
-
-//        //Creating kilometer tarief creation panel
-        dummyDataGenerator = new DummyDataGenerator();
-        createRegionListPanel(true);
-        createRegionRateListPanel(false);
-        createRegionRateCreationPanel(false);
     }
 
     private void createRegionRateCreationPanel(boolean visibility) {
@@ -100,14 +105,7 @@ public class KilometerTariefApp extends JFrame {
                 setVisiblePanel(VisiblePanel.REGION_RATE);
             }
         });
-        GridBagConstraints gbc_contentPane = new GridBagConstraints();
-        gbc_contentPane.anchor = GridBagConstraints.FIRST_LINE_START;
-        gbc_contentPane.fill = GridBagConstraints.HORIZONTAL;
-        gbc_contentPane.weightx = 1;
-        gbc_contentPane.weighty = 1;
-        JPanel panel = regionRateCreationPanel.getPanel();
-        panel.setVisible(visibility);
-        mainPanel.add(panel, gbc_contentPane);
+        setPanelConstraints(visibility, regionRateCreationPanel.getPanel());
     }
 
     private void createRegionRateListPanel(boolean visibility) {
@@ -146,15 +144,7 @@ public class KilometerTariefApp extends JFrame {
             }
         });
 
-        GridBagConstraints gbc_regionListPane = new GridBagConstraints();
-        gbc_regionListPane.anchor = GridBagConstraints.FIRST_LINE_START;
-        //gbc_regionListPane.fill = GridBagConstraints.BOTH;
-        gbc_regionListPane.gridx = 0;
-        gbc_regionListPane.gridy = 1;
-        JPanel panel = regionRateListPanel.getPanel();
-        panel.setSize(500, 500);
-        panel.setVisible(visibility);
-        mainPanel.add(panel, gbc_regionListPane);
+        setPanelConstraints(visibility, regionRateListPanel.getPanel());
     }
 
     private void createRegionListPanel(boolean visibility) {
@@ -162,23 +152,39 @@ public class KilometerTariefApp extends JFrame {
             @Override
             public void onSelectRegion(Region region) {
                 if (region == null) return;
-                dummyDataGenerator.getRatesForRegion(region).forEach(regionRate -> regionRateListPanel.add(regionRate));
+                getRegionRates(region);
+//                dummyDataGenerator.getRatesForRegion(region).forEach(regionRate -> regionRateListPanel.add(regionRate));
                 setVisiblePanel(VisiblePanel.REGION_RATE);
             }
+
         });
+        setPanelConstraints(visibility, regionListPanel.getPanel());
+    }
+
+    private void getRegionRates(Region region) {
+        try {
+            regionRateClientGateway.getRegionRates(region);
+        } catch (JMSException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getRegions() {
+        try {
+            regionRateClientGateway.getRegions();
+        } catch (JMSException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setPanelConstraints(boolean visibility, JPanel panel) {
         GridBagConstraints gbc_regionListPane = new GridBagConstraints();
         gbc_regionListPane.anchor = GridBagConstraints.FIRST_LINE_START;
-        //gbc_regionListPane.fill = GridBagConstraints.BOTH;
         gbc_regionListPane.gridx = 0;
         gbc_regionListPane.gridy = 1;
-        JPanel panel = regionListPanel.getPanel();
         panel.setSize(500, 500);
         panel.setVisible(visibility);
         mainPanel.add(panel, gbc_regionListPane);
-
-        dummyDataGenerator.getRegionList().forEach(region -> {
-            regionListPanel.add(region);
-        });
     }
 
     private void setVisiblePanel(VisiblePanel visiblePanel) {
