@@ -1,5 +1,6 @@
 package com.github.timgoes1997.jms.gateway.Queue;
 
+import com.github.timgoes1997.jms.gateway.type.GatewayType;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
@@ -12,23 +13,25 @@ import java.util.Properties;
 public class MessageSenderGateway {
 
     private Connection connection;
-    protected Session session;
+    private Session session;
     private Destination destination;
     private MessageProducer producer;
+    private GatewayType gatewayType;
 
-    public MessageSenderGateway(String channelName, String provider) {
-        setup(channelName, provider);
+    public MessageSenderGateway(String channelName, String provider, GatewayType type) {
+        setup(channelName, provider, type);
     }
 
-    private void setup(String channelName, String provider) {
+    private void setup(String channelName, String provider, GatewayType type) {
         try {
+            this.gatewayType = type;
             Properties props = new Properties();
             props.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.apache.activemq.jndi.ActiveMQInitialContextFactory");
             props.setProperty(Context.PROVIDER_URL, provider); //"tcp://localhost:61616" <--- standaard providerURL voor localhost activemq
 
             // connect to the Destination called “myFirstChannel”
             // queue or topic: “queue.myFirstDestination” or “topic.myFirstDestination”
-            props.put(("queue." + channelName), channelName);
+            props.put((type.toString() + channelName), channelName);
 
             Context jndiContext = new InitialContext(props);
             ActiveMQConnectionFactory connectionFactory = (ActiveMQConnectionFactory) jndiContext
@@ -60,6 +63,10 @@ public class MessageSenderGateway {
         } catch (JMSException e) {
             e.printStackTrace();
         }
+    }
+
+    public GatewayType getGatewayType() {
+        return gatewayType;
     }
 
     public void close() throws JMSException {
