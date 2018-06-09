@@ -6,6 +6,7 @@ import com.github.timgoes1997.gateway.interfaces.RegionRateClient;
 import com.github.timgoes1997.gateway.interfaces.RegionRateClientListener;
 import com.github.timgoes1997.jms.gateway.requestreply.RequestReplyGateWay;
 import com.github.timgoes1997.jms.messaging.RequestReply;
+import com.github.timgoes1997.jms.serializer.ObjectSerializer;
 import com.github.timgoes1997.request.RegionReplyType;
 import com.github.timgoes1997.request.rate.RegionRateRequest;
 import com.github.timgoes1997.request.rate.RegionRateReply;
@@ -15,9 +16,13 @@ import com.github.timgoes1997.request.region.RegionRequest;
 import com.github.timgoes1997.request.region.RegionRequestRegionRates;
 import com.github.timgoes1997.request.region.RegionRequestType;
 import com.github.timgoes1997.util.Constant;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 
 import javax.jms.JMSException;
 import javax.naming.NamingException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Logger;
@@ -29,6 +34,7 @@ public class RegionRateClientGateway implements RegionRateClient {
     private RequestReplyGateWay<RegionRequest, RegionReply> regionRRG;
     private RequestReplyGateWay<RegionRateRequest, RegionRateReply> regionRateRRG;
     private RegionRateClientListener listener;
+    private Gson gson;
     private String uniqueId;
 
     public RegionRateClientGateway(RegionRateClientListener listener) throws NamingException, JMSException {
@@ -40,6 +46,7 @@ public class RegionRateClientGateway implements RegionRateClient {
         this.regionRateRRG =
                 new RequestReplyGateWay<>(this::handleRegionRateRequestReply, Constant.REGION_RATE_REQUEST_CHANNEL,
                         Constant.REGION_RATE_REPLY_CHANNEL, Constant.PROVIDER, RegionRateRequest.class, RegionRateReply.class);
+        gson = new Gson(); //Need custom serializer for ArrayList<Region>
     }
 
     public RegionRateClientGateway(RegionRateClientListener listener, String provider) throws NamingException, JMSException {
@@ -93,24 +100,58 @@ public class RegionRateClientGateway implements RegionRateClient {
     public void handleRegionRequestReply(RequestReply<RegionRequest, RegionReply> rr) {
         if (rr.getReply() == null || rr.getRequest() == null) {
             LOGGER.severe("Received empty reply or request");
+            return;
         }
-        if (!rr.getId().equals(uniqueId)) return;
+        if (!rr.getId().equals(uniqueId)) {
+            LOGGER.info("Received message that was not for me");
+            return;
+        }
 
         try {
             switch (rr.getRequest().getRegionRequestType()) {
                 case GET_ALL:
-                    if ((rr.getReply().getObject() instanceof List) && ((List) rr.getReply().getObject()).get(0) instanceof Region) {
-                        listener.onReceiveRegions((List<Region>) rr.getReply().getObject());
-                    }
+                    checkReplyGetAll(rr.getReply());
                     break;
                 case GET_RATES:
-                    if ((rr.getReply().getObject() instanceof List) && ((List) rr.getReply().getObject()).get(0) instanceof RegionRate) {
-                        listener.onReceiveRegionRates((List<RegionRate>) rr.getReply().getObject());
-                    }
+                    checkReplyGetRates(rr.getReply());
                     break;
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void checkReplyGetAll(RegionReply regionReply) {
+        if (regionReply.getObject() == null) {
+            LOGGER.info("Received empty region reply");
+            return;
+        }
+
+        try {
+            String json = gson.toJson(regionReply.getObject());
+            List<Region> regions = gson.fromJson(json, new TypeToken<ArrayList<Region>>() {
+            }.getType());
+            listener.onReceiveRegions(regions);
+        } catch (Exception e) {
+            LOGGER.severe("Failed to get List region from given json object");
+        }
+    }
+
+    @Override
+    public void checkReplyGetRates(RegionReply regionReply) {
+        if (regionReply.getObject() == null) {
+            LOGGER.info("Received empty region reply");
+            return;
+        }
+
+        try {
+            String json = gson.toJson(regionReply.getObject());
+            List<RegionRate> regionRates = gson.fromJson(json, new TypeToken<ArrayList<RegionRate>>() {
+            }.getType());
+            listener.onReceiveRegionRates(regionRates);
+        } catch (Exception e) {
+            LOGGER.severe("Failed to get List region from given json object");
         }
     }
 

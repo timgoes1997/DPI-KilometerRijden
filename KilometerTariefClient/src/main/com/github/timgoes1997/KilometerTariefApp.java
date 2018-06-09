@@ -20,8 +20,11 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class KilometerTariefApp extends JFrame {
+
+    private static final Logger LOGGER = Logger.getLogger(KilometerTariefApp.class.getName());
 
     private JPanel mainPanel;
     private RegionRateCreationPanel regionRateCreationPanel;
@@ -54,10 +57,12 @@ public class KilometerTariefApp extends JFrame {
     }
 
     private void setupGateway() {
+        System.out.println("Setting up gateway");
         try {
             regionRateClientGateway = new RegionRateClientGateway(new RegionRateClientListener() {
                 @Override
                 public void onReceiveRegions(List<Region> regions) {
+                    LOGGER.info("Received regions");
                     regionListPanel.getListModel().clear();
                     regions.forEach(regionListPanel::add);
                 }

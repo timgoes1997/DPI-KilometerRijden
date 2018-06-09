@@ -19,6 +19,8 @@ public interface RegionRateClient {
 
     void getRegions() throws JMSException;
     void getRegionRates(Region region) throws JMSException;
+    void checkReplyGetAll(RegionReply regionReply);
+    void checkReplyGetRates(RegionReply regionReply);
     void handleRegionRequestReply(RequestReply<RegionRequest, RegionReply> rr);
     void handleRegionRateRequestReply(RequestReply<RegionRateRequest, RegionRateReply> rr);
 }
