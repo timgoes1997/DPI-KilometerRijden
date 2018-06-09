@@ -1,5 +1,6 @@
 package com.github.timgoes1997.gateway;
 
+import com.github.timgoes1997.entities.enums.EnergyLabel;
 import com.github.timgoes1997.entities.enums.VehicleType;
 import com.github.timgoes1997.gateway.interfaces.VehicleClient;
 import com.github.timgoes1997.gateway.interfaces.VehicleClientGatewayInterface;
@@ -40,9 +41,9 @@ public class VehicleClientGateway implements VehicleClientGatewayInterface {
     }
 
     @Override
-    public void sendRegionRequest(Location location, VehicleType vehicleType) throws JMSException {
+    public void sendRegionRequest(Location location, VehicleType vehicleType, EnergyLabel energyLabel) throws JMSException {
         RequestReply<RegionTopicRequest, RegionTopicReply> rr = new RequestReply<>(
-                new RegionTopicRequest(location, vehicleType, clientChannel), null);
+                new RegionTopicRequest(location, vehicleType, energyLabel, clientChannel), null);
         topicRequestGateway.send(rr);
     }
 
