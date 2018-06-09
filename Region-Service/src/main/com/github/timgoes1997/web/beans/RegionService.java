@@ -49,6 +49,10 @@ public class RegionService {
         regionRateDAO.create(regionRate);
     }
 
+    public void addRegionRateNoCheck(RegionRate regionRate){
+        regionRateDAO.create(regionRate);
+    }
+
     public void updateRegionRate(RegionRate regionRate){
         if(regionRate.getRegion() == null){
             throw new NotAcceptableException("Tried to add Regionrate without specifying a region");
@@ -91,6 +95,10 @@ public class RegionService {
             }
         }*/
 
+        regionDAO.create(region);
+    }
+
+    public void addRegionNoCheck(Region region){
         regionDAO.create(region);
     }
 

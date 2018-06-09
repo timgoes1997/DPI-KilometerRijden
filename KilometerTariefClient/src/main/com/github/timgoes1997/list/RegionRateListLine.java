@@ -45,6 +45,6 @@ public class RegionRateListLine {
                 + String.valueOf(regionRate.getEndTime().get(Calendar.HOUR_OF_DAY)) + ":"
                 + String.valueOf(regionRate.getEndTime().get(Calendar.MINUTE))
                 + " - " + regionRate.getEnergyLabel().toString()
-                + " - \u20ac" + regionRate.getKilometerPrice();
+                + " - \u20ac" + regionRate.getKilometerPrice().toString();
     }
 }

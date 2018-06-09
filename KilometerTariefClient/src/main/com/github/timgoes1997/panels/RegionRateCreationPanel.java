@@ -1,9 +1,11 @@
 package com.github.timgoes1997.panels;
 
+import com.github.timgoes1997.entities.Region;
 import com.github.timgoes1997.entities.RegionRate;
 import com.github.timgoes1997.entities.enums.EnergyLabel;
 import com.github.timgoes1997.entities.enums.VehicleType;
 import com.github.timgoes1997.listeners.RegionRateCompletionListener;
+import com.github.timgoes1997.request.rate.RegionRateRequestType;
 import com.github.timgoes1997.util.OpenAction;
 import com.github.timgoes1997.util.VisiblePanel;
 import javafx.scene.layout.Pane;
@@ -12,6 +14,7 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.text.NumberFormatter;
 import java.awt.*;
+import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -31,6 +34,8 @@ public class RegionRateCreationPanel implements PanelInfo{
     private SpinnerModel endHourValue;
     private JSpinner endMinuteSpinner;
     private SpinnerModel endMinuteValue;
+    private JSpinner priceSpinner;
+    private SpinnerModel priceValue;
     private JPopupMenu menu;
     private JButton dayButton;
     private JButton completionButton;
@@ -42,6 +47,7 @@ public class RegionRateCreationPanel implements PanelInfo{
     private RegionRateCompletionListener regionRateCompletionListener;
 
     private RegionRate current;
+    private Region currentRegion;
 
     public RegionRateCreationPanel(RegionRateCompletionListener listener) {
         this.regionRateCompletionListener = listener;
@@ -178,12 +184,29 @@ public class RegionRateCreationPanel implements PanelInfo{
         gbc_endMinuteSpinner.gridy = gbc_endMinute.gridy;
         panel.add(endMinuteSpinner, gbc_endMinuteSpinner);
 
+        JLabel price = new JLabel("Price");
+        GridBagConstraints gbc_price = new GridBagConstraints();
+        gbc_price.insets = new Insets(0, 0, 5, 5);
+        gbc_price.gridx = 0;
+        gbc_price.gridy = 8;
+        panel.add(price, gbc_price);
+
+        priceValue = new SpinnerNumberModel(0.010d, 0.001d, 10.0d, 0.001d);
+        priceSpinner = new JSpinner(priceValue);
+        disAllowTextNumberSpinner(priceSpinner);
+        GridBagConstraints gbc_priceSpinner = new GridBagConstraints();
+        gbc_priceSpinner.fill = GridBagConstraints.HORIZONTAL;
+        gbc_priceSpinner.insets = new Insets(0, 0, 5, 5);
+        gbc_priceSpinner.gridx = gbc_price.gridx + 1;
+        gbc_priceSpinner.gridy = gbc_price.gridy;
+        panel.add(priceSpinner, gbc_priceSpinner);
+
         //Day Selector
         dayLabel = new JLabel("");
         GridBagConstraints gbc_dayLabel = new GridBagConstraints();
         gbc_dayLabel.insets = new Insets(0, 0, 5, 5);
         gbc_dayLabel.gridx = 1;
-        gbc_dayLabel.gridy = 8;
+        gbc_dayLabel.gridy = 9;
         panel.add(dayLabel, gbc_dayLabel);
 
         menu = new JPopupMenu();
@@ -215,16 +238,44 @@ public class RegionRateCreationPanel implements PanelInfo{
         GridBagConstraints gbc_completionButton = new GridBagConstraints();
         gbc_completionButton.insets = new Insets(0, 0, 5, 5);
         gbc_completionButton.gridx = 1;
-        gbc_completionButton.gridy = 9;
+        gbc_completionButton.gridy = 10;
         panel.add(completionButton, gbc_completionButton);
         completionButton.addActionListener(e -> {
-            regionRateCompletionListener.onCompletion(null);
+            List<RegionRate> regionRates = new ArrayList<>();
+            if(this.current != null){
+                if(selectedDayOfWeeks.size() != 1){
+                    onReceiveInfo("Updating a regionrate is limited to 1 day, please select the one day you prefer");
+                }
+                current.setEnergyLabel(energyLabelJComboBox.getItemAt(energyLabelJComboBox.getSelectedIndex()));
+                current.setVehicleType(vehicleTypeJComboBox.getItemAt(vehicleTypeJComboBox.getSelectedIndex()));
+                current.setDayOfWeek(getSelectedDayOfWeeks().get(0));
+                current.setKilometerPrice(new BigDecimal((double)priceValue.getValue()).setScale(3, BigDecimal.ROUND_HALF_UP));
+                current.setStartTime((int)startHourValue.getValue(), (int)startMinuteValue.getValue());
+                current.setEndTime((int)endHourValue.getValue(), (int)endMinuteValue.getValue());
+                regionRates.add(current);
+                regionRateCompletionListener.onCompletion(regionRates, RegionRateRequestType.UPDATE);
+            }else{
+                for(DayOfWeek dayOfWeek : selectedDayOfWeeks){
+                    RegionRate regionRate = new RegionRate(
+                            currentRegion,
+                            vehicleTypeJComboBox.getItemAt(vehicleTypeJComboBox.getSelectedIndex()),
+                            new BigDecimal((double)priceValue.getValue()).setScale(3, BigDecimal.ROUND_HALF_UP),
+                            energyLabelJComboBox.getItemAt(energyLabelJComboBox.getSelectedIndex()),
+                            dayOfWeek,
+                            (int)startHourValue.getValue(),
+                            (int)startMinuteValue.getValue(),
+                            (int)endHourValue.getValue(),
+                            (int)endMinuteValue.getValue());
+                    regionRates.add(regionRate);
+                }
+                regionRateCompletionListener.onCompletion(regionRates, RegionRateRequestType.CREATE);
+            }
         });
 
         info = new JLabel("Info");
         GridBagConstraints gbc_info = new GridBagConstraints();
         gbc_info.gridx = 1;
-        gbc_info.gridy = 10;
+        gbc_info.gridy = 11;
         panel.add(info, gbc_info);
     }
 
@@ -269,6 +320,7 @@ public class RegionRateCreationPanel implements PanelInfo{
         startMinuteSpinner.setValue(0);
         endHourSpinner.setValue(0);
         endMinuteSpinner.setValue(0);
+        priceSpinner.setValue(0.001d);
         menuItems.forEach(menu::remove);
         menuItems.clear();
         selectedDayOfWeeks.clear();
@@ -276,9 +328,14 @@ public class RegionRateCreationPanel implements PanelInfo{
         vehicleTypeJComboBox.setSelectedIndex(0);
         addDaysToComboBox();
         addDaysToComboBoxListners();
+        this.currentRegion = null;
         this.current = null;
         completionButton.setText("Create");
         updateDayLabel(dayLabel);
+    }
+
+    public void insert(Region region){
+        this.currentRegion = region;
     }
 
     public void insert(RegionRate regionRate){
@@ -286,6 +343,7 @@ public class RegionRateCreationPanel implements PanelInfo{
         startMinuteSpinner.setValue(regionRate.getStartTime().get(Calendar.MINUTE));
         endHourSpinner.setValue(regionRate.getEndTime().get(Calendar.HOUR_OF_DAY));
         endMinuteSpinner.setValue(regionRate.getEndTime().get(Calendar.MINUTE));
+        priceSpinner.setValue(regionRate.getKilometerPrice().doubleValue());
         menuItems.forEach(menu::remove);
         menuItems.clear();
         selectedDayOfWeeks.clear();
@@ -448,5 +506,9 @@ public class RegionRateCreationPanel implements PanelInfo{
     @Override
     public void onReceiveInfo(String message) {
         info.setText(message);
+    }
+
+    public void setCurrentRegion(Region currentRegion) {
+        this.currentRegion = currentRegion;
     }
 }

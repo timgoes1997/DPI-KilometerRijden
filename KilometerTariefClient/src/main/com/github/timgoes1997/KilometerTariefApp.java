@@ -84,16 +84,16 @@ public class KilometerTariefApp extends JFrame {
                 @Override
                 public void onClientRequestCanceled(RegionRateRequest request) {
                     PanelInfo panelInfo = getVisiblePanelInfo();
-                    if(panelInfo != null) {
+                    if (panelInfo != null) {
                         panelInfo.onReceiveInfo("Failed to execute request rate " +
-                                request.getRegionRateRequestType().toString() +  " for region " +
+                                request.getRegionRateRequestType().toString() + " for region " +
                                 request.getRegionRate().getRegion().getName());
                     }
                 }
 
                 @Override
                 public void onReceiveRegionRateCreate(RegionRate regionRate) {
-                    if(regionRate.getRegion() == null && regionRate.getRegion().getName() == null){
+                    if (regionRate.getRegion() == null && regionRate.getRegion().getName() == null) {
                         regionRateListPanel.onReceiveInfo("Received empty create region rate");
                     }
 
@@ -105,7 +105,7 @@ public class KilometerTariefApp extends JFrame {
 
                 @Override
                 public void onReceiveRegionRateUpdate(RegionRate regionRate) {
-                    if(regionRate.getRegion() == null && regionRate.getRegion().getName() == null){
+                    if (regionRate.getRegion() == null && regionRate.getRegion().getName() == null) {
                         regionRateListPanel.onReceiveInfo("Received empty update region rate");
                     }
 
@@ -118,7 +118,7 @@ public class KilometerTariefApp extends JFrame {
 
                 @Override
                 public void onReceiveRegionRateRemove(RegionRate regionRate) {
-                    if(regionRate.getRegion() == null && regionRate.getRegion().getName() == null){
+                    if (regionRate.getRegion() == null && regionRate.getRegion().getName() == null) {
                         regionRateListPanel.onReceiveInfo("Received empty remove region rate");
                     }
 
@@ -137,8 +137,10 @@ public class KilometerTariefApp extends JFrame {
     private void createRegionRateCreationPanel(boolean visibility) {
         regionRateCreationPanel = new RegionRateCreationPanel(new RegionRateCompletionListener() {
             @Override
-            public void onCompletion(RegionRate regionRateList) {
-                setVisiblePanel(VisiblePanel.REGION_RATE);
+            public void onCompletion(List<RegionRate> regionRateList, RegionRateRequestType type) {
+                regionRateList.forEach(regionRate -> {
+                    requestForRegionRate(regionRate, type);
+                });
             }
 
             @Override
@@ -155,12 +157,14 @@ public class KilometerTariefApp extends JFrame {
             @Override
             public void onSelectCreation() {
                 regionRateCreationPanel.resetValues();
+                regionRateCreationPanel.insert(selectedRegion);
                 setVisiblePanel(VisiblePanel.REGION_CREATION);
             }
 
             @Override
             public void onSelectRegionRate(RegionRate regionRate) {
                 regionRateCreationPanel.insert(regionRate);
+                regionRateCreationPanel.insert(selectedRegion);
                 setVisiblePanel(VisiblePanel.REGION_CREATION);
             }
 
@@ -171,7 +175,6 @@ public class KilometerTariefApp extends JFrame {
 
             @Override
             public void onRegionRateDelete(RegionRate regionRate) {
-                LOGGER.info("Client wants to delete regionrate");
                 requestForRegionRate(regionRate, RegionRateRequestType.DELETE);
             }
 
@@ -190,6 +193,7 @@ public class KilometerTariefApp extends JFrame {
     }
 
     private void requestForRegionRate(RegionRate regionRate, RegionRateRequestType rrt) {
+        LOGGER.info("Client: " + rrt.toString());
         try {
             regionRateClientGateway.request(regionRate, rrt);
         } catch (JMSException e) {

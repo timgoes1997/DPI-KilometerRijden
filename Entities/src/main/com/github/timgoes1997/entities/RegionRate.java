@@ -16,7 +16,7 @@ import java.util.Objects;
 @NamedQueries({
         @NamedQuery(
                 name = RegionRate.FIND_ALL,
-                query = "SELECT r FROM RATE r"
+                query = "SELECT r FROM RATE r ORDER BY r.id DESC"
         ),
         @NamedQuery(
                 name = RegionRate.FIND_ID,
@@ -24,7 +24,7 @@ import java.util.Objects;
         ),
         @NamedQuery(
                 name = RegionRate.FIND_BY_REGION,
-                query = "SELECT r FROM RATE r WHERE r.region.id = :id"
+                query = "SELECT r FROM RATE r WHERE r.region.id = :id ORDER BY r.id DESC"
         )
 })
 public class RegionRate {
@@ -52,7 +52,7 @@ public class RegionRate {
     private Region region;
 
     @Digits(integer = 12, fraction = 6)
-    @Column(name = "KILOMETER_PRICE")
+    @Column(name = "KILOMETER_PRICE", precision = 18, scale = 6)
     private BigDecimal kilometerPrice;
 
     @Enumerated(EnumType.STRING)
@@ -75,7 +75,7 @@ public class RegionRate {
     @Column(name = "END_TIME")
     private Calendar endTime;
 
-    public RegionRate(){
+    public RegionRate() {
 
     }
 
@@ -94,11 +94,8 @@ public class RegionRate {
             throw new IllegalArgumentException("Hour should in the range of [0-59].");
         }
 
-        this.startTime = GregorianCalendar.getInstance();
-        startTime.set(2000, Calendar.JANUARY, 0, startHour, startMinute, 0);
-
-        this.endTime = GregorianCalendar.getInstance();
-        endTime.set(2000, Calendar.JANUARY, 0, endHour, endMinute, 0);
+        setStartTime(startHour, startMinute);
+        setEndTime(endHour, endMinute);
     }
 
     public Region getRegion() {
@@ -131,6 +128,16 @@ public class RegionRate {
 
     public void setStartTime(Calendar startTime) {
         this.startTime = startTime;
+    }
+
+    public void setStartTime(int startHour, int startMinute) {
+        this.startTime = GregorianCalendar.getInstance();
+        startTime.set(2000, Calendar.JANUARY, 0, startHour, startMinute, 0);
+    }
+
+    public void setEndTime(int endHour, int endMinute) {
+        this.endTime = GregorianCalendar.getInstance();
+        endTime.set(2000, Calendar.JANUARY, 0, endHour, endMinute, 0);
     }
 
     public Calendar getEndTime() {

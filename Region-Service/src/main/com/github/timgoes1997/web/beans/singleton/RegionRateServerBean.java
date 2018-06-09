@@ -83,14 +83,14 @@ public class RegionRateServerBean implements RegionRateServerBeanInterface {
         dummyDataGenerator = new DummyDataGenerator(5);
 
         try {
-            dummyDataGenerator.getRegionList().forEach(regionService::addRegion);
+            dummyDataGenerator.getRegionList().forEach(regionService::addRegionNoCheck);
         } catch (Exception e) {
             logger.warning("Failed to generate mockdata for region");
             return;
         }
 
         try {
-            dummyDataGenerator.getRegionRates().forEach(regionService::addRegionRate);
+            dummyDataGenerator.getRegionRates().forEach(regionService::addRegionRateNoCheck);
         } catch (Exception e) {
             logger.warning("Failed to generate mockdata for region rate");
             return;
