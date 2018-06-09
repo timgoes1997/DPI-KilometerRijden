@@ -6,7 +6,7 @@ import com.github.timgoes1997.gateway.interfaces.RegionRateClient;
 import com.github.timgoes1997.gateway.interfaces.RegionRateClientListener;
 import com.github.timgoes1997.jms.gateway.requestreply.RequestReplyGateWay;
 import com.github.timgoes1997.jms.messaging.RequestReply;
-import com.github.timgoes1997.request.rate.RegionRateReplyType;
+import com.github.timgoes1997.request.RegionReplyType;
 import com.github.timgoes1997.request.rate.RegionRateRequest;
 import com.github.timgoes1997.request.rate.RegionRateReply;
 import com.github.timgoes1997.request.rate.RegionRateRequestType;
@@ -119,7 +119,7 @@ public class RegionRateClientGateway implements RegionRateClient {
         if (rr.getReply() == null || rr.getRequest() == null) {
             LOGGER.severe("Received empty reply or request");
         }
-        if (rr.getReply().getStatus() == RegionRateReplyType.CANCELED) {
+        if (rr.getReply().getStatus() == RegionReplyType.CANCELED) {
             if (rr.getId().equals(uniqueId)) {
                 listener.onClientRequestCanceled(rr.getRequest());
             }
