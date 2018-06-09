@@ -6,4 +6,9 @@ public class Constant {
     public final static String REGION_REPLY_CHANNEL = "RegionReply";
     public final static String REGION_RATE_REQUEST_CHANNEL = "RegionRateRequest";
     public final static String REGION_RATE_REPLY_CHANNEL = "RegionRateReply";
+
+    public final static String REGION_TOPIC_REQUEST_CHANNEL = "RegionTopicRequestChannel";
+    public final static String REGION_TOPIC_CLIENT = "TopicClient_";
+
+
 }

@@ -19,6 +19,13 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compile project(':Entities')
+    compile project(':Tim-JMS')
+}
+
 // These functions tell gradle (and possibly intellij) where the project files will be located
 sourceSets {
     main {
