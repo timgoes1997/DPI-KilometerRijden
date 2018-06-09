@@ -46,7 +46,7 @@ public class RegionRate {
     @Column(name = "ID")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "REGION_ID")
     private Region region;
 
@@ -66,11 +66,11 @@ public class RegionRate {
     @Column(name = "VEHICLE_TYPE")
     private VehicleType vehicleType;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "START_TIME")
     private Calendar startTime;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "END_TIME")
     private Calendar endTime;
 

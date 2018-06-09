@@ -13,7 +13,6 @@ import com.github.timgoes1997.request.rate.RegionRateReply;
 import com.github.timgoes1997.request.rate.RegionRateRequestType;
 import com.github.timgoes1997.request.region.RegionReply;
 import com.github.timgoes1997.request.region.RegionRequest;
-import com.github.timgoes1997.request.region.RegionRequestRegionRates;
 import com.github.timgoes1997.request.region.RegionRequestType;
 import com.github.timgoes1997.util.Constant;
 import com.google.gson.Gson;
@@ -91,7 +90,7 @@ public class RegionRateClientGateway implements RegionRateClient {
 
     @Override
     public void getRegionRates(Region region) throws JMSException {
-        RegionRequestRegionRates regionRequest = new RegionRequestRegionRates(RegionRequestType.GET_RATES, region);
+        RegionRequest regionRequest = new RegionRequest(region, RegionRequestType.GET_RATES);
         RequestReply<RegionRequest, RegionReply> rr = new RequestReply<>(uniqueId, regionRequest, null);
         regionRRG.send(rr);
     }

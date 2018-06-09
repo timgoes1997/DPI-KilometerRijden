@@ -69,8 +69,11 @@ public class KilometerTariefApp extends JFrame {
 
                 @Override
                 public void onReceiveRegionRates(List<RegionRate> regionRates) {
-                    regionRateListPanel.getListModel().clear();
+                    System.out.println("test");
                     regionRates.forEach(regionRateListPanel::add);
+                    setVisiblePanel(VisiblePanel.REGION_RATE);
+                    regionRateListPanel.getList().repaint();
+                    System.out.println("done");
                 }
 
                 @Override
@@ -157,9 +160,10 @@ public class KilometerTariefApp extends JFrame {
             @Override
             public void onSelectRegion(Region region) {
                 if (region == null) return;
+                regionRateListPanel.getListModel().removeAllElements();
+                regionRateListPanel.getList().repaint();
                 getRegionRates(region);
 //                dummyDataGenerator.getRatesForRegion(region).forEach(regionRate -> regionRateListPanel.add(regionRate));
-                setVisiblePanel(VisiblePanel.REGION_RATE);
             }
 
         });

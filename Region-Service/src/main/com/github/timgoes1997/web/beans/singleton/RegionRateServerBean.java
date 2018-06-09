@@ -10,7 +10,6 @@ import com.github.timgoes1997.request.rate.RegionRateReply;
 import com.github.timgoes1997.request.rate.RegionRateRequest;
 import com.github.timgoes1997.request.region.RegionReply;
 import com.github.timgoes1997.request.region.RegionRequest;
-import com.github.timgoes1997.request.region.RegionRequestRegionRates;
 import com.github.timgoes1997.web.beans.RegionService;
 import com.github.timgoes1997.web.beans.interfaces.RegionRateServerBeanInterface;
 import com.github.timgoes1997.web.gateway.RegionRateServerGateway;
@@ -43,7 +42,7 @@ public class RegionRateServerBean implements RegionRateServerBeanInterface {
     private Logger logger;
 
     @PostConstruct
-    public void init(){
+    public void init() {
         logger.info("Initialized Region Rate server bean");
         initMockData();
         try {
@@ -80,19 +79,19 @@ public class RegionRateServerBean implements RegionRateServerBeanInterface {
         }
     }
 
-    private void initMockData(){
+    private void initMockData() {
         dummyDataGenerator = new DummyDataGenerator(5);
 
         try {
             dummyDataGenerator.getRegionList().forEach(regionService::addRegion);
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.warning("Failed to generate mockdata for region");
             return;
         }
 
-        try{
+        try {
             dummyDataGenerator.getRegionRates().forEach(regionService::addRegionRate);
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.warning("Failed to generate mockdata for region rate");
             return;
         }
@@ -100,16 +99,12 @@ public class RegionRateServerBean implements RegionRateServerBeanInterface {
 
     @Override
     public RegionReply getRegionReply(RegionRequest regionRequest) {
-        if(regionRequest.getRegionRequestType() == null){
+        if (regionRequest.getRegionRequestType() == null) {
             return new RegionReply();
         }
-        switch (regionRequest.getRegionRequestType()){
+        switch (regionRequest.getRegionRequestType()) {
             case GET_RATES:
-                if(regionRequest instanceof RegionRequestRegionRates){
-                    return getRegionRatesReply((RegionRequestRegionRates) regionRequest);
-                }else{
-                    break;
-                }
+                return getRegionRatesReply(regionRequest);
             case GET_ALL:
                 return getRegionsReply();
         }
@@ -122,14 +117,14 @@ public class RegionRateServerBean implements RegionRateServerBeanInterface {
     }
 
     @Override
-    public RegionReply<List<RegionRate>> getRegionRatesReply(RegionRequestRegionRates regionRequestRegionRates) {
-        if(regionRequestRegionRates.getRegion() == null || !regionService.regionExists(regionRequestRegionRates.getRegion())){
+    public RegionReply<List<RegionRate>> getRegionRatesReply(RegionRequest regionRequest) {
+        if (regionRequest.getRegion() == null || !regionService.regionExists(regionRequest.getRegion())) {
             return new RegionReply<>();
         }
 
         return new RegionReply<>(
-                regionService.getRegionRates(regionRequestRegionRates.getRegion()),
-                regionRequestRegionRates.getRegion());
+                regionService.getRegionRates(regionRequest.getRegion()),
+                regionRequest.getRegion());
     }
 
     @Override
