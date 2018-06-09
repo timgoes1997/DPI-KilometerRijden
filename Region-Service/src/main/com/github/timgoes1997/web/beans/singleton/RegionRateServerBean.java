@@ -112,11 +112,6 @@ public class RegionRateServerBean implements RegionRateServerBeanInterface {
     }
 
     @Override
-    public RegionRateReply getRegionRateReply(RegionRateRequest regionRateRequest) {
-        return null;
-    }
-
-    @Override
     public RegionReply<List<RegionRate>> getRegionRatesReply(RegionRequest regionRequest) {
         if (regionRequest.getRegion() == null || !regionService.regionExists(regionRequest.getRegion())) {
             return new RegionReply<>();
@@ -130,5 +125,55 @@ public class RegionRateServerBean implements RegionRateServerBeanInterface {
     @Override
     public RegionReply<List<Region>> getRegionsReply() {
         return new RegionReply<>(regionService.getAllRegions());
+    }
+
+
+    @Override
+    public RegionRateReply getRegionRateReply(RegionRateRequest regionRateRequest) {
+        if (regionRateRequest.getRegionRateRequestType() == null || regionRateRequest.getRegionRate() == null) {
+            return new RegionRateReply();
+        }
+
+        RegionRate rr = regionRateRequest.getRegionRate();
+
+        switch (regionRateRequest.getRegionRateRequestType()) {
+            case CREATE:
+                return addRegionRate(rr);
+            case UPDATE:
+                return updateRegionRate(rr);
+            case DELETE:
+                return removeRegionRateReply(rr);
+        }
+        return new RegionRateReply();
+    }
+
+    private RegionRateReply removeRegionRateReply(RegionRate rr) {
+        try {
+            regionService.removeRegionRate(rr);
+            return new RegionRateReply(rr);
+        }catch (Exception e){
+            logger.severe(e.getMessage());
+            return new RegionRateReply();
+        }
+    }
+
+    private RegionRateReply updateRegionRate(RegionRate rr) {
+        try {
+            regionService.updateRegionRate(rr);
+            return new RegionRateReply(rr);
+        }catch (Exception e){
+            logger.severe(e.getMessage());
+            return new RegionRateReply();
+        }
+    }
+
+    private RegionRateReply addRegionRate(RegionRate rr) {
+        try {
+            regionService.addRegionRate(rr);
+            return new RegionRateReply(rr);
+        }catch (Exception e){
+            logger.severe(e.getMessage());
+            return new RegionRateReply();
+        }
     }
 }

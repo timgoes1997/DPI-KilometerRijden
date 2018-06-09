@@ -11,6 +11,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.NotAcceptableException;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,16 +33,46 @@ public class RegionService {
         return regionDAO.getAllRegions();
     }
 
+    public RegionRate findRegionRate(long id){
+        return regionRateDAO.find(id);
+    }
+
     public void addRegionRate(RegionRate regionRate){
         if(regionRate.getRegion() == null){
             throw new NotAcceptableException("Tried to add Regionrate without specifying a region");
         }
 
         if (!regionDAO.exists(regionRate.getRegion().getId())) {
-            throw new ClientErrorException(Response.Status.CONFLICT);
+            throw new ClientErrorException(Response.Status.NOT_FOUND);
         }
 
         regionRateDAO.create(regionRate);
+    }
+
+    public void updateRegionRate(RegionRate regionRate){
+        if(regionRate.getRegion() == null){
+            throw new NotAcceptableException("Tried to add Regionrate without specifying a region");
+        }
+
+        if (!regionDAO.exists(regionRate.getRegion().getId())) {
+            throw new NotFoundException();
+        }
+
+        if(!regionRateDAO.exists(regionRate.getId())){
+            throw new NotFoundException();
+        }
+
+        RegionRate update = regionRateDAO.find(regionRate.getId());
+        regionRateDAO.edit(update);
+    }
+
+    public void removeRegionRate(RegionRate regionRate){
+        if(!regionRateDAO.exists(regionRate.getId())){
+            throw new NotFoundException();
+        }
+
+        RegionRate remove = regionRateDAO.find(regionRate.getId());
+        regionRateDAO.remove(remove);
     }
 
     public void addRegion(Region region) {

@@ -13,10 +13,11 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class RegionListPanel {
+public class RegionListPanel implements PanelInfo{
     private DefaultListModel<RegionListLine> listModel = new DefaultListModel<RegionListLine>();
     private JList<RegionListLine> list;
     private JPanel panel;
+    private JLabel info;
     private RegionListPanelListener regionListPanelListener;
 
     public RegionListPanel(RegionListPanelListener regionListPanelListener) {
@@ -49,11 +50,13 @@ public class RegionListPanel {
         list.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                JList<RegionListLine> list = (JList)e.getSource();
-                int index = list.locationToIndex(e.getPoint());
-                RegionListLine rll = list.getModel().getElementAt(index);
-                if(rll != null && regionListPanelListener != null){
-                    regionListPanelListener.onSelectRegion(rll.getRegion());
+                if(e.getClickCount() == 2) {
+                    JList<RegionListLine> list = (JList) e.getSource();
+                    int index = list.locationToIndex(e.getPoint());
+                    RegionListLine rll = list.getModel().getElementAt(index);
+                    if (rll != null && regionListPanelListener != null) {
+                        regionListPanelListener.onSelectRegion(rll.getRegion());
+                    }
                 }
             }
         });
@@ -81,6 +84,12 @@ public class RegionListPanel {
         });
         scrollPane.setViewportView(list);
         scrollPane.setPreferredSize(panel.getPreferredSize());
+
+        info = new JLabel("Info");
+        GridBagConstraints gbc_info = new GridBagConstraints();
+        gbc_info.gridx = 0;
+        gbc_info.gridy = 2;
+        panel.add(info, gbc_info);
     }
 
     private RegionListLine getRegion(Region region) {
@@ -126,5 +135,10 @@ public class RegionListPanel {
 
     public void setPanel(JPanel panel) {
         this.panel = panel;
+    }
+
+    @Override
+    public void onReceiveInfo(String message) {
+        info.setText(message);
     }
 }

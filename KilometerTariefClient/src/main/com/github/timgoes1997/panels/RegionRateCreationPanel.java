@@ -6,6 +6,7 @@ import com.github.timgoes1997.entities.enums.VehicleType;
 import com.github.timgoes1997.listeners.RegionRateCompletionListener;
 import com.github.timgoes1997.util.OpenAction;
 import com.github.timgoes1997.util.VisiblePanel;
+import javafx.scene.layout.Pane;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class RegionRateCreationPanel {
+public class RegionRateCreationPanel implements PanelInfo{
 
     private List<DayOfWeek> selectedDayOfWeeks = new ArrayList<>();
     private JPanel panel;
@@ -34,8 +35,10 @@ public class RegionRateCreationPanel {
     private JButton dayButton;
     private JButton completionButton;
     private JButton backButton;
+    private JButton removeButton;
     private List<JMenuItem> menuItems;
     private JLabel dayLabel;
+    private JLabel info;
     private RegionRateCompletionListener regionRateCompletionListener;
 
     private RegionRate current;
@@ -217,6 +220,12 @@ public class RegionRateCreationPanel {
         completionButton.addActionListener(e -> {
             regionRateCompletionListener.onCompletion(null);
         });
+
+        info = new JLabel("Info");
+        GridBagConstraints gbc_info = new GridBagConstraints();
+        gbc_info.gridx = 1;
+        gbc_info.gridy = 10;
+        panel.add(info, gbc_info);
     }
 
     private void addDaysToComboBox() {
@@ -434,5 +443,10 @@ public class RegionRateCreationPanel {
 
     public void setRegionRateCompletionListener(RegionRateCompletionListener regionRateCompletionListener) {
         this.regionRateCompletionListener = regionRateCompletionListener;
+    }
+
+    @Override
+    public void onReceiveInfo(String message) {
+        info.setText(message);
     }
 }

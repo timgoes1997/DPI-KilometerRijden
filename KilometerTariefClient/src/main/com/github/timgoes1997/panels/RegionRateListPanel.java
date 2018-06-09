@@ -13,13 +13,15 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class RegionRateListPanel {
+public class RegionRateListPanel implements PanelInfo{
     private DefaultListModel<RegionRateListLine> listModel = new DefaultListModel<RegionRateListLine>();
     private JList<RegionRateListLine> list;
     private JPanel panel;
     private RegionRatePanelListener regionRatePanelListener;
     private JButton createButton;
+    private JButton removeButton;
     private JButton backButton;
+    private JLabel info;
 
     public RegionRateListPanel(RegionRatePanelListener regionRatePanelListener) {
         this.regionRatePanelListener = regionRatePanelListener;
@@ -61,11 +63,13 @@ public class RegionRateListPanel {
         list.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                JList<RegionRateListLine> list = (JList)e.getSource();
-                int index = list.locationToIndex(e.getPoint());
-                RegionRateListLine rll = list.getModel().getElementAt(index);
-                if(rll != null && regionRatePanelListener != null){
-                    regionRatePanelListener.onSelectRegionRate(rll.getRegionRate());
+                if(e.getClickCount() == 2) {
+                    JList<RegionRateListLine> list = (JList) e.getSource();
+                    int index = list.locationToIndex(e.getPoint());
+                    RegionRateListLine rll = list.getModel().getElementAt(index);
+                    if (rll != null && regionRatePanelListener != null) {
+                        regionRatePanelListener.onSelectRegionRate(rll.getRegionRate());
+                    }
                 }
             }
         });
@@ -103,12 +107,37 @@ public class RegionRateListPanel {
         createButton.addActionListener(e -> {
             regionRatePanelListener.onSelectCreation();
         });
+
+        JLabel removeRate = new JLabel("Remove rate: ");
+        GridBagConstraints gbc_removeRate = new GridBagConstraints();
+        gbc_removeRate.gridx = 0;
+        gbc_removeRate.gridy = 4;
+        panel.add(removeRate, gbc_removeRate);
+
+        removeButton = new JButton("Remove");
+        GridBagConstraints gbc_removeButton = new GridBagConstraints();
+        gbc_removeButton.insets = new Insets(0, 0, 5, 5);
+        gbc_removeButton.gridx = 0;
+        gbc_removeButton.gridy = 5;
+        panel.add(removeButton, gbc_removeButton);
+        removeButton.addActionListener(e -> {
+            RegionRateListLine rrll = list.getSelectedValue();
+            if(rrll != null) {
+                regionRatePanelListener.onRegionRateDelete(rrll.getRegionRate());
+            }
+        });
+
+        info = new JLabel("Info");
+        GridBagConstraints gbc_info = new GridBagConstraints();
+        gbc_info.gridx = 0;
+        gbc_info.gridy = 6;
+        panel.add(info, gbc_info);
     }
 
-    private RegionRateListLine getRegion(RegionRate region) {
+    private RegionRateListLine getRegion(RegionRate regionRate) {
         for (int i=0; i < listModel.getSize(); i++){
             RegionRateListLine rll = listModel.get(i);
-            if(rll.getRegionRate().equals(region)){
+            if(rll.getRegionRate().equals(regionRate)){
                 return rll;
             }
         }
@@ -117,6 +146,16 @@ public class RegionRateListPanel {
 
     public void add(RegionRate regionRate) {
         listModel.addElement(new RegionRateListLine(regionRate));
+    }
+
+    public void update(RegionRate regionRate){
+        RegionRateListLine rrll = getRegion(regionRate);
+        assert rrll != null;
+        rrll.setRegionRate(regionRate);
+    }
+
+    public void remove(RegionRate regionRate){
+        listModel.removeElement(new RegionRateListLine(regionRate));
     }
 
     public DefaultListModel<RegionRateListLine> getListModel() {
@@ -149,5 +188,10 @@ public class RegionRateListPanel {
 
     public void setRegionRatePanelListener(RegionRatePanelListener regionRatePanelListener) {
         this.regionRatePanelListener = regionRatePanelListener;
+    }
+
+    @Override
+    public void onReceiveInfo(String message) {
+        info.setText(message);
     }
 }

@@ -10,6 +10,7 @@ import java.time.DayOfWeek;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Objects;
 
 @Entity(name = "RATE")
 @NamedQueries({
@@ -158,5 +159,20 @@ public class RegionRate {
 
     public void setVehicleType(VehicleType vehicleType) {
         this.vehicleType = vehicleType;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof RegionRate)) return false;
+        RegionRate that = (RegionRate) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(region, that.region);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, region);
     }
 }

@@ -91,22 +91,6 @@ public class Region {
         return addedDate;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Region)) return false;
-        Region region = (Region) o;
-        return Objects.equals(id, region.id) &&
-                Objects.equals(name, region.name) &&
-                Objects.equals(addedDate, region.addedDate);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(id, name, addedDate);
-    }
-
 
     public boolean isWithinRegion(Location location){
         return isWithinRegion(location.getX(), location.getY());
@@ -158,5 +142,20 @@ public class Region {
         }
 
         return inside;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Region)) return false;
+        Region region = (Region) o;
+        return Objects.equals(id, region.id) &&
+                Objects.equals(name, region.name);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, name);
     }
 }

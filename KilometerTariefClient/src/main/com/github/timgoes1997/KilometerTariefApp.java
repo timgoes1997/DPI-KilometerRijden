@@ -8,10 +8,13 @@ import com.github.timgoes1997.gateway.interfaces.RegionRateClientListener;
 import com.github.timgoes1997.listeners.RegionListPanelListener;
 import com.github.timgoes1997.listeners.RegionRatePanelListener;
 import com.github.timgoes1997.listeners.RegionRateCompletionListener;
+import com.github.timgoes1997.panels.PanelInfo;
 import com.github.timgoes1997.panels.RegionRateCreationPanel;
 import com.github.timgoes1997.panels.RegionListPanel;
 import com.github.timgoes1997.panels.RegionRateListPanel;
 import com.github.timgoes1997.request.rate.RegionRateRequest;
+import com.github.timgoes1997.request.rate.RegionRateRequestType;
+import com.github.timgoes1997.request.region.RegionRequestType;
 import com.github.timgoes1997.util.VisiblePanel;
 
 import javax.jms.JMSException;
@@ -32,6 +35,7 @@ public class KilometerTariefApp extends JFrame {
     private RegionRateListPanel regionRateListPanel;
     private DummyDataGenerator dummyDataGenerator; //Remove once JMS queue to region service is working
     private RegionRateClientGateway regionRateClientGateway;
+    private Region selectedRegion;
 
     public KilometerTariefApp() {
         loadFrame();
@@ -65,35 +69,64 @@ public class KilometerTariefApp extends JFrame {
                     LOGGER.info("Received regions");
                     regionListPanel.getListModel().clear();
                     regions.forEach(regionListPanel::add);
+                    setVisiblePanel(VisiblePanel.REGION);
+                    regionListPanel.getList().repaint();
                 }
 
                 @Override
                 public void onReceiveRegionRates(List<RegionRate> regionRates) {
-                    System.out.println("test");
+                    LOGGER.info("Received rates");
                     regionRates.forEach(regionRateListPanel::add);
                     setVisiblePanel(VisiblePanel.REGION_RATE);
                     regionRateListPanel.getList().repaint();
-                    System.out.println("done");
                 }
 
                 @Override
                 public void onClientRequestCanceled(RegionRateRequest request) {
-
+                    PanelInfo panelInfo = getVisiblePanelInfo();
+                    if(panelInfo != null) {
+                        panelInfo.onReceiveInfo("Failed to execute request rate " +
+                                request.getRegionRateRequestType().toString() +  " for region " +
+                                request.getRegionRate().getRegion().getName());
+                    }
                 }
 
                 @Override
                 public void onReceiveRegionRateCreate(RegionRate regionRate) {
+                    if(regionRate.getRegion() == null && regionRate.getRegion().getName() == null){
+                        regionRateListPanel.onReceiveInfo("Received empty create region rate");
+                    }
 
+                    regionRateListPanel.add(regionRate);
+                    setVisiblePanel(VisiblePanel.REGION_RATE);
+                    regionRateListPanel.onReceiveInfo("Received new regionRate for region " + regionRate.getRegion().getName());
+                    regionRateListPanel.getPanel().repaint();
                 }
 
                 @Override
                 public void onReceiveRegionRateUpdate(RegionRate regionRate) {
+                    if(regionRate.getRegion() == null && regionRate.getRegion().getName() == null){
+                        regionRateListPanel.onReceiveInfo("Received empty update region rate");
+                    }
 
+                    regionRateListPanel.update(regionRate);
+                    setVisiblePanel(VisiblePanel.REGION_RATE);
+                    regionRateListPanel.onReceiveInfo("Received updated regionRate " + regionRate.getId().toString() +
+                            " for region " + regionRate.getRegion().getName());
+                    regionRateListPanel.getPanel().repaint();
                 }
 
                 @Override
                 public void onReceiveRegionRateRemove(RegionRate regionRate) {
+                    if(regionRate.getRegion() == null && regionRate.getRegion().getName() == null){
+                        regionRateListPanel.onReceiveInfo("Received empty remove region rate");
+                    }
 
+                    regionRateListPanel.remove(regionRate);
+                    setVisiblePanel(VisiblePanel.REGION_RATE);
+                    regionRateListPanel.onReceiveInfo("Received remove regionRate " + regionRate.getId().toString() +
+                            " for region " + regionRate.getRegion().getName());
+                    regionRateListPanel.getPanel().repaint();
                 }
             });
         } catch (NamingException | JMSException e) {
@@ -133,26 +166,35 @@ public class KilometerTariefApp extends JFrame {
 
             @Override
             public void onRegionRateUpdate(RegionRate regionRate) {
-
+                requestForRegionRate(regionRate, RegionRateRequestType.UPDATE);
             }
 
             @Override
             public void onRegionRateDelete(RegionRate regionRate) {
-
+                LOGGER.info("Client wants to delete regionrate");
+                requestForRegionRate(regionRate, RegionRateRequestType.DELETE);
             }
 
             @Override
             public void onRegionRateCreate(RegionRate regionRate) {
-
+                requestForRegionRate(regionRate, RegionRateRequestType.CREATE);
             }
 
             @Override
             public void onBack(VisiblePanel visiblePanel) {
-                setVisiblePanel(VisiblePanel.REGION);
+                getRegions();
             }
         });
 
         setPanelConstraints(visibility, regionRateListPanel.getPanel());
+    }
+
+    private void requestForRegionRate(RegionRate regionRate, RegionRateRequestType rrt) {
+        try {
+            regionRateClientGateway.request(regionRate, rrt);
+        } catch (JMSException e) {
+            e.printStackTrace();
+        }
     }
 
     private void createRegionListPanel(boolean visibility) {
@@ -162,6 +204,7 @@ public class KilometerTariefApp extends JFrame {
                 if (region == null) return;
                 regionRateListPanel.getListModel().removeAllElements();
                 regionRateListPanel.getList().repaint();
+                selectedRegion = region;
                 getRegionRates(region);
 //                dummyDataGenerator.getRatesForRegion(region).forEach(regionRate -> regionRateListPanel.add(regionRate));
             }
@@ -214,6 +257,13 @@ public class KilometerTariefApp extends JFrame {
                 regionRateListPanel.getPanel().setVisible(false);
                 break;
         }
+    }
+
+    private PanelInfo getVisiblePanelInfo() {
+        if (regionListPanel.getPanel().isVisible()) return regionListPanel;
+        if (regionRateCreationPanel.getPanel().isVisible()) return regionRateCreationPanel;
+        if (regionRateListPanel.getPanel().isVisible()) return regionRateListPanel;
+        return null;
     }
 
     public static void main(String[] args) {

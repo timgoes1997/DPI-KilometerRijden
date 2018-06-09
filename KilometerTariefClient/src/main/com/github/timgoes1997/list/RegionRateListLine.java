@@ -4,6 +4,7 @@ import com.github.timgoes1997.entities.RegionRate;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Objects;
 
 public class RegionRateListLine {
 
@@ -19,6 +20,20 @@ public class RegionRateListLine {
 
     public void setRegionRate(RegionRate regionRate) {
         this.regionRate = regionRate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof RegionRateListLine)) return false;
+        RegionRateListLine that = (RegionRateListLine) o;
+        return Objects.equals(regionRate, that.regionRate);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(regionRate);
     }
 
     @Override
