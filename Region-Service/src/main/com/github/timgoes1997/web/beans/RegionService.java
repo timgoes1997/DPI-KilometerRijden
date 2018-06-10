@@ -6,10 +6,13 @@ import com.github.timgoes1997.entities.RegionRate;
 import com.github.timgoes1997.entities.enums.EnergyLabel;
 import com.github.timgoes1997.entities.enums.VehicleType;
 import com.github.timgoes1997.location.Location;
+import com.github.timgoes1997.web.beans.endpoint.RegionInformer;
+import com.github.timgoes1997.web.beans.endpoint.RegionRateInformer;
 import com.github.timgoes1997.web.dao.interfaces.RegionDAO;
 import com.github.timgoes1997.web.dao.interfaces.RegionRateDAO;
 
 import javax.ejb.Stateless;
+import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.NotAcceptableException;
@@ -26,6 +29,14 @@ public class RegionService {
 
     @Inject
     private RegionRateDAO regionRateDAO;
+
+    @Inject
+    @RegionRateInformer
+    private Event<RegionRate> regionRateEvent;
+
+    @Inject
+    @RegionInformer
+    private Event<Region> regionEvent;
 
     public boolean regionExists(Region region){
         return regionDAO.exists(region.getName());
@@ -49,6 +60,7 @@ public class RegionService {
         }
 
         regionRateDAO.create(regionRate);
+        regionRateEvent.fire(regionRate);
     }
 
     public void addRegionRateNoCheck(RegionRate regionRate){
@@ -70,6 +82,7 @@ public class RegionService {
 
         RegionRate update = regionRateDAO.find(regionRate.getId());
         regionRateDAO.edit(update);
+        regionRateEvent.fire(regionRate);
     }
 
     public void removeRegionRate(RegionRate regionRate){
@@ -98,6 +111,7 @@ public class RegionService {
         }*/
 
         regionDAO.create(region);
+        regionEvent.fire(region);
     }
 
     public void addRegionNoCheck(Region region){
@@ -135,7 +149,7 @@ public class RegionService {
     }
 
     public RegionRate getRegionRate(Location location, VehicleType vehicleType, EnergyLabel energyLabel){
-        
+
     }
 
     /**

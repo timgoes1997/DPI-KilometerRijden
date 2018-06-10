@@ -21,6 +21,7 @@ import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -37,13 +38,18 @@ public class RegionRateClientBean implements DynamicServer<RegionTopicRequest, R
 
     private DynamicRequestReplyServerGateway<RegionTopicRequest, RegionTopicReply> dynamicRequestReplyServerGateway;
 
-    private List<RegionEndpoint> beanRegionEndpoints;
+    private List<RegionEndpoint> beanRegionEndpoints = new ArrayList<>();
 
     @PostConstruct
     public void init() {
         logger.info("Initialized Region Rate server bean");
 
         dynamicRequestReplyServerGateway = new DynamicRequestReplyServerGateway<>(this::onReceiveRequest, Constant.REGION_TOPIC_REQUEST_CHANNEL, Constant.PROVIDER, RegionTopicRequest.class, RegionTopicReply.class);
+
+        if(beanRegionEndpoints.isEmpty()){
+            List<Region> regions = regionService.getAllRegions();
+            regions.forEach(this::addRegion);
+        }
     }
 
     @Override
@@ -84,7 +90,7 @@ public class RegionRateClientBean implements DynamicServer<RegionTopicRequest, R
             RegionEndpoint regionEndpoint = new RegionEndpoint(region);
             beanRegionEndpoints.add(regionEndpoint);
         } catch (DuplicateKeyException e) {
-            logger.warning("Given region already exists!");
+            logger.warning("Given region already exists! " + region.getName() + "_" + region.getId());
         }
     }
 
