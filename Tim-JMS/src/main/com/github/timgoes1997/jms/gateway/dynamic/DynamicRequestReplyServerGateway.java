@@ -57,18 +57,20 @@ public class DynamicRequestReplyServerGateway<REQUEST, REPLY> {
                 return;
             }
 
-            if(messageSenderGateway.getChannelName().equals(channelName)){
-                try {
-                    messageSenderGateway.send(messageSenderGateway.createTextMessage(serializer.requestReplyToString(rr)));
+            try {
+                if (messageSenderGateway != null && messageSenderGateway.getChannelName().equals(channelName)) {
+                    messageSenderGateway.send(messageSenderGateway.createTextMessage(serializer.requestReplyToString(requestReply)));
                     return;
-                } catch (JMSException e) {
-                    e.printStackTrace();
                 }
+            } catch (JMSException e) {
+                e.printStackTrace();
             }
 
             try {
+                if (messageSenderGateway != null) messageSenderGateway.close();
+
                 messageSenderGateway = new DynamicMessageSenderGateway(channelName, provider, GatewayType.QUEUE);
-                messageSenderGateway.send(messageSenderGateway.createTextMessage(serializer.requestReplyToString(rr)));
+                messageSenderGateway.send(messageSenderGateway.createTextMessage(serializer.requestReplyToString(requestReply)));
             } catch (JMSException e) {
                 LOGGER.severe("Failed at sending dynamic message: " + e.getErrorCode());
             }
@@ -84,6 +86,7 @@ public class DynamicRequestReplyServerGateway<REQUEST, REPLY> {
     public void close() {
         try {
             messageReceiverGateway.close();
+            if (messageSenderGateway != null) messageSenderGateway.close();
         } catch (JMSException e) {
             e.printStackTrace();
         }
