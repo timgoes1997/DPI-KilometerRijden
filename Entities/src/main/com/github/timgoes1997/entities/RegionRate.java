@@ -176,8 +176,7 @@ public class RegionRate {
 
         //check day
         Calendar currentTime = GregorianCalendar.getInstance();
-        int currentDayInt = currentTime.get(Calendar.DAY_OF_WEEK);
-        DayOfWeek currentDay = DayOfWeek.of(currentDayInt);
+        DayOfWeek currentDay = getDayOfWeekGregorianCalender(currentTime.get(Calendar.DAY_OF_WEEK));
         if (currentDay != this.dayOfWeek) return false;
 
         int currentHour = currentTime.get(Calendar.HOUR_OF_DAY);
@@ -191,6 +190,27 @@ public class RegionRate {
         if (currentHour == startHour && currentMinute < startMinute) return false;
         if (currentHour == endHour && currentMinute > endMinute) return false;
         return true;
+    }
+
+    public DayOfWeek getDayOfWeekGregorianCalender(int day) {
+        switch (day) {
+            case 1:
+                return DayOfWeek.SUNDAY;
+            case 2:
+                return DayOfWeek.MONDAY;
+            case 3:
+                return DayOfWeek.TUESDAY;
+            case 4:
+                return DayOfWeek.WEDNESDAY;
+            case 5:
+                return DayOfWeek.THURSDAY;
+            case 6:
+                return DayOfWeek.FRIDAY;
+            case 7:
+                return DayOfWeek.SATURDAY;
+            default:
+                return DayOfWeek.SUNDAY;
+        }
     }
 
     @Override
