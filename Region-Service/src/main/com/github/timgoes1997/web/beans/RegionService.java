@@ -83,6 +83,7 @@ public class RegionService {
         }
 
         RegionRate update = regionRateDAO.find(regionRate.getId());
+        update.setKilometerPrice(regionRate.getKilometerPrice());
         regionRateDAO.edit(update);
         regionRateEvent.fire(regionRate);
     }

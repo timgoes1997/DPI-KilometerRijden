@@ -7,12 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="48271f01-6e69-4b2e-b8b9-083b01749a83" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2048f8b9-a298-4616-bd89-fc563398763f.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/2048f8b9-a298-4616-bd89-fc563398763f.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/com/github/timgoes1997/App.java" afterPath="$PROJECT_DIR$/Client/src/main/com/github/timgoes1997/App.java" />
-      <change beforePath="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/entities/Region.java" afterPath="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/entities/Region.java" />
-      <change beforePath="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/entities/RegionRate.java" afterPath="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/entities/RegionRate.java" />
-      <change beforePath="$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/singleton/RegionRateClientBean.java" afterPath="$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/singleton/RegionRateClientBean.java" />
+      <change beforePath="$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/RegionService.java" afterPath="$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/RegionService.java" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -205,7 +200,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RATE" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RATE" pinned="false" current-in-tab="true">
         <entry file="das://table:/ce166a79/2048f8b9-a298-4616-bd89-fc563398763f/APP.RATE">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
@@ -233,11 +228,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RegionRateServerBean.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RegionRateServerBean.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/singleton/RegionRateServerBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+            <state relative-caret-position="427">
+              <caret line="60" column="25" lean-forward="false" selection-start-line="60" selection-start-column="25" selection-end-line="60" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -256,8 +251,8 @@
       <file leaf-file-name="RegionService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/RegionService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="71" column="16" lean-forward="false" selection-start-line="71" selection-start-column="16" selection-end-line="71" selection-end-column="16" />
+            <state relative-caret-position="391">
+              <caret line="85" column="63" lean-forward="false" selection-start-line="85" selection-start-column="63" selection-end-line="85" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -1532,7 +1527,6 @@
         <option value="$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/endpoint/RegionRateInformer.java" />
         <option value="$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/endpoint/RegionInformer.java" />
         <option value="$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/endpoint/RegionEndpoint.java" />
-        <option value="$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/RegionService.java" />
         <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/topic/RegionTopicReply.java" />
         <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/topic/RegionTopicRequest.java" />
         <option value="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/dynamic/DynamicRequestReplyServerGateway.java" />
@@ -1543,6 +1537,7 @@
         <option value="$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/KilometerTariefApp.java" />
         <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/entities/Region.java" />
         <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/entities/RegionRate.java" />
+        <option value="$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/RegionService.java" />
       </list>
     </option>
   </component>
@@ -2340,7 +2335,7 @@
       <workItem from="1528360340506" duration="17047000" />
       <workItem from="1528439264900" duration="30045000" />
       <workItem from="1528523917062" duration="44210000" />
-      <workItem from="1528615812026" duration="18479000" />
+      <workItem from="1528615812026" duration="18746000" />
     </task>
     <servers />
   </component>
@@ -2368,7 +2363,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129800000" />
+    <option name="totallyTimeSpent" value="130067000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -2811,25 +2806,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/ce166a79/2048f8b9-a298-4616-bd89-fc563398763f/APP.RATE">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/list/RegionRateListLine.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="388">
           <caret line="47" column="22" lean-forward="false" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/RegionService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="71" column="16" lean-forward="false" selection-start-line="71" selection-start-column="16" selection-end-line="71" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -2896,9 +2876,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/singleton/RegionRateServerBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+        <state relative-caret-position="427">
+          <caret line="60" column="25" lean-forward="false" selection-start-line="60" selection-start-column="25" selection-end-line="60" selection-end-column="25" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/RegionService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="85" column="63" lean-forward="false" selection-start-line="85" selection-start-column="63" selection-end-line="85" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/ce166a79/2048f8b9-a298-4616-bd89-fc563398763f/APP.RATE">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
