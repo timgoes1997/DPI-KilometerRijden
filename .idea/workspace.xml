@@ -7,12 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="48271f01-6e69-4b2e-b8b9-083b01749a83" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/topic/TopicReply.java" afterPath="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/topic/TopicReply.java" />
-      <change beforePath="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/util/Constant.java" afterPath="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/util/Constant.java" />
-      <change beforePath="$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/RegionService.java" afterPath="$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/RegionService.java" />
       <change beforePath="$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/singleton/RegionRateClientBean.java" afterPath="$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/singleton/RegionRateClientBean.java" />
-      <change beforePath="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/dynamic/DynamicRequestReplyServerGateway.java" afterPath="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/dynamic/DynamicRequestReplyServerGateway.java" />
-      <change beforePath="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/topic/TopicClientGateway.java" afterPath="$PROJECT_DIR$/Tim-JMS/src/main/com/github/timgoes1997/jms/gateway/topic/TopicClientGateway.java" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -170,23 +165,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Region.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/entities/Region.java">
+      <file leaf-file-name="RegionRateClientBean.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/singleton/RegionRateClientBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-              <folding />
+            <state relative-caret-position="456">
+              <caret line="78" column="18" lean-forward="false" selection-start-line="78" selection-start-column="18" selection-end-line="78" selection-end-column="18" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RegionRateClientBean.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/singleton/RegionRateClientBean.java">
+      <file leaf-file-name="RegionTopicReply.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/topic/RegionTopicReply.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="592">
-              <caret line="68" column="20" lean-forward="true" selection-start-line="68" selection-start-column="20" selection-end-line="68" selection-end-column="20" />
+            <state relative-caret-position="102">
+              <caret line="6" column="11" lean-forward="false" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#163#164#0" expanded="true" />
+                <element signature="e#211#212#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -211,7 +209,7 @@
       <file leaf-file-name="RegionRateServerBean.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/singleton/RegionRateServerBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-204">
+            <state relative-caret-position="255">
               <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="41" selection-end-column="26" />
               <folding />
             </state>
@@ -265,8 +263,8 @@
       <file leaf-file-name="RegionService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/RegionService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="935">
-              <caret line="165" column="18" lean-forward="false" selection-start-line="165" selection-start-column="18" selection-end-line="165" selection-end-column="18" />
+            <state relative-caret-position="459">
+              <caret line="137" column="8" lean-forward="true" selection-start-line="137" selection-start-column="8" selection-end-line="137" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -1520,8 +1518,8 @@
         <option value="$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/topic/TopicReply.java" />
         <option value="$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/endpoint/RegionRateInformer.java" />
         <option value="$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/endpoint/RegionInformer.java" />
-        <option value="$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/singleton/RegionRateClientBean.java" />
         <option value="$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/endpoint/RegionEndpoint.java" />
+        <option value="$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/singleton/RegionRateClientBean.java" />
       </list>
     </option>
   </component>
@@ -2334,7 +2332,7 @@
       <workItem from="1528360340506" duration="17047000" />
       <workItem from="1528439264900" duration="30045000" />
       <workItem from="1528523917062" duration="44210000" />
-      <workItem from="1528615812026" duration="5908000" />
+      <workItem from="1528615812026" duration="6331000" />
     </task>
     <servers />
   </component>
@@ -2362,7 +2360,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="117229000" />
+    <option name="totallyTimeSpent" value="117652000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -2683,19 +2681,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/topic/RegionTopicReply.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="11" lean-forward="false" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
-          <folding>
-            <element signature="e#163#164#0" expanded="false" />
-            <element signature="e#211#212#0" expanded="false" />
-            <element signature="e#250#251#0" expanded="false" />
-            <element signature="e#285#286#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/KilometerTariefClient/src/main/com/github/timgoes1997/gateway/RegionRateClientGateway.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -2830,36 +2815,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/RegionService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="165" column="18" lean-forward="false" selection-start-line="165" selection-start-column="18" selection-end-line="165" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/singleton/RegionRateServerBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-204">
-          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="41" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/endpoint/RegionRateInformer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="11" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/endpoint/RegionInformer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="41" lean-forward="false" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2890,10 +2849,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/endpoint/RegionInformer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="41" lean-forward="false" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/RegionService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="137" column="8" lean-forward="true" selection-start-line="137" selection-start-column="8" selection-end-line="137" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/singleton/RegionRateServerBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="41" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Entities/src/main/com/github/timgoes1997/request/topic/RegionTopicReply.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="11" lean-forward="false" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
+          <folding>
+            <element signature="e#163#164#0" expanded="true" />
+            <element signature="e#211#212#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Region-Service/src/main/com/github/timgoes1997/web/beans/singleton/RegionRateClientBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="592">
-          <caret line="68" column="20" lean-forward="true" selection-start-line="68" selection-start-column="20" selection-end-line="68" selection-end-column="20" />
+        <state relative-caret-position="456">
+          <caret line="78" column="18" lean-forward="false" selection-start-line="78" selection-start-column="18" selection-end-line="78" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

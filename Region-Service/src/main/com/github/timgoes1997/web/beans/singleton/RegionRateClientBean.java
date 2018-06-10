@@ -62,11 +62,21 @@ public class RegionRateClientBean implements DynamicServer<RegionTopicRequest, R
             return request;
         }
 
-        RegionTopicReply reply = new RegionTopicReply("test"); //TODO: connection with topic
-        /*
-            TODO: Kijk naar hoe ik websockets heb aangemaakt om zo synchroon nieuwe topicbeans aan te maken en statische op te slaan + te verwijderen.
-         */
-        return null;
+        RegionEndpoint regionEndpoint = RegionEndpoint.find(inRegion);
+        if(regionEndpoint == null){
+            logger.severe("No existing region enpoint for given region: " + inRegion.getName() + "_" + inRegion.getId());
+            return request;
+        }
+        if(regionEndpoint.getChannelName().isEmpty()){
+            logger.severe("Given regionEndpoint has no channelname: " + inRegion.getName() + "_" + inRegion.getId());
+            return request;
+        }
+
+
+        RegionTopicReply reply = new RegionTopicReply(regionEndpoint.getChannelName());
+        RequestReply<RegionTopicRequest, RegionTopicReply> rr = request;
+        rr.setReply(reply);
+        return rr;
     }
 
     public void addRegion(Region region) {
