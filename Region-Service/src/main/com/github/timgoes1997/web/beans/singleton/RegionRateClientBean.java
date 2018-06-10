@@ -79,7 +79,10 @@ public class RegionRateClientBean implements DynamicServer<RegionTopicRequest, R
         }
 
 
-        RegionTopicReply reply = new RegionTopicReply(regionEndpoint.getChannelName());
+        RegionTopicReply reply = new RegionTopicReply(regionEndpoint.getChannelName(),
+                regionService.getRegionRate(inRegion,
+                        regionTopicRequest.getVehicleType(),
+                        regionTopicRequest.getEnergyLabel()));
         RequestReply<RegionTopicRequest, RegionTopicReply> rr = request;
         rr.setReply(reply);
         return rr;

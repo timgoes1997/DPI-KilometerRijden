@@ -168,6 +168,31 @@ public class RegionRate {
         this.vehicleType = vehicleType;
     }
 
+
+    public boolean isInRate(EnergyLabel energyLabel, VehicleType vehicleType) {
+        //check labels
+        if (vehicleType != this.vehicleType) return false;
+        if (energyLabel != this.energyLabel) return false;
+
+        //check day
+        Calendar currentTime = GregorianCalendar.getInstance();
+        int currentDayInt = currentTime.get(Calendar.DAY_OF_WEEK);
+        DayOfWeek currentDay = DayOfWeek.of(currentDayInt);
+        if (currentDay != this.dayOfWeek) return false;
+
+        int currentHour = currentTime.get(Calendar.HOUR_OF_DAY);
+        int currentMinute = currentTime.get(Calendar.MINUTE);
+        int startHour = startTime.get(Calendar.HOUR_OF_DAY);
+        int startMinute = startTime.get(Calendar.MINUTE);
+        int endHour = endTime.get(Calendar.HOUR_OF_DAY);
+        int endMinute = endTime.get(Calendar.MINUTE);
+
+        if (currentHour < startHour && currentHour > endHour) return false;
+        if (currentHour == startHour && currentMinute < startMinute) return false;
+        if (currentHour == endHour && currentMinute > endMinute) return false;
+        return true;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

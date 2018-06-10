@@ -25,4 +25,12 @@ public class RegionTopicRequest {
     public String getClientChannel() {
         return clientChannel;
     }
+
+    public VehicleType getVehicleType() {
+        return vehicleType;
+    }
+
+    public EnergyLabel getEnergyLabel() {
+        return energyLabel;
+    }
 }

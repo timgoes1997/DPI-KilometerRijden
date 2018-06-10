@@ -19,6 +19,8 @@ import javax.ws.rs.NotAcceptableException;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 @Stateless
@@ -38,20 +40,20 @@ public class RegionService {
     @RegionInformer
     private Event<Region> regionEvent;
 
-    public boolean regionExists(Region region){
+    public boolean regionExists(Region region) {
         return regionDAO.exists(region.getName());
     }
 
-    public List<Region> getAllRegions(){
+    public List<Region> getAllRegions() {
         return regionDAO.getAllRegions();
     }
 
-    public RegionRate findRegionRate(long id){
+    public RegionRate findRegionRate(long id) {
         return regionRateDAO.find(id);
     }
 
-    public void addRegionRate(RegionRate regionRate){
-        if(regionRate.getRegion() == null){
+    public void addRegionRate(RegionRate regionRate) {
+        if (regionRate.getRegion() == null) {
             throw new NotAcceptableException("Tried to add Regionrate without specifying a region");
         }
 
@@ -63,12 +65,12 @@ public class RegionService {
         regionRateEvent.fire(regionRate);
     }
 
-    public void addRegionRateNoCheck(RegionRate regionRate){
+    public void addRegionRateNoCheck(RegionRate regionRate) {
         regionRateDAO.create(regionRate);
     }
 
-    public void updateRegionRate(RegionRate regionRate){
-        if(regionRate.getRegion() == null){
+    public void updateRegionRate(RegionRate regionRate) {
+        if (regionRate.getRegion() == null) {
             throw new NotAcceptableException("Tried to add Regionrate without specifying a region");
         }
 
@@ -76,7 +78,7 @@ public class RegionService {
             throw new NotFoundException();
         }
 
-        if(!regionRateDAO.exists(regionRate.getId())){
+        if (!regionRateDAO.exists(regionRate.getId())) {
             throw new NotFoundException();
         }
 
@@ -85,8 +87,8 @@ public class RegionService {
         regionRateEvent.fire(regionRate);
     }
 
-    public void removeRegionRate(RegionRate regionRate){
-        if(!regionRateDAO.exists(regionRate.getId())){
+    public void removeRegionRate(RegionRate regionRate) {
+        if (!regionRateDAO.exists(regionRate.getId())) {
             throw new NotFoundException();
         }
 
@@ -114,7 +116,7 @@ public class RegionService {
         regionEvent.fire(region);
     }
 
-    public void addRegionNoCheck(Region region){
+    public void addRegionNoCheck(Region region) {
         regionDAO.create(region);
     }
 
@@ -143,13 +145,28 @@ public class RegionService {
         return getWithinRegions(location.getX(), location.getY());
     }
 
-    public List<RegionRate> getRegionRates(Region region){
+    public List<RegionRate> getRegionRates(Region region) {
         //TODO: Filter region rates, only pick the most recently added in a given timeframe
         return regionRateDAO.findRates(region);
     }
 
-    public RegionRate getRegionRate(Location location, VehicleType vehicleType, EnergyLabel energyLabel){
+    public RegionRate getRegionRate(Location location, VehicleType vehicleType, EnergyLabel energyLabel) {
+        return getRegionRate(getWithinRegion(location.getX(), location.getY()), vehicleType, energyLabel);
+    }
 
+    public RegionRate getRegionRate(Region region, VehicleType vehicleType, EnergyLabel energyLabel) {
+        if (region == null) return null;
+
+        List<RegionRate> regionRates = getRegionRates(region);
+        RegionRate currentRegionRate = null;
+        for (RegionRate regionRate : regionRates) {
+            if (regionRate.isInRate(energyLabel, vehicleType)) {
+                if (currentRegionRate == null || currentRegionRate.getId() < regionRate.getId()) {
+                    currentRegionRate = regionRate;
+                }
+            }
+        }
+        return currentRegionRate;
     }
 
     /**
