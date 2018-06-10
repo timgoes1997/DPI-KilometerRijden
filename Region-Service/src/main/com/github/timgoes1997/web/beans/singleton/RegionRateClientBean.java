@@ -15,16 +15,14 @@ import com.github.timgoes1997.web.beans.endpoint.RegionInformer;
 import com.github.timgoes1997.web.beans.endpoint.RegionRateInformer;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.DependsOn;
-import javax.ejb.DuplicateKeyException;
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
+import javax.ejb.*;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+@LocalBean
 @Singleton
 @Startup
 @DependsOn("RegionRateServerBean")
@@ -104,7 +102,6 @@ public class RegionRateClientBean implements DynamicServer<RegionTopicRequest, R
         }
     }
 
-    /*
     public void onReceiveNewRegion(@Observes @RegionInformer Region region) {
         logger.info("Received new region: " + region.getName());
         addRegion(region);
@@ -116,5 +113,5 @@ public class RegionRateClientBean implements DynamicServer<RegionTopicRequest, R
         } catch (Exception e) {
             logger.severe("Failed to add regionrate: " + e.getMessage());
         }
-    }*/
+    }
 }

@@ -16,7 +16,7 @@ import java.util.Objects;
 @NamedQueries({
         @NamedQuery(
                 name = RegionRate.FIND_ALL,
-                query = "SELECT r FROM RATE r ORDER BY r.id DESC"
+                query = "SELECT r FROM RATE r ORDER BY r.energyLabel ASC, r.dayOfWeek ASC"
         ),
         @NamedQuery(
                 name = RegionRate.FIND_ID,
@@ -24,7 +24,7 @@ import java.util.Objects;
         ),
         @NamedQuery(
                 name = RegionRate.FIND_BY_REGION,
-                query = "SELECT r FROM RATE r WHERE r.region.id = :id ORDER BY r.id DESC"
+                query = "SELECT r FROM RATE r WHERE r.region.id = :id ORDER BY r.energyLabel ASC, r.dayOfWeek ASC"
         )
 })
 public class RegionRate {
@@ -59,7 +59,7 @@ public class RegionRate {
     @Column(name = "ENERGYLABEL")
     private EnergyLabel energyLabel;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "DAY")
     private DayOfWeek dayOfWeek;
 

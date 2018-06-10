@@ -12,7 +12,7 @@ import java.util.Objects;
 @NamedQueries({
         @NamedQuery(
                 name = Region.FIND_ALL,
-                query = "SELECT r FROM REGION r"
+                query = "SELECT r FROM REGION r ORDER BY r.name ASC"
         ),
         @NamedQuery(
                 name = Region.FIND_ID,

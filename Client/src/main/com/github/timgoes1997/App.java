@@ -58,7 +58,8 @@ public class App extends JFrame {
             vehicleClientGateway = new VehicleClientGateway(new VehicleClient() {
                 @Override
                 public void onReceivePriceTopic(TopicReply topicReply) {
-                    System.out.println("Received reply");
+                    price.setText("\u20ac" + topicReply.getLocation());
+                    panel.repaint();
                 }
 
                 @Override
