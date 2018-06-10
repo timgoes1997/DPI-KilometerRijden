@@ -32,7 +32,7 @@ public class TopicClientGateway<OBJECT> extends MessageReceiverGateway {
         });
     }
 
-    public void onReplyArrived(StandardMessage sm) throws JMSException {
+    private void onReplyArrived(StandardMessage sm) throws JMSException {
         if(sm != null) {
             clientInterface.receivedAction(sm);
         }else{

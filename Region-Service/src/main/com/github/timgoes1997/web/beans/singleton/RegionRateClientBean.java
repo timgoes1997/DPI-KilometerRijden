@@ -1,6 +1,7 @@
 package com.github.timgoes1997.web.beans.singleton;
 
 import com.github.timgoes1997.entities.Region;
+import com.github.timgoes1997.entities.RegionRate;
 import com.github.timgoes1997.jms.messaging.RequestReply;
 import com.github.timgoes1997.location.Location;
 import com.github.timgoes1997.request.topic.RegionTopicReply;
@@ -9,15 +10,23 @@ import com.github.timgoes1997.util.Constant;
 import com.github.timgoes1997.web.beans.RegionService;
 import com.github.timgoes1997.jms.gateway.dynamic.DynamicRequestReplyServerGateway;
 import com.github.timgoes1997.jms.gateway.interfaces.DynamicServer;
+import com.github.timgoes1997.web.beans.endpoint.RegionEndpoint;
+import com.github.timgoes1997.web.beans.endpoint.RegionInformer;
+import com.github.timgoes1997.web.beans.endpoint.RegionRateInformer;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.DependsOn;
+import javax.ejb.DuplicateKeyException;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.enterprise.event.Observes;
 import javax.inject.Inject;
+import java.util.List;
 import java.util.logging.Logger;
 
 @Singleton
 @Startup
+@DependsOn("RegionRateServerBean")
 public class RegionRateClientBean implements DynamicServer<RegionTopicRequest, RegionTopicReply> {
 
     @Inject
@@ -27,6 +36,8 @@ public class RegionRateClientBean implements DynamicServer<RegionTopicRequest, R
     private RegionService regionService;
 
     private DynamicRequestReplyServerGateway<RegionTopicRequest, RegionTopicReply> dynamicRequestReplyServerGateway;
+
+    private List<RegionEndpoint> beanRegionEndpoints;
 
     @PostConstruct
     public void init() {
@@ -42,13 +53,41 @@ public class RegionRateClientBean implements DynamicServer<RegionTopicRequest, R
             logger.severe("Received null RegionTopicRequest");
             return request;
         }
+
         dynamicRequestReplyServerGateway.setChannelName(regionTopicRequest.getClientChannel());
         Location location = regionTopicRequest.getLocation();
         Region inRegion = regionService.getWithinRegion(location.getX(), location.getY());
+        if (inRegion == null) {
+            logger.info("Received car without a region");
+            return request;
+        }
+
         RegionTopicReply reply = new RegionTopicReply("test"); //TODO: connection with topic
         /*
             TODO: Kijk naar hoe ik websockets heb aangemaakt om zo synchroon nieuwe topicbeans aan te maken en statische op te slaan + te verwijderen.
          */
         return null;
+    }
+
+    public void addRegion(Region region) {
+        try {
+            RegionEndpoint regionEndpoint = new RegionEndpoint(region);
+            beanRegionEndpoints.add(regionEndpoint);
+        } catch (DuplicateKeyException e) {
+            logger.warning("Given region already exists!");
+        }
+    }
+
+    public void onReceiveNewRegion(@Observes @RegionInformer Region region) {
+        logger.info("Received new region: " + region.getName());
+        addRegion(region);
+    }
+
+    public void onReceiveNewRegionRate(@Observes @RegionRateInformer RegionRate regionRate) {
+        try {
+            RegionEndpoint.sendFromRightEndpoint(regionRate);
+        } catch (Exception e) {
+            logger.severe("Failed to add regionrate: " + e.getMessage());
+        }
     }
 }

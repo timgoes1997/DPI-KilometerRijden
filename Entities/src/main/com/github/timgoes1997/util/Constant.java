@@ -9,6 +9,6 @@ public class Constant {
 
     public final static String REGION_TOPIC_REQUEST_CHANNEL = "RegionTopicRequestChannel";
     public final static String REGION_TOPIC_CLIENT = "TopicClient_";
-
+    public final static String REGION_TOPIC_SERVER = "TopicServer_";
 
 }

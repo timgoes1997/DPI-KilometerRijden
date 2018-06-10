@@ -3,6 +3,8 @@ package com.github.timgoes1997.web.beans;
 import com.github.timgoes1997.entities.Region;
 import com.github.timgoes1997.entities.RegionBorder;
 import com.github.timgoes1997.entities.RegionRate;
+import com.github.timgoes1997.entities.enums.EnergyLabel;
+import com.github.timgoes1997.entities.enums.VehicleType;
 import com.github.timgoes1997.location.Location;
 import com.github.timgoes1997.web.dao.interfaces.RegionDAO;
 import com.github.timgoes1997.web.dao.interfaces.RegionRateDAO;
@@ -130,6 +132,10 @@ public class RegionService {
     public List<RegionRate> getRegionRates(Region region){
         //TODO: Filter region rates, only pick the most recently added in a given timeframe
         return regionRateDAO.findRates(region);
+    }
+
+    public RegionRate getRegionRate(Location location, VehicleType vehicleType, EnergyLabel energyLabel){
+        
     }
 
     /**

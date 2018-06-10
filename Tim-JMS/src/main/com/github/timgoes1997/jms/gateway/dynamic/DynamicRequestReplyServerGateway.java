@@ -50,29 +50,31 @@ public class DynamicRequestReplyServerGateway<REQUEST, REPLY> {
 
     public void onReceivedRequest(RequestReply rr) {
         if (rr != null) {
-            RequestReply requestReply = requestReplyDynamicServerListener.onReceiveRequest(rr);
+            synchronized (this) { //This block needs to be synchronized or multiple clients would cause issues, unless you start caching all the messagesenders but that could cause other issues.
+                RequestReply requestReply = requestReplyDynamicServerListener.onReceiveRequest(rr);
 
-            if (channelName.isEmpty()) {
-                LOGGER.severe("No filled in channel name, so can't send");
-                return;
-            }
-
-            try {
-                if (messageSenderGateway != null && messageSenderGateway.getChannelName().equals(channelName)) {
-                    messageSenderGateway.send(messageSenderGateway.createTextMessage(serializer.requestReplyToString(requestReply)));
+                if (channelName.isEmpty()) {
+                    LOGGER.severe("No filled in channel name, so can't send");
                     return;
                 }
-            } catch (JMSException e) {
-                e.printStackTrace();
-            }
 
-            try {
-                if (messageSenderGateway != null) messageSenderGateway.close();
+                try {
+                    if (messageSenderGateway != null && messageSenderGateway.getChannelName().equals(channelName)) {
+                        messageSenderGateway.send(messageSenderGateway.createTextMessage(serializer.requestReplyToString(requestReply)));
+                        return;
+                    }
+                } catch (JMSException e) {
+                    e.printStackTrace();
+                }
 
-                messageSenderGateway = new DynamicMessageSenderGateway(channelName, provider, GatewayType.QUEUE);
-                messageSenderGateway.send(messageSenderGateway.createTextMessage(serializer.requestReplyToString(requestReply)));
-            } catch (JMSException e) {
-                LOGGER.severe("Failed at sending dynamic message: " + e.getErrorCode());
+                try {
+                    if (messageSenderGateway != null) messageSenderGateway.close();
+
+                    messageSenderGateway = new DynamicMessageSenderGateway(channelName, provider, GatewayType.QUEUE);
+                    messageSenderGateway.send(messageSenderGateway.createTextMessage(serializer.requestReplyToString(requestReply)));
+                } catch (JMSException e) {
+                    LOGGER.severe("Failed at sending dynamic message: " + e.getErrorCode());
+                }
             }
         } else {
             try {
