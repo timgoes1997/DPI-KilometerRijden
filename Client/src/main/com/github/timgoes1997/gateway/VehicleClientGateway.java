@@ -1,5 +1,6 @@
 package com.github.timgoes1997.gateway;
 
+import com.github.timgoes1997.entities.RegionRate;
 import com.github.timgoes1997.entities.enums.EnergyLabel;
 import com.github.timgoes1997.entities.enums.VehicleType;
 import com.github.timgoes1997.gateway.interfaces.VehicleClient;
@@ -37,7 +38,7 @@ public class VehicleClientGateway implements VehicleClientGatewayInterface {
         this.clientChannel = Constant.REGION_TOPIC_CLIENT + uniqueId;
         this.topicRequestGateway =
                 new RequestReplyGateWay<>(this::handleRegionRequestReply, Constant.REGION_TOPIC_REQUEST_CHANNEL,
-                        clientChannel, Constant.PROVIDER,  RegionTopicRequest.class, RegionTopicReply.class);
+                        clientChannel, Constant.PROVIDER, RegionTopicRequest.class, RegionTopicReply.class);
     }
 
     @Override
@@ -49,36 +50,48 @@ public class VehicleClientGateway implements VehicleClientGatewayInterface {
 
     @Override
     public void handleRegionRequestReply(RequestReply<RegionTopicRequest, RegionTopicReply> rr) {
-        if(rr.getReply() == null || rr.getReply().getTopicChannel().isEmpty()){
+        if (rr.getReply() == null || rr.getReply().getTopicChannel().isEmpty()) {
             LOGGER.info("Retrieved invalid topicChannel");
+            return;
         }
 
+
         String topicChannel = rr.getReply().getTopicChannel();
-        if(topic != null){
-            if(topic.getChannelName().equals(topicChannel)) return;
-            if(topic.getChannelName().equals(topicChannel)) return;
+        if (topic != null) {
+            if (!topic.getChannelName().equals(topicChannel)) {
+                createNewTopicGateway(topicChannel);
+            }
+            /*
             try {
                 topic.close();
             } catch (JMSException e) {
                 LOGGER.severe("Failed to close topic");
                 return;
-            }
+            }*/
+        } else {
+            createNewTopicGateway(topicChannel);
         }
 
+        RegionRate regionRate = rr.getReply().getRegionRate();
+        if (regionRate != null) {
+            vehicleClient.onReceiveInitialPrice(regionRate);
+        }
+    }
+
+    private void createNewTopicGateway(String topicChannel) {
         try {
             topic = new TopicClientGateway<>(this::handleTopicReply, topicChannel, Constant.PROVIDER, TopicReply.class);
         } catch (NamingException | JMSException e) {
             e.printStackTrace();
         }
-        //verkrijg gedoe dan maak topichannel aan.
     }
 
     @Override
     public void handleTopicReply(StandardMessage<TopicReply> sm) {
-        if(sm.getObject() == null){
+        if (sm.getObject() == null) {
             LOGGER.severe("Received no TopicReply");
             return;
         }
-        vehicleClient.onReceivePrice(sm.getObject());
+        vehicleClient.onReceivePriceTopic(sm.getObject());
     }
 }

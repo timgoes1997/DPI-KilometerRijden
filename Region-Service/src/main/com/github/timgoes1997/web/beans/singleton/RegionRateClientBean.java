@@ -38,13 +38,17 @@ public class RegionRateClientBean implements DynamicServer<RegionTopicRequest, R
 
     private DynamicRequestReplyServerGateway<RegionTopicRequest, RegionTopicReply> dynamicRequestReplyServerGateway;
 
-    private List<RegionEndpoint> beanRegionEndpoints = new ArrayList<>();
+    private List<RegionEndpoint> beanRegionEndpoints;
 
     @PostConstruct
     public void init() {
         logger.info("Initialized Region Rate server bean");
 
-        dynamicRequestReplyServerGateway = new DynamicRequestReplyServerGateway<>(this::onReceiveRequest, Constant.REGION_TOPIC_REQUEST_CHANNEL, Constant.PROVIDER, RegionTopicRequest.class, RegionTopicReply.class);
+        dynamicRequestReplyServerGateway = new DynamicRequestReplyServerGateway<>(this, Constant.REGION_TOPIC_REQUEST_CHANNEL, Constant.PROVIDER, RegionTopicRequest.class, RegionTopicReply.class);
+
+        if(beanRegionEndpoints == null){
+            beanRegionEndpoints = new ArrayList<>();
+        }
 
         if(beanRegionEndpoints.isEmpty()){
             List<Region> regions = regionService.getAllRegions();
@@ -90,6 +94,9 @@ public class RegionRateClientBean implements DynamicServer<RegionTopicRequest, R
 
     public void addRegion(Region region) {
         try {
+            if(beanRegionEndpoints == null){
+                beanRegionEndpoints = new ArrayList<>();
+            }
             RegionEndpoint regionEndpoint = new RegionEndpoint(region);
             beanRegionEndpoints.add(regionEndpoint);
         } catch (DuplicateKeyException e) {
@@ -97,6 +104,7 @@ public class RegionRateClientBean implements DynamicServer<RegionTopicRequest, R
         }
     }
 
+    /*
     public void onReceiveNewRegion(@Observes @RegionInformer Region region) {
         logger.info("Received new region: " + region.getName());
         addRegion(region);
@@ -108,5 +116,5 @@ public class RegionRateClientBean implements DynamicServer<RegionTopicRequest, R
         } catch (Exception e) {
             logger.severe("Failed to add regionrate: " + e.getMessage());
         }
-    }
+    }*/
 }

@@ -68,8 +68,7 @@ public class DynamicRequestReplyServerGateway<REQUEST, REPLY> {
                 }
 
                 try {
-                    if (messageSenderGateway != null) messageSenderGateway.close();
-
+                    //if (messageSenderGateway != null) messageSenderGateway.close();
                     messageSenderGateway = new DynamicMessageSenderGateway(channelName, provider, GatewayType.QUEUE);
                     messageSenderGateway.send(messageSenderGateway.createTextMessage(serializer.requestReplyToString(requestReply)));
                 } catch (JMSException e) {
